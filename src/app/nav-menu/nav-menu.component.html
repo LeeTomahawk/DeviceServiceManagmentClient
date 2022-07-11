@@ -3,7 +3,7 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand">angular</a>
+      <a class="navbar-brand">Serwis</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -21,16 +21,26 @@
       >
         <ul class="navbar-nav flex-grow">
           <li class="nav-item">
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link text-dark" [routerLink]="['/']">Strona główna</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
+            <a class="nav-link text-dark" [routerLink]="['/employee-list']"
+              >Lista pracowników</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
+            <a class="nav-link text-dark" [routerLink]="['/tasks-list']"
+              >Lista zadań</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" [routerLink]="['/login']"
+              >Logowanie</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" [routerLink]="['/profile']"
+              >Profil</a
             >
           </li>
         </ul>
