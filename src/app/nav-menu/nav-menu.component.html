@@ -1,56 +1,217 @@
 <header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
-    <div class="container">
-      <a class="navbar-brand">Serwis</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <ul class="navbar-nav flex-grow">
-          <li class="nav-item">
-            <a class="nav-link text-dark text-size" [routerLink]="['/']"
-              >Strona główna</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link text-dark text-size"
-              [routerLink]="['/employee-list']"
-              >Lista pracowników</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link text-dark text-size"
-              [routerLink]="['/tasks-list']"
-              >Lista zadań</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark text-size" [routerLink]="['/login']"
-              >Logowanie</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark text-size" [routerLink]="['/profile']"
-              >Profil</a
-            >
-          </li>
-        </ul>
-      </div>
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="isExpanded = !isExpanded">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1>Header</h1>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>person_pin</mat-icon>
+    </button>
+    <h3>email@asd.pl</h3>
+  </mat-toolbar>
+  <mat-sidenav-container class="example-container" autosize>
+    <mat-sidenav
+      #sidenav
+      class="example-sidenav"
+      mode="side"
+      opened="true"
+      (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()"
+    >
+      <mat-nav-list>
+        <mat-list-item [routerLink]="['/']">
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Strona główna</span
+          >
+          <mat-icon mat-list-icon>home</mat-icon>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['/login']">
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Logowanie</span
+          >
+          <mat-icon mat-list-icon>login</mat-icon>
+        </mat-list-item>
+
+        <mat-list-item
+          [routerLink]="['/client-list']"
+          (click)="showClientSubmenu = !showClientSubmenu"
+          class="parent"
+        >
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Klienci</span
+          >
+          <mat-icon mat-list-icon>person</mat-icon>
+          <mat-icon
+            class="menu-button"
+            [ngClass]="{ rotated: showClientSubmenu }"
+            *ngIf="isExpanded || isShowing"
+            >expand_more</mat-icon
+          >
+        </mat-list-item>
+        <div
+          class="submenu"
+          [ngClass]="{ expanded: showClientSubmenu }"
+          *ngIf="showClientSubmenu"
+        >
+          <a mat-list-item [routerLink]="['/client-list']"
+            ><mat-icon>search</mat-icon>Szukaj</a
+          >
+          <a mat-list-item [routerLink]="['/client-add']"
+            ><mat-icon>add</mat-icon>Dodaj</a
+          >
+        </div>
+
+        <mat-list-item
+          [routerLink]="['/employee-list']"
+          (click)="showEmployeeSubmenu = !showEmployeeSubmenu"
+          class="parent"
+        >
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Pracownicy</span
+          >
+          <mat-icon mat-list-icon>person_outline</mat-icon>
+          <mat-icon
+            class="menu-button"
+            [ngClass]="{ rotated: showEmployeeSubmenu }"
+            *ngIf="isExpanded || isShowing"
+            >expand_more</mat-icon
+          >
+        </mat-list-item>
+        <div
+          class="submenu"
+          [ngClass]="{ expanded: showEmployeeSubmenu }"
+          *ngIf="showEmployeeSubmenu"
+        >
+          <a mat-list-item [routerLink]="['/employee-list']"
+            ><mat-icon>search</mat-icon>Szukaj</a
+          >
+          <a mat-list-item [routerLink]="['/employee-add']"
+            ><mat-icon>add</mat-icon>Dodaj</a
+          >
+        </div>
+
+        <mat-list-item
+          [routerLink]="['/manager-list']"
+          (click)="showManagerSubmenu = !showManagerSubmenu"
+          class="parent"
+        >
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Kierownictwo</span
+          >
+          <mat-icon mat-list-icon>manager</mat-icon>
+          <mat-icon
+            class="menu-button"
+            [ngClass]="{ rotated: showManagerSubmenu }"
+            *ngIf="isExpanded || isShowing"
+            >expand_more</mat-icon
+          >
+        </mat-list-item>
+        <div
+          class="submenu"
+          [ngClass]="{ expanded: showManagerSubmenu }"
+          *ngIf="showManagerSubmenu"
+        >
+          <a mat-list-item [routerLink]="['/manager-list']"
+            ><mat-icon>search</mat-icon>Szukaj</a
+          >
+          <a mat-list-item [routerLink]="['/manager-add']"
+            ><mat-icon>add</mat-icon>Dodaj</a
+          >
+        </div>
+
+        <mat-list-item
+          [routerLink]="['/task-list']"
+          (click)="showTaskSubmenu = !showTaskSubmenu"
+          class="parent"
+        >
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Zadania</span
+          >
+          <mat-icon mat-list-icon>task</mat-icon>
+          <mat-icon
+            class="menu-button"
+            [ngClass]="{ rotated: showTaskSubmenu }"
+            *ngIf="isExpanded || isShowing"
+            >expand_more</mat-icon
+          >
+        </mat-list-item>
+        <div
+          class="submenu"
+          [ngClass]="{ expanded: showTaskSubmenu }"
+          *ngIf="showTaskSubmenu"
+        >
+          <a mat-list-item [routerLink]="['/task-list']"
+            ><mat-icon>search</mat-icon>Szukaj</a
+          >
+          <a mat-list-item [routerLink]="['/task-add']"
+            ><mat-icon>add</mat-icon>Dodaj</a
+          >
+        </div>
+
+        <mat-list-item
+          [routerLink]="['/workplace-list']"
+          (click)="showWorkplaceSubmenu = !showWorkplaceSubmenu"
+          class="parent"
+        >
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Stanowiska</span
+          >
+          <mat-icon mat-list-icon>work</mat-icon>
+          <mat-icon
+            class="menu-button"
+            [ngClass]="{ rotated: showWorkplaceSubmenu }"
+            *ngIf="isExpanded || isShowing"
+            >expand_more</mat-icon
+          >
+        </mat-list-item>
+        <div
+          class="submenu"
+          [ngClass]="{ expanded: showWorkplaceSubmenu }"
+          *ngIf="showWorkplaceSubmenu"
+        >
+          <a mat-list-item [routerLink]="['/workplace-list']"
+            ><mat-icon>search</mat-icon>Szukaj</a
+          >
+          <a mat-list-item [routerLink]="['/workplace-add']"
+            ><mat-icon>add</mat-icon>Dodaj</a
+          >
+        </div>
+
+        <mat-list-item
+          [routerLink]="['/equipment-list']"
+          (click)="showEquipmentSubmenu = !showEquipmentSubmenu"
+          class="parent"
+        >
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Wyposażenie</span
+          >
+          <mat-icon mat-list-icon>settings</mat-icon>
+          <mat-icon
+            class="menu-button"
+            [ngClass]="{ rotated: showEquipmentSubmenu }"
+            *ngIf="isExpanded || isShowing"
+            >expand_more</mat-icon
+          >
+        </mat-list-item>
+        <div
+          class="submenu"
+          [ngClass]="{ expanded: showEquipmentSubmenu }"
+          *ngIf="showEquipmentSubmenu"
+        >
+          <a mat-list-item [routerLink]="['/equipment-list']"
+            ><mat-icon>search</mat-icon>Szukaj</a
+          >
+          <a mat-list-item [routerLink]="['/equipment-add']"
+            ><mat-icon>add</mat-icon>Dodaj</a
+          >
+        </div>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <div class="container h-100">
+      <router-outlet></router-outlet>
     </div>
-  </nav>
+  </mat-sidenav-container>
 </header>

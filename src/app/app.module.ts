@@ -13,7 +13,10 @@ import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +27,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     LoginComponent,
   ],
   imports: [
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatToolbarModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,

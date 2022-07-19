@@ -6,14 +6,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
-  isExpanded = false;
-  
+  isExpanded = true;
+  showClientSubmenu: boolean = false;
+  showEmployeeSubmenu: boolean = false;
+  showManagerSubmenu: boolean = false;
+  showTaskSubmenu: boolean = false;
+  showWorkplaceSubmenu: boolean = false;
+  showEquipmentSubmenu: boolean = false;
+  isShowing = false;
 
-  collapse() {
-    this.isExpanded = false;
+  mouseenter() {
+    if (!this.isExpanded) {
+      this.isShowing = true;
+    }
   }
 
-  toggle() {
-    this.isExpanded = !this.isExpanded;
+  mouseleave() {
+    if (!this.isExpanded) {
+      this.isShowing = false;
+    }
   }
 }
