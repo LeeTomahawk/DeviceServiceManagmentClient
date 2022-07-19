@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css']
+  styleUrls: ['./nav-menu.component.css'],
 })
 export class NavMenuComponent {
   isExpanded = true;
@@ -24,6 +24,22 @@ export class NavMenuComponent {
   mouseleave() {
     if (!this.isExpanded) {
       this.isShowing = false;
+      this.showClientSubmenu = false;
+      this.showEmployeeSubmenu = false;
+      this.showManagerSubmenu = false;
+      this.showTaskSubmenu = false;
+      this.showWorkplaceSubmenu = false;
+      this.showEquipmentSubmenu = false;
     }
+  }
+
+  menuclick() {
+    this.isExpanded = !this.isExpanded;
+    this.showClientSubmenu = false;
+    this.showEmployeeSubmenu = false;
+    this.showManagerSubmenu = false;
+    this.showTaskSubmenu = false;
+    this.showWorkplaceSubmenu = false;
+    this.showEquipmentSubmenu = false;
   }
 }

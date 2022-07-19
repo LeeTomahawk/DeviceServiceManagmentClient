@@ -1,6 +1,6 @@
 <header>
-  <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="isExpanded = !isExpanded">
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="menuclick()">
       <mat-icon>menu</mat-icon>
     </button>
     <h1>Header</h1>
@@ -10,8 +10,10 @@
     </button>
     <h3>email@asd.pl</h3>
   </mat-toolbar>
-  <mat-sidenav-container class="example-container" autosize>
+  <mat-sidenav-container class="example-container" autosize >
     <mat-sidenav
+      [fixedInViewport]="true"
+      [fixedTopGap]="60"
       #sidenav
       class="example-sidenav"
       mode="side"
@@ -121,7 +123,7 @@
         </div>
 
         <mat-list-item
-          [routerLink]="['/task-list']"
+          [routerLink]="['/tasks-list']"
           (click)="showTaskSubmenu = !showTaskSubmenu"
           class="parent"
         >
@@ -141,10 +143,10 @@
           [ngClass]="{ expanded: showTaskSubmenu }"
           *ngIf="showTaskSubmenu"
         >
-          <a mat-list-item [routerLink]="['/task-list']"
+          <a mat-list-item [routerLink]="['/tasks-list']"
             ><mat-icon>search</mat-icon>Szukaj</a
           >
-          <a mat-list-item [routerLink]="['/task-add']"
+          <a mat-list-item [routerLink]="['/tasks-add']"
             ><mat-icon>add</mat-icon>Dodaj</a
           >
         </div>
@@ -206,11 +208,10 @@
             ><mat-icon>add</mat-icon>Dodaj</a
           >
         </div>
-
       </mat-nav-list>
     </mat-sidenav>
 
-    <div class="container h-100">
+    <div class="container h-100" style="top: 60px">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-container>
