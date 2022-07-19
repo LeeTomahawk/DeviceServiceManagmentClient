@@ -1,0 +1,42 @@
+<h1 mat-dialog-title class="text-center">Szczegóły zadania</h1>
+<mat-dialog-content class="mat-typography">
+  <h3 class="font-weight-bold">Nazwa</h3>
+  <p>
+    {{ dataSource.name }}
+  </p>
+
+  <h3 class="font-weight-bold">Szczegłowy opis</h3>
+  <p>
+    {{ dataSource.description }}
+  </p>
+
+  <h3 class="font-weight-bold">Data przyjęcia</h3>
+  <p>{{ dataSource.startDate }}</p>
+
+  <h3 class="font-weight-bold">Data odbioru</h3>
+  <p>{{ dataSource.endDate }}</p>
+
+  <h3 class="font-weight-bold">Status</h3>
+
+  <p>{{ dataSource.taskStatus }}</p>
+
+  <h3 class="font-weight-bold">Kto przyniósł</h3>
+
+  <ul>
+    <li>
+      {{ dataSource.client.identiti.firstName }}
+      {{ dataSource.client.identiti.lastName }}
+    </li>
+    <li>Telefon: {{ dataSource.client.identiti.phoneNumber }}</li>
+    <li>
+      {{ dataSource.client.identiti.address.city }} ul.{{
+        dataSource.client.identiti.address.street
+      }}
+      {{ dataSource.client.identiti.address.number }}
+      {{ dataSource.client.identiti.address.postCode }}
+    </li>
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Wyjdź</button>
+</mat-dialog-actions>

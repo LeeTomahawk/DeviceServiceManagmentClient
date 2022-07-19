@@ -5,12 +5,12 @@
     </button>
     <h1>Header</h1>
     <span class="spacer"></span>
-    <button mat-icon-button>
+    <button mat-icon-button [routerLink]="['/profile']">
       <mat-icon>person_pin</mat-icon>
     </button>
     <h3>email@asd.pl</h3>
   </mat-toolbar>
-  <mat-sidenav-container class="example-container" autosize >
+  <mat-sidenav-container class="example-container" autosize>
     <mat-sidenav
       [fixedInViewport]="true"
       [fixedTopGap]="60"
@@ -27,12 +27,6 @@
             >Strona główna</span
           >
           <mat-icon mat-list-icon>home</mat-icon>
-        </mat-list-item>
-        <mat-list-item [routerLink]="['/login']">
-          <span class="full-width" *ngIf="isExpanded || isShowing"
-            >Logowanie</span
-          >
-          <mat-icon mat-list-icon>login</mat-icon>
         </mat-list-item>
 
         <mat-list-item
@@ -208,6 +202,20 @@
             ><mat-icon>add</mat-icon>Dodaj</a
           >
         </div>
+
+        <mat-list-item [routerLink]="['/login']">
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Logowanie</span
+          >
+          <mat-icon mat-list-icon>login</mat-icon>
+        </mat-list-item>
+
+        <mat-list-item>
+          <span class="full-width" *ngIf="isExpanded || isShowing"
+            >Wylogowanie</span
+          >
+          <mat-icon mat-list-icon>logout</mat-icon>
+        </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
 

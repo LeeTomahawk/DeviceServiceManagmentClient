@@ -13,13 +13,16 @@ import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatListModule} from '@angular/material/list';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { TaskInfoComponent } from './tasks-list/task-info/task-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,8 +31,11 @@ import {MatInputModule} from '@angular/material/input';
     EmployeeListComponent,
     TasksListComponent,
     LoginComponent,
+    TaskInfoComponent,
   ],
   imports: [
+    MatTableModule,
+    MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,

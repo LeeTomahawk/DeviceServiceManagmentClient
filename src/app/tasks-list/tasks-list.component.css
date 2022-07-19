@@ -1,0 +1,22 @@
+.mat-table__wrapper .mat-table {
+    min-width: auto !important;
+    width: 100% !important;
+}
+
+.mat-header-row {
+    width: 100%;
+}
+
+.mat-row {
+    width: 100%;
+}
+
+.mat-column-delete {
+    flex: 0 0 10% !important;
+}
+.mat-column-info {
+    flex: 0 0 10% !important;
+}
+.mat-column-update {
+    flex: 0 0 10% !important;
+}
