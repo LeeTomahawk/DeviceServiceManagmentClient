@@ -4,7 +4,7 @@
     <div class="px-3">
       <h3 class="font-weight-bold">Status</h3>
       <section>
-        <mat-radio-group>
+        <mat-radio-group [value]="data.task.taskStatus">
           <mat-radio-button class="mx-2">PRZYJĘTO</mat-radio-button>
           <mat-radio-button class="mx-2">W NAPRAWIE</mat-radio-button>
           <mat-radio-button class="mx-2">NAPRAWIONE</mat-radio-button>
@@ -19,7 +19,12 @@
       <h3 class="font-weight-bold">Data przyjęcia</h3>
       <mat-form-field appearance="fill" color="accent">
         <mat-label>Wybierz datę</mat-label>
-        <input matInput [matDatepicker]="startDate" disabled="true" />
+        <input
+          matInput
+          [matDatepicker]="startDate"
+          disabled="true"
+          [value]="formatDate(data.task.startDate)"
+        />
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle
           matSuffix
@@ -32,7 +37,11 @@
       <h3 class="font-weight-bold">Data odbioru</h3>
       <mat-form-field appearance="fill" color="accent">
         <mat-label>Wybierz datę</mat-label>
-        <input matInput [matDatepicker]="endDate" />
+        <input
+          matInput
+          [matDatepicker]="endDate"
+          [value]="formatDate(data.task.endDate)"
+        />
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle
           matSuffix
@@ -47,7 +56,13 @@
       <h3 class="font-weight-bold">Opis zadania</h3>
       <mat-form-field appearance="fill" color="accent" class="w-100">
         <mat-label>Opis zadania</mat-label>
-        <textarea maxlength="250" matInput #desc rows="5"></textarea>
+        <textarea
+          maxlength="250"
+          matInput
+          #desc
+          rows="5"
+          [value]="data.task.description"
+        ></textarea>
         <mat-hint align="end">{{ desc.value?.length || 0 }}/250</mat-hint>
       </mat-form-field>
     </div>

@@ -13,7 +13,7 @@ const ELEMENT_DATA: Tasks[] = [
     startDate: '12-12-1233',
     endDate: '12-12-1233',
     amount: 0,
-    taskStatus: 'PRZYJETO',
+    taskStatus: 'PRZYJĘTO',
     client: {
       lastVisit: '12-12-1233',
       identiti: {
@@ -88,9 +88,9 @@ export class TasksListComponent implements OnInit {
     });
   }
 
-  openUpdateDialog(id: string) {
+  openUpdateDialog(task: Tasks) {
     const dialogRef = this.updateDialog.open(TaskUpdateComponent, {
-      data: { taskId: id },
+      data: { task },
     });
 
     dialogRef.afterClosed().subscribe((x) => {
