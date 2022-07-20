@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { TaskDeleteComponent } from './task-delete/task-delete.component';
 import { TaskInfoComponent } from './task-info/task-info.component';
+import { TaskUpdateComponent } from './task-update/task-update.component';
 import { Tasks } from './taskInterfaces';
 
 const ELEMENT_DATA: Tasks[] = [
@@ -50,12 +52,36 @@ export class TasksListComponent implements OnInit {
     'delete',
   ];
   dataSource = ELEMENT_DATA;
-  constructor(private infoDialog: MatDialog) {}
+  constructor(
+    private infoDialog: MatDialog,
+    private updateDialog: MatDialog,
+    private deleteDialog: MatDialog
+  ) {}
 
   ngOnInit(): void {}
 
-  openDialog(id: number) {
+  openInfoDialog(id: string) {
     const dialogRef = this.infoDialog.open(TaskInfoComponent, {
+      data: { taskId: id },
+    });
+
+    dialogRef.afterClosed().subscribe((x) => {
+      window.location.reload();
+    });
+  }
+
+  openUpdateDialog(id: string) {
+    const dialogRef = this.updateDialog.open(TaskUpdateComponent, {
+      data: { taskId: id },
+    });
+
+    dialogRef.afterClosed().subscribe((x) => {
+      window.location.reload();
+    });
+  }
+
+  openDeleteDialog(id: string) {
+    const dialogRef = this.deleteDialog.open(TaskDeleteComponent, {
       data: { taskId: id },
     });
 

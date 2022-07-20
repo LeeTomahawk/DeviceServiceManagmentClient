@@ -1,0 +1,59 @@
+<h1 mat-dialog-title class="text-center">Aktualizacja zadania</h1>
+<mat-dialog-content class="mat-typography">
+  <div class="d-flex flex-col mb-3">
+    <div class="px-3">
+      <h3 class="font-weight-bold">Status</h3>
+      <section>
+        <mat-radio-group>
+          <mat-radio-button class="mx-2">PRZYJĘTO</mat-radio-button>
+          <mat-radio-button class="mx-2">W NAPRAWIE</mat-radio-button>
+          <mat-radio-button class="mx-2">NAPRAWIONE</mat-radio-button>
+          <mat-radio-button class="mx-2">NIE NAPRAWIONE</mat-radio-button>
+          <mat-radio-button class="mx-2">ODEBRANO</mat-radio-button>
+        </mat-radio-group>
+      </section>
+    </div>
+  </div>
+  <div class="d-flex flex-row mb-3">
+    <div class="px-3">
+      <h3 class="font-weight-bold">Data przyjęcia</h3>
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Wybierz datę</mat-label>
+        <input matInput [matDatepicker]="startDate" disabled="true" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="startDate"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="px-3">
+      <h3 class="font-weight-bold">Data odbioru</h3>
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Wybierz datę</mat-label>
+        <input matInput [matDatepicker]="endDate" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="endDate"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="d-flex flex-row mb-3">
+    <div class="px-3 w-100">
+      <h3 class="font-weight-bold">Opis zadania</h3>
+      <mat-form-field appearance="fill" color="accent" class="w-100">
+        <mat-label>Opis zadania</mat-label>
+        <textarea maxlength="250" matInput #desc rows="5"></textarea>
+        <mat-hint align="end">{{ desc.value?.length || 0 }}/250</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button>Zapisz</button>
+  <button mat-button mat-dialog-close>Wyjdź</button>
+</mat-dialog-actions>

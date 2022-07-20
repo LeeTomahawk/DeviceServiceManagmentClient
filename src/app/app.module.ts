@@ -23,6 +23,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TaskInfoComponent } from './tasks-list/task-info/task-info.component';
+import { TaskUpdateComponent } from './tasks-list/task-update/task-update.component';
+import { TaskDeleteComponent } from './tasks-list/task-delete/task-delete.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatOptionModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,8 +41,14 @@ import { TaskInfoComponent } from './tasks-list/task-info/task-info.component';
     TasksListComponent,
     LoginComponent,
     TaskInfoComponent,
+    TaskUpdateComponent,
+    TaskDeleteComponent,
   ],
   imports: [
+    MatRadioModule,
+    MatCheckboxModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatTableModule,
     MatDialogModule,
     MatInputModule,
@@ -48,6 +63,9 @@ import { TaskInfoComponent } from './tasks-list/task-info/task-info.component';
     FormsModule,
     MatPaginatorModule,
     MatSidenavModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatAutocompleteModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'employee-list', component: EmployeeListComponent },

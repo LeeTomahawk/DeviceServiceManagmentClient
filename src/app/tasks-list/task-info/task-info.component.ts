@@ -30,7 +30,7 @@ const ELEMENT_DATA: TaskInfo = {
   styleUrls: ['./task-info.component.css'],
 })
 export class TaskInfoComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { taskId: number }) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { taskId: string }) {}
   dataSource: TaskInfo = ELEMENT_DATA;
   ngOnInit(): void {}
 }
