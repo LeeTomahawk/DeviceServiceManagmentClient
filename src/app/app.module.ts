@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -37,6 +37,10 @@ import { WorkplaceDeleteComponent } from './workplace-list/workplace-delete/work
 import { WorkplaceInfoComponent } from './workplace-list/workplace-info/workplace-info.component';
 import { WorkplaceUpdateComponent } from './workplace-list/workplace-update/workplace-update.component';
 import { WorkplaceAddComponent } from './workplace-list/workplace-add/workplace-add.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { EquipmentListComponent } from './equipment-list/equipment-list.component';
+import { EquipmentDeleteComponent } from './equipment-list/equipment-delete/equipment-delete.component';
+import { EquipmentUpdateComponent } from './equipment-list/equipment-update/equipment-update.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,8 +57,14 @@ import { WorkplaceAddComponent } from './workplace-list/workplace-add/workplace-
     WorkplaceInfoComponent,
     WorkplaceUpdateComponent,
     WorkplaceAddComponent,
+    EquipmentListComponent,
+    EquipmentDeleteComponent,
+    EquipmentUpdateComponent,
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule,
     MatRadioModule,
     MatCheckboxModule,
     MatNativeDateModule,
@@ -83,6 +93,7 @@ import { WorkplaceAddComponent } from './workplace-list/workplace-add/workplace-
       { path: 'login', component: LoginComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'workplace-list', component: WorkplaceListComponent },
+      { path: 'equipment-list', component: EquipmentListComponent },
     ]),
     BrowserAnimationsModule,
   ],

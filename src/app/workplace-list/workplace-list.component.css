@@ -53,6 +53,6 @@ table {
   hyphens: auto;
 }
 
-.mat-row:nth-child(2n + 1) {
-  background-color: #292d2d;
+.mat-row:nth-child(2n) {
+  background-color: #7e7e7eab;
 }

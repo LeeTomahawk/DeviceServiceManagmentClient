@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Workplace } from './interface';
+import { Workplace } from './WorkplaceInterface';
 import { WorkplaceAddComponent } from './workplace-add/workplace-add.component';
 import { WorkplaceDeleteComponent } from './workplace-delete/workplace-delete.component';
 import { WorkplaceInfoComponent } from './workplace-info/workplace-info.component';
@@ -8,7 +8,114 @@ import { WorkplaceUpdateComponent } from './workplace-update/workplace-update.co
 
 const ELEMENT_DATA: Workplace[] = [
   {
-    position: 1,
+    id: 'asdasdasd123',
+    identifier: 'Stanowisko 1',
+    equipments: [
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+    ],
+  },
+  {
+    id: 'asdasdasd123',
+    identifier: 'Stanowisko 1',
+    equipments: [
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+    ],
+  },
+  {
     id: 'asdasdasd123',
     identifier: 'Stanowisko 1',
     equipments: [
@@ -97,7 +204,7 @@ export class WorkplaceListComponent implements OnInit {
     });
   }
   openAddDialog(id: string) {
-    const dialogRef = this.infoDialog.open(WorkplaceAddComponent, {
+    const dialogRef = this.addDialog.open(WorkplaceAddComponent, {
       data: { workplaceId: id },
     });
 
@@ -105,9 +212,9 @@ export class WorkplaceListComponent implements OnInit {
       window.location.reload();
     });
   }
-  openUpdateDialog(id: string) {
-    const dialogRef = this.infoDialog.open(WorkplaceUpdateComponent, {
-      data: { workplaceId: id },
+  openUpdateDialog(element: Workplace) {
+    const dialogRef = this.updateDialog.open(WorkplaceUpdateComponent, {
+      data: { element },
     });
 
     dialogRef.afterClosed().subscribe((x) => {
@@ -115,7 +222,7 @@ export class WorkplaceListComponent implements OnInit {
     });
   }
   openDeleteDialog(id: string) {
-    const dialogRef = this.infoDialog.open(WorkplaceDeleteComponent, {
+    const dialogRef = this.deleteDialog.open(WorkplaceDeleteComponent, {
       data: { workplaceId: id },
     });
 

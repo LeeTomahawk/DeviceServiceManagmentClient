@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-nav-menu',

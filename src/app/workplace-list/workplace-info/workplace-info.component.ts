@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Workplace } from '../interface';
+import { Workplace } from '../WorkplaceInterface';
 
 @Component({
   selector: 'app-workplace-info',

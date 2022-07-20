@@ -1,5 +1,4 @@
 export interface Workplace {
-  position: number;
   id: string;
   identifier: string;
   equipments: Equipment[];
