@@ -12,11 +12,7 @@
   <ng-container matColumnDef="info">
     <th class="text-center" mat-header-cell *matHeaderCellDef>Informacje</th>
     <td class="text-center" mat-cell *matCellDef="let element">
-      <button
-        mat-icon-button
-        color="accent"
-        (click)="openInfoDialog(element.id)"
-      >
+      <button mat-icon-button color="accent" (click)="openInfoDialog(element)">
         <mat-icon>info</mat-icon>
       </button>
     </td>

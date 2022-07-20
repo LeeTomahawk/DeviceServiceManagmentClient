@@ -16,7 +16,48 @@ const ELEMENT_DATA: Workplace[] = [
         wokrplaceEquipmentId: '34324e2rwfsdfsd',
         equipmentId: 'gfdgdfgfdsfs',
         name: 'Lutownica',
-        description: 'Cos tam',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
+        amount: 10,
+      },
+      {
+        wokrplaceEquipmentId: '34324e2rwfsdfsd',
+        equipmentId: 'gfdgdfgfdsfs',
+        name: 'Lutownica',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
         amount: 10,
       },
     ],
@@ -46,9 +87,9 @@ export class WorkplaceListComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  openInfoDialog(id: string) {
+  openInfoDialog(element: Workplace) {
     const dialogRef = this.infoDialog.open(WorkplaceInfoComponent, {
-      data: { workplaceId: id },
+      data: { element },
     });
 
     dialogRef.afterClosed().subscribe((x) => {
