@@ -1,12 +1,4 @@
 export interface Tasks {
-  position: number;
-  id: string;
-  name: string;
-  data: string;
-  status: string;
-}
-
-export interface TaskInfo {
   name: string;
   description: string;
   startDate: string;
