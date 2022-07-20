@@ -36,11 +36,16 @@ import { WorkplaceListComponent } from './workplace-list/workplace-list.componen
 import { WorkplaceDeleteComponent } from './workplace-list/workplace-delete/workplace-delete.component';
 import { WorkplaceInfoComponent } from './workplace-list/workplace-info/workplace-info.component';
 import { WorkplaceUpdateComponent } from './workplace-list/workplace-update/workplace-update.component';
-import { WorkplaceAddComponent } from './workplace-list/workplace-add/workplace-add.component';
+import { WorkplaceAddComponent } from './workplace-add/workplace-add.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { EquipmentListComponent } from './equipment-list/equipment-list.component';
 import { EquipmentDeleteComponent } from './equipment-list/equipment-delete/equipment-delete.component';
 import { EquipmentUpdateComponent } from './equipment-list/equipment-update/equipment-update.component';
+import { EquipmentAddComponent } from './equipment-add/equipment-add.component';
+import { TaskAddComponent } from './task-add/task-add.component';
+import { EmployeeAddComponent } from './employee-add/employee-add.component';
+import { WorkplaceAddEquipmentComponent } from './workplace-list/workplace-add-equipment/workplace-add-equipment.component';
+import { MatStepperModule } from '@angular/material/stepper';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,8 +65,13 @@ import { EquipmentUpdateComponent } from './equipment-list/equipment-update/equi
     EquipmentListComponent,
     EquipmentDeleteComponent,
     EquipmentUpdateComponent,
+    EquipmentAddComponent,
+    TaskAddComponent,
+    EmployeeAddComponent,
+    WorkplaceAddEquipmentComponent,
   ],
   imports: [
+    MatStepperModule,
     FormsModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
@@ -94,6 +104,10 @@ import { EquipmentUpdateComponent } from './equipment-list/equipment-update/equi
       { path: 'profile', component: ProfileComponent },
       { path: 'workplace-list', component: WorkplaceListComponent },
       { path: 'equipment-list', component: EquipmentListComponent },
+      { path: 'equipment-add', component: EquipmentAddComponent },
+      { path: 'workplace-add', component: WorkplaceAddComponent },
+      { path: 'employee-add', component: EmployeeAddComponent },
+      { path: 'task-add', component: EmployeeAddComponent },
     ]),
     BrowserAnimationsModule,
   ],

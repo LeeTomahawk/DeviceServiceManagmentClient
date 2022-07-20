@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Workplace } from './WorkplaceInterface';
-import { WorkplaceAddComponent } from './workplace-add/workplace-add.component';
 import { WorkplaceDeleteComponent } from './workplace-delete/workplace-delete.component';
 import { WorkplaceInfoComponent } from './workplace-info/workplace-info.component';
 import { WorkplaceUpdateComponent } from './workplace-update/workplace-update.component';
+import { WorkplaceAddEquipmentComponent } from './workplace-add-equipment/workplace-add-equipment.component';
 
 const ELEMENT_DATA: Workplace[] = [
   {
@@ -204,7 +204,7 @@ export class WorkplaceListComponent implements OnInit {
     });
   }
   openAddDialog(id: string) {
-    const dialogRef = this.addDialog.open(WorkplaceAddComponent, {
+    const dialogRef = this.addDialog.open(WorkplaceAddEquipmentComponent, {
       data: { workplaceId: id },
     });
 
