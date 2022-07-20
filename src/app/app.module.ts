@@ -32,6 +32,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatOptionModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
+import { WorkplaceListComponent } from './workplace-list/workplace-list.component';
+import { WorkplaceDeleteComponent } from './workplace-list/workplace-delete/workplace-delete.component';
+import { WorkplaceInfoComponent } from './workplace-list/workplace-info/workplace-info.component';
+import { WorkplaceUpdateComponent } from './workplace-list/workplace-update/workplace-update.component';
+import { WorkplaceAddComponent } from './workplace-list/workplace-add/workplace-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +48,11 @@ import { MatRadioModule } from '@angular/material/radio';
     TaskInfoComponent,
     TaskUpdateComponent,
     TaskDeleteComponent,
+    WorkplaceListComponent,
+    WorkplaceDeleteComponent,
+    WorkplaceInfoComponent,
+    WorkplaceUpdateComponent,
+    WorkplaceAddComponent,
   ],
   imports: [
     MatRadioModule,
@@ -72,6 +82,7 @@ import { MatRadioModule } from '@angular/material/radio';
       { path: 'tasks-list', component: TasksListComponent },
       { path: 'login', component: LoginComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'workplace-list', component: WorkplaceListComponent },
     ]),
     BrowserAnimationsModule,
   ],
