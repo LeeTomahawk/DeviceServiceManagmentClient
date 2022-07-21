@@ -109,7 +109,7 @@ import { MatDividerModule } from '@angular/material/divider';
       { path: 'equipment-add', component: EquipmentAddComponent },
       { path: 'workplace-add', component: WorkplaceAddComponent },
       { path: 'employee-add', component: EmployeeAddComponent },
-      { path: 'task-add', component: EmployeeAddComponent },
+      { path: 'task-add', component: TaskAddComponent },
     ]),
     BrowserAnimationsModule,
   ],

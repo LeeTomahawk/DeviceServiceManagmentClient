@@ -1,1 +1,79 @@
-<p>task-add works!</p>
+<mat-stepper [linear]="true">
+  <mat-step>
+    <div class="row p-3">
+      <div class="col-6 col-lg-6 col-xl-6">
+        <ng-template matStepLabel>Wybierz klienta</ng-template>
+        <h2>Podaj numer telefonu klienta</h2>
+        <p>Przed stworzeniem zadania zarejestruj klienta jeśli nie istnieje</p>
+        <mat-form-field appearance="fill" class="mt-3 w-75">
+          <mat-label>Telefon</mat-label>
+          <span matPrefix>+48 &nbsp;</span>
+          <input
+            mask="000 000 000"
+            type="tel"
+            matInput
+            placeholder="555 555 123"
+          />
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+        <div class="mt-5">
+          <button mat-raised-button matStepperNext color="primary">
+            Dalej
+          </button>
+        </div>
+      </div>
+      <div class="col-6 col-lg-6 col-xl-6">
+        <div class="d-flex flex-row mb-3 p-3">
+          <div class="px-3">
+            <h3 class="font-weight-bold">Imie i nazwisko</h3>
+            bartek Mozdzierz
+          </div>
+          <div class="px-3">
+            <h3 class="font-weight-bold">Adres</h3>
+            ul.Warszawska 10, 33-212 Kielce
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-step>
+  <mat-step label="Szczgóły zgłoszenia">
+    <div class="row p-3">
+      <div class="col-6 col-lg-6 col-xl-6">
+        <h3 class="font-weight-bold">Nazwa zadania</h3>
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Np. Uszkodzony telefon</mat-label>
+          <input #name maxlength="50" matInput />
+          <mat-hint align="end">{{ name.value?.length || 0 }}/50</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-6 col-lg-6 col-xl-6">
+        <h3 class="font-weight-bold">Opis zadania</h3>
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Opis zadania</mat-label>
+          <textarea maxlength="350" matInput #desc rows="5"></textarea>
+          <mat-hint align="end">{{ desc.value?.length || 0 }}/350</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <button class="m-2" mat-raised-button matStepperPrevious color="warn">
+        Wróć
+      </button>
+      <button class="m-2" mat-raised-button matStepperNext color="primary">
+        Dalej
+      </button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Podsumowanie</ng-template>
+    <p>Sprawdź wszystkie pola ponownie i kliknij zapisz.</p>
+    <div>
+      <button class="m-2" mat-raised-button matStepperPrevious color="warn">
+        Wróć
+      </button>
+      <button class="m-2" mat-raised-button matStepperPrevious color="accent">
+        Zapisz
+      </button>
+    </div>
+  </mat-step>
+</mat-stepper>

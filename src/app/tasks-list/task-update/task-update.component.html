@@ -57,13 +57,13 @@
       <mat-form-field appearance="fill" color="accent" class="w-100">
         <mat-label>Opis zadania</mat-label>
         <textarea
-          maxlength="250"
+          maxlength="350"
           matInput
           #desc
           rows="5"
           [value]="data.task.description"
         ></textarea>
-        <mat-hint align="end">{{ desc.value?.length || 0 }}/250</mat-hint>
+        <mat-hint align="end">{{ desc.value?.length || 0 }}/350</mat-hint>
       </mat-form-field>
     </div>
   </div>
