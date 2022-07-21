@@ -46,6 +46,7 @@ import { TaskAddComponent } from './task-add/task-add.component';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { WorkplaceAddEquipmentComponent } from './workplace-list/workplace-add-equipment/workplace-add-equipment.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDividerModule } from '@angular/material/divider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +72,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     WorkplaceAddEquipmentComponent,
   ],
   imports: [
+    MatDividerModule,
     MatStepperModule,
     FormsModule,
     ReactiveFormsModule,

@@ -1,1 +1,54 @@
-<p>equipment-update works!</p>
+<h1 mat-dialog-title class="text-center">Aktualizacja wyposażenia</h1>
+<mat-dialog-content class="mat-typography">
+  <h1 class="text-center">{{ data.equipment.name }}</h1>
+  <div class="d-flex flex-row mb-3">
+    <div class="px-3 w-100">
+      <h3 class="font-weight-bold">Nazwa</h3>
+      <mat-form-field
+        class="example-full-width"
+        appearance="fill"
+        color="accent"
+      >
+        <mat-label>Nazwa</mat-label>
+        <input
+          matInput
+          placeholder="Np. Lutownica"
+          [value]="data.equipment.name"
+        />
+      </mat-form-field>
+    </div>
+    <div class="px-3 w-100">
+      <h3 class="font-weight-bold">Ilość</h3>
+      <mat-form-field appearance="fill" color="accent" floatLabel="always">
+        <mat-label>Ilosć</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="0"
+          [value]="data.equipment.amount"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="d-flex flex-row mb-3">
+    <div class="px-3 w-100">
+      <h3 class="font-weight-bold">Opis</h3>
+      <mat-form-field appearance="fill" color="accent" class="w-100">
+        <mat-label>Opis</mat-label>
+        <textarea
+          maxlength="50"
+          matInput
+          #desc
+          rows="5"
+          [value]="data.equipment.description"
+        ></textarea>
+        <mat-hint align="end">{{ desc.value?.length || 0 }}/50</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="d-flex flex-row mb-3"></div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button>Zapisz</button>
+  <button mat-button mat-dialog-close>Wyjdź</button>
+</mat-dialog-actions>
