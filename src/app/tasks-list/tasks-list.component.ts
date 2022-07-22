@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskDeleteComponent } from './task-delete/task-delete.component';
 import { TaskInfoComponent } from './task-info/task-info.component';
@@ -110,6 +111,9 @@ const ELEMENT_DATA: Tasks[] = [
   styleUrls: ['./tasks-list.component.css'],
 })
 export class TasksListComponent implements OnInit {
+  endDate: Date = new Date();
+  startDate: Date = new Date();
+
   displayedColumns: string[] = [
     'position',
     'name',
@@ -126,7 +130,9 @@ export class TasksListComponent implements OnInit {
     private deleteDialog: MatDialog
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.startDate.setDate(this.endDate.getDate() - 7);
+  }
 
   openInfoDialog(task: Tasks) {
     const dialogRef = this.infoDialog.open(TaskInfoComponent, {
