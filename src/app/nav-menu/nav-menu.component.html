@@ -131,8 +131,14 @@
         [ngClass]="{ expanded: showTaskSubmenu }"
         *ngIf="showTaskSubmenu"
       >
+        <a mat-list-item [routerLink]="['/tasks-']"
+          ><mat-icon>work</mat-icon>Twoje zadania</a
+        >
+        <a mat-list-item [routerLink]="['/tasks-']"
+          ><mat-icon>get_app</mat-icon>Dostępne zadania</a
+        >
         <a mat-list-item [routerLink]="['/tasks-list']"
-          ><mat-icon>search</mat-icon>Szukaj</a
+          ><mat-icon>history</mat-icon>Archiwum</a
         >
         <a mat-list-item [routerLink]="['/task-add']"
           ><mat-icon>add</mat-icon>Dodaj</a

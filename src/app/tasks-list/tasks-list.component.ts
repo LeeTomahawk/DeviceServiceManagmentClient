@@ -128,10 +128,6 @@ export class TasksListComponent implements OnInit {
     const dialogRef = this.infoDialog.open(TaskInfoComponent, {
       data: { task },
     });
-
-    dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
-    });
   }
 
   openUpdateDialog(task: Tasks) {
