@@ -1,6 +1,7 @@
 export interface Tasks {
   name: string;
   description: string;
+  activities: string;
   startDate: string;
   endDate: string;
   amount: number;

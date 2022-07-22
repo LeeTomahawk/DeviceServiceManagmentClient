@@ -42,11 +42,13 @@ import { EquipmentListComponent } from './equipment-list/equipment-list.componen
 import { EquipmentDeleteComponent } from './equipment-list/equipment-delete/equipment-delete.component';
 import { EquipmentUpdateComponent } from './equipment-list/equipment-update/equipment-update.component';
 import { EquipmentAddComponent } from './equipment-add/equipment-add.component';
-import { TaskAddComponent } from './task-add/task-add.component';
+import { TaskAddComponent } from './tasks-list/task-add/task-add.component';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { WorkplaceAddEquipmentComponent } from './workplace-list/workplace-add-equipment/workplace-add-equipment.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDividerModule } from '@angular/material/divider';
+import { TaskUserTaskComponent } from './tasks-list/task-user-task/task-user-task.component';
+import { TaskAvailableTaskComponent } from './tasks-list/task-available-task/task-available-task.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +72,8 @@ import { MatDividerModule } from '@angular/material/divider';
     TaskAddComponent,
     EmployeeAddComponent,
     WorkplaceAddEquipmentComponent,
+    TaskUserTaskComponent,
+    TaskAvailableTaskComponent,
   ],
   imports: [
     MatDividerModule,
@@ -110,6 +114,8 @@ import { MatDividerModule } from '@angular/material/divider';
       { path: 'workplace-add', component: WorkplaceAddComponent },
       { path: 'employee-add', component: EmployeeAddComponent },
       { path: 'task-add', component: TaskAddComponent },
+      { path: 'tasks-user', component: TaskUserTaskComponent },
+      { path: 'tasks-available', component: TaskAvailableTaskComponent },
     ]),
     BrowserAnimationsModule,
   ],

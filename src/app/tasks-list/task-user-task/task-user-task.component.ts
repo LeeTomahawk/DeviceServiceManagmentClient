@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { TaskDeleteComponent } from './task-delete/task-delete.component';
-import { TaskInfoComponent } from './task-info/task-info.component';
-import { TaskUpdateComponent } from './task-update/task-update.component';
-import { Tasks } from './taskInterfaces';
+import { TaskDeleteComponent } from '../task-delete/task-delete.component';
+import { TaskInfoComponent } from '../task-info/task-info.component';
+import { TaskUpdateComponent } from '../task-update/task-update.component';
+import { Tasks } from '../taskInterfaces';
 
 const ELEMENT_DATA: Tasks[] = [
   {
@@ -14,7 +14,7 @@ const ELEMENT_DATA: Tasks[] = [
     startDate: '12-12-1233',
     endDate: '12-12-1233',
     amount: 0,
-    taskStatus: 'NAPRAWIONE',
+    taskStatus: 'W NAPRAWIE',
     client: {
       lastVisit: '12-12-1233',
       identiti: {
@@ -38,7 +38,7 @@ const ELEMENT_DATA: Tasks[] = [
     startDate: '12-12-1233',
     endDate: '12-12-1233',
     amount: 0,
-    taskStatus: 'NAPRAWIONE',
+    taskStatus: 'W NAPRAWIE',
     client: {
       lastVisit: '12-12-1233',
       identiti: {
@@ -62,7 +62,7 @@ const ELEMENT_DATA: Tasks[] = [
     startDate: '12-12-1233',
     endDate: '12-12-1233',
     amount: 0,
-    taskStatus: 'NAPRAWIONE',
+    taskStatus: 'W NAPRAWIE',
     client: {
       lastVisit: '12-12-1233',
       identiti: {
@@ -86,7 +86,7 @@ const ELEMENT_DATA: Tasks[] = [
     startDate: '12-12-1233',
     endDate: '12-12-1233',
     amount: 0,
-    taskStatus: 'NAPRAWIONE',
+    taskStatus: 'W NAPRAWIE',
     client: {
       lastVisit: '12-12-1233',
       identiti: {
@@ -103,13 +103,13 @@ const ELEMENT_DATA: Tasks[] = [
     },
   },
 ];
-
 @Component({
-  selector: 'app-tasks-list',
-  templateUrl: './tasks-list.component.html',
-  styleUrls: ['./tasks-list.component.css'],
+  selector: 'app-task-user-task',
+  templateUrl: './task-user-task.component.html',
+  styleUrls: ['./task-user-task.component.css'],
 })
-export class TasksListComponent implements OnInit {
+export class TaskUserTaskComponent implements OnInit {
+  dataSource = ELEMENT_DATA;
   displayedColumns: string[] = [
     'position',
     'name',
@@ -119,7 +119,6 @@ export class TasksListComponent implements OnInit {
     'update',
     'delete',
   ];
-  dataSource = ELEMENT_DATA;
   constructor(
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,

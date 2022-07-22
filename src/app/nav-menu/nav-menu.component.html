@@ -131,10 +131,10 @@
         [ngClass]="{ expanded: showTaskSubmenu }"
         *ngIf="showTaskSubmenu"
       >
-        <a mat-list-item [routerLink]="['/tasks-']"
+        <a mat-list-item [routerLink]="['/tasks-user']"
           ><mat-icon>work</mat-icon>Twoje zadania</a
         >
-        <a mat-list-item [routerLink]="['/tasks-']"
+        <a mat-list-item [routerLink]="['/tasks-available']"
           ><mat-icon>get_app</mat-icon>Dostępne zadania</a
         >
         <a mat-list-item [routerLink]="['/tasks-list']"
