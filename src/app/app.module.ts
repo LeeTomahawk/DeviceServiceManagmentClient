@@ -36,14 +36,14 @@ import { WorkplaceListComponent } from './workplace-list/workplace-list.componen
 import { WorkplaceDeleteComponent } from './workplace-list/workplace-delete/workplace-delete.component';
 import { WorkplaceInfoComponent } from './workplace-list/workplace-info/workplace-info.component';
 import { WorkplaceUpdateComponent } from './workplace-list/workplace-update/workplace-update.component';
-import { WorkplaceAddComponent } from './workplace-add/workplace-add.component';
+import { WorkplaceAddComponent } from './workplace-list/workplace-add/workplace-add.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { EquipmentListComponent } from './equipment-list/equipment-list.component';
 import { EquipmentDeleteComponent } from './equipment-list/equipment-delete/equipment-delete.component';
 import { EquipmentUpdateComponent } from './equipment-list/equipment-update/equipment-update.component';
-import { EquipmentAddComponent } from './equipment-add/equipment-add.component';
+import { EquipmentAddComponent } from './equipment-list/equipment-add/equipment-add.component';
 import { TaskAddComponent } from './tasks-list/task-add/task-add.component';
-import { EmployeeAddComponent } from './employee-add/employee-add.component';
+import { EmployeeAddComponent } from './employee-list/employee-add/employee-add.component';
 import { WorkplaceAddEquipmentComponent } from './workplace-list/workplace-add-equipment/workplace-add-equipment.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDividerModule } from '@angular/material/divider';
