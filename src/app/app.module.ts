@@ -49,6 +49,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatDividerModule } from '@angular/material/divider';
 import { TaskUserTaskComponent } from './tasks-list/task-user-task/task-user-task.component';
 import { TaskAvailableTaskComponent } from './tasks-list/task-available-task/task-available-task.component';
+import { TaskAssignComponent } from './tasks-list/task-available-task/task-assign/task-assign.component';
+import { TaskApprovalComponent } from './tasks-list/task-approval/task-approval.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +76,8 @@ import { TaskAvailableTaskComponent } from './tasks-list/task-available-task/tas
     WorkplaceAddEquipmentComponent,
     TaskUserTaskComponent,
     TaskAvailableTaskComponent,
+    TaskAssignComponent,
+    TaskApprovalComponent,
   ],
   imports: [
     MatDividerModule,
@@ -116,6 +120,7 @@ import { TaskAvailableTaskComponent } from './tasks-list/task-available-task/tas
       { path: 'task-add', component: TaskAddComponent },
       { path: 'tasks-user', component: TaskUserTaskComponent },
       { path: 'tasks-available', component: TaskAvailableTaskComponent },
+      { path: 'tasks-approval', component: TaskApprovalComponent },
     ]),
     BrowserAnimationsModule,
   ],

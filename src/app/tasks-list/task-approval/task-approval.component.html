@@ -34,15 +34,24 @@
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="take">
-    <th class="text-center" mat-header-cell *matHeaderCellDef>Przydziel</th>
+  <ng-container matColumnDef="update">
+    <th class="text-center" mat-header-cell *matHeaderCellDef>Aktualizuj</th>
     <td class="text-center" mat-cell *matCellDef="let element">
       <button
-        mat-stroked-button
+        mat-icon-button
         color="accent"
-        (click)="openAssignDialog(element)"
+        (click)="openUpdateDialog(element)"
       >
-        <mat-icon>arrow_rightward</mat-icon><mat-icon>person</mat-icon>
+        <mat-icon>update</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="approv">
+    <th class="text-center" mat-header-cell *matHeaderCellDef>Zatwierdź</th>
+    <td class="text-center" mat-cell *matCellDef="let element">
+      <button mat-icon-button color="accent">
+        <mat-icon>check_box</mat-icon>
       </button>
     </td>
   </ng-container>
