@@ -51,6 +51,10 @@ import { TaskUserTaskComponent } from './tasks-list/task-user-task/task-user-tas
 import { TaskAvailableTaskComponent } from './tasks-list/task-available-task/task-available-task.component';
 import { TaskAssignComponent } from './tasks-list/task-available-task/task-assign/task-assign.component';
 import { TaskApprovalComponent } from './tasks-list/task-approval/task-approval.component';
+import { ClientListComponent } from './client-list/client-list.component';
+import { ClientInfoComponent } from './client-list/client-info/client-info.component';
+import { ClientUpdateComponent } from './client-list/client-update/client-update.component';
+import { ClientTasksComponent } from './client-list/client-tasks/client-tasks.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +82,10 @@ import { TaskApprovalComponent } from './tasks-list/task-approval/task-approval.
     TaskAvailableTaskComponent,
     TaskAssignComponent,
     TaskApprovalComponent,
+    ClientListComponent,
+    ClientInfoComponent,
+    ClientUpdateComponent,
+    ClientTasksComponent,
   ],
   imports: [
     MatDividerModule,
@@ -121,6 +129,7 @@ import { TaskApprovalComponent } from './tasks-list/task-approval/task-approval.
       { path: 'tasks-user', component: TaskUserTaskComponent },
       { path: 'tasks-available', component: TaskAvailableTaskComponent },
       { path: 'tasks-approval', component: TaskApprovalComponent },
+      { path: 'client-list', component: ClientListComponent },
     ]),
     BrowserAnimationsModule,
   ],
