@@ -132,6 +132,7 @@ import { ManagerListComponent } from './manager-list/manager-list.component';
       { path: 'tasks-available', component: TaskAvailableTaskComponent },
       { path: 'tasks-approval', component: TaskApprovalComponent },
       { path: 'client-list', component: ClientListComponent },
+      { path: 'manager-list', component: ManagerListComponent },
     ]),
     BrowserAnimationsModule,
   ],
