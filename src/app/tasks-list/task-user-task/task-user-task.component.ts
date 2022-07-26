@@ -117,13 +117,8 @@ export class TaskUserTaskComponent implements OnInit {
     'data',
     'info',
     'update',
-    'delete',
   ];
-  constructor(
-    private infoDialog: MatDialog,
-    private updateDialog: MatDialog,
-    private deleteDialog: MatDialog
-  ) {}
+  constructor(private infoDialog: MatDialog, private updateDialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -136,16 +131,6 @@ export class TaskUserTaskComponent implements OnInit {
   openUpdateDialog(task: Tasks) {
     const dialogRef = this.updateDialog.open(TaskUpdateComponent, {
       data: { task },
-    });
-
-    dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
-    });
-  }
-
-  openDeleteDialog(id: string) {
-    const dialogRef = this.deleteDialog.open(TaskDeleteComponent, {
-      data: { taskId: id },
     });
 
     dialogRef.afterClosed().subscribe((x) => {

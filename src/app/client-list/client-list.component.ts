@@ -1,27 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { ClientService } from 'src/Services/client.service';
 import { ClientInfoComponent } from './client-info/client-info.component';
 import { ClientTasksComponent } from './client-tasks/client-tasks.component';
 import { ClientUpdateComponent } from './client-update/client-update.component';
 import { Client } from './clientInterface';
 
-const ELEMENT_DATA: Client[] = [
-  {
-    id: 'f83487e6-3b78-4b8c-86aa-08da6e1a7460',
-    lastVisit: '2022-07-25',
-    identiti: {
-      firstName: 'string',
-      lastName: 'string',
-      phoneNumber: 'string',
-      address: {
-        city: 'string',
-        street: 'string',
-        number: 'string',
-        postCode: 'string',
-      },
-    },
-  },
-];
 @Component({
   selector: 'app-client-list',
   templateUrl: './client-list.component.html',
@@ -37,14 +22,25 @@ export class ClientListComponent implements OnInit {
     'info',
     'update',
   ];
-  dataSource = ELEMENT_DATA;
+  private clientList: any;
+  public dataSource!: MatTableDataSource<Client>;
   constructor(
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
-    private tasksDialog: MatDialog
+    private tasksDialog: MatDialog,
+    private clientApiCaller: ClientService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getClientList();
+  }
+
+  getClientList() {
+    this.clientApiCaller.getClientList().subscribe((data: Client) => {
+      this.clientList = data;
+      this.dataSource = new MatTableDataSource<Client>(this.clientList);
+    });
+  }
 
   openInfoDialog(client: Client) {
     const dialogRef = this.infoDialog.open(ClientInfoComponent, {

@@ -1,109 +1,14 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { TaskListCalendarForm } from 'src/Forms/TaskListCalendarForm';
+import { TaskService } from 'src/Services/task.service';
 import { TaskDeleteComponent } from './task-delete/task-delete.component';
 import { TaskInfoComponent } from './task-info/task-info.component';
 import { TaskUpdateComponent } from './task-update/task-update.component';
 import { Tasks } from './taskInterfaces';
-
-const ELEMENT_DATA: Tasks[] = [
-  {
-    name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pulvinar est leo, et facilisis risus sollicitudin non. Curabitur pellentesque dignissim nibh ut sodales. Donec in nulla luctus augue euismod maximus ac vitae lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis at sodales sem. Nulla pharetra sagittis justo, vitae convallis metus ornare vel. Phasellus rhoncus vestibulum massa sed suscipit. Curabitur placerat malesuada est et euismod. Aliquam dictum commodo neque nec ultricies. Duis urna mauris, interdum non sodales non, accumsan in ex. Donec nec neque scelerisque neque facilisis fringilla. Etiam laoreet ipsum venenatis vulputate maximus. Cras egestas neque id mattis ultricies. Sed non nulla nec nulla posuere molestie.',
-    activities: '',
-    startDate: '12-12-1233',
-    endDate: '12-12-1233',
-    amount: 0,
-    taskStatus: 'NAPRAWIONE',
-    client: {
-      lastVisit: '12-12-1233',
-      identiti: {
-        firstName: 'Bartek',
-        lastName: 'Mozdzierz',
-        phoneNumber: '123123123',
-        address: {
-          city: 'Kielce',
-          street: 'Warszawsa',
-          number: '12',
-          postCode: '12-330',
-        },
-      },
-    },
-  },
-  {
-    name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pulvinar est leo, et facilisis risus sollicitudin non. Curabitur pellentesque dignissim nibh ut sodales. Donec in nulla luctus augue euismod maximus ac vitae lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis at sodales sem. Nulla pharetra sagittis justo, vitae convallis metus ornare vel. Phasellus rhoncus vestibulum massa sed suscipit. Curabitur placerat malesuada est et euismod. Aliquam dictum commodo neque nec ultricies. Duis urna mauris, interdum non sodales non, accumsan in ex. Donec nec neque scelerisque neque facilisis fringilla. Etiam laoreet ipsum venenatis vulputate maximus. Cras egestas neque id mattis ultricies. Sed non nulla nec nulla posuere molestie.',
-    activities: '',
-    startDate: '12-12-1233',
-    endDate: '12-12-1233',
-    amount: 0,
-    taskStatus: 'NAPRAWIONE',
-    client: {
-      lastVisit: '12-12-1233',
-      identiti: {
-        firstName: 'Bartek',
-        lastName: 'Mozdzierz',
-        phoneNumber: '123123123',
-        address: {
-          city: 'Kielce',
-          street: 'Warszawsa',
-          number: '12',
-          postCode: '12-330',
-        },
-      },
-    },
-  },
-  {
-    name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pulvinar est leo, et facilisis risus sollicitudin non. Curabitur pellentesque dignissim nibh ut sodales. Donec in nulla luctus augue euismod maximus ac vitae lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis at sodales sem. Nulla pharetra sagittis justo, vitae convallis metus ornare vel. Phasellus rhoncus vestibulum massa sed suscipit. Curabitur placerat malesuada est et euismod. Aliquam dictum commodo neque nec ultricies. Duis urna mauris, interdum non sodales non, accumsan in ex. Donec nec neque scelerisque neque facilisis fringilla. Etiam laoreet ipsum venenatis vulputate maximus. Cras egestas neque id mattis ultricies. Sed non nulla nec nulla posuere molestie.',
-    activities: '',
-    startDate: '12-12-1233',
-    endDate: '12-12-1233',
-    amount: 0,
-    taskStatus: 'NAPRAWIONE',
-    client: {
-      lastVisit: '12-12-1233',
-      identiti: {
-        firstName: 'Bartek',
-        lastName: 'Mozdzierz',
-        phoneNumber: '123123123',
-        address: {
-          city: 'Kielce',
-          street: 'Warszawsa',
-          number: '12',
-          postCode: '12-330',
-        },
-      },
-    },
-  },
-  {
-    name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pulvinar est leo, et facilisis risus sollicitudin non. Curabitur pellentesque dignissim nibh ut sodales. Donec in nulla luctus augue euismod maximus ac vitae lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis at sodales sem. Nulla pharetra sagittis justo, vitae convallis metus ornare vel. Phasellus rhoncus vestibulum massa sed suscipit. Curabitur placerat malesuada est et euismod. Aliquam dictum commodo neque nec ultricies. Duis urna mauris, interdum non sodales non, accumsan in ex. Donec nec neque scelerisque neque facilisis fringilla. Etiam laoreet ipsum venenatis vulputate maximus. Cras egestas neque id mattis ultricies. Sed non nulla nec nulla posuere molestie.',
-    activities: '',
-    startDate: '12-12-1233',
-    endDate: '12-12-1233',
-    amount: 0,
-    taskStatus: 'NAPRAWIONE',
-    client: {
-      lastVisit: '12-12-1233',
-      identiti: {
-        firstName: 'Bartek',
-        lastName: 'Mozdzierz',
-        phoneNumber: '123123123',
-        address: {
-          city: 'Kielce',
-          street: 'Warszawsa',
-          number: '12',
-          postCode: '12-330',
-        },
-      },
-    },
-  },
-];
 
 @Component({
   selector: 'app-tasks-list',
@@ -111,9 +16,9 @@ const ELEMENT_DATA: Tasks[] = [
   styleUrls: ['./tasks-list.component.css'],
 })
 export class TasksListComponent implements OnInit {
-  endDate: Date = new Date();
-  startDate: Date = new Date();
-
+  endDate!: Date;
+  startDate!: Date;
+  form = new TaskListCalendarForm();
   displayedColumns: string[] = [
     'position',
     'name',
@@ -123,15 +28,35 @@ export class TasksListComponent implements OnInit {
     'update',
     'delete',
   ];
-  dataSource = ELEMENT_DATA;
+  taskList: any;
+  dataSource!: MatTableDataSource<Task>;
   constructor(
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
-    private deleteDialog: MatDialog
-  ) {}
+    private deleteDialog: MatDialog,
+    private taskApiCaller: TaskService
+  ) {
+    this.endDate = new Date();
+    this.startDate = new Date();
+    this.startDate.setDate(this.endDate.getDate() - 7);
+    this.form.get('startDate')?.setValue(this.startDate);
+    this.form.get('endDate')?.setValue(this.endDate);
+  }
 
   ngOnInit(): void {
-    this.startDate.setDate(this.endDate.getDate() - 7);
+    this.getTaskList();
+  }
+
+  async getTaskList() {
+    await this.taskApiCaller
+      .getTaskList(
+        this.form.get('startDate')?.value,
+        this.form.get('endDate')?.value
+      )
+      .then((data) => {
+        this.taskList = data;
+        this.dataSource = new MatTableDataSource<Task>(this.taskList);
+      });
   }
 
   openInfoDialog(task: Tasks) {

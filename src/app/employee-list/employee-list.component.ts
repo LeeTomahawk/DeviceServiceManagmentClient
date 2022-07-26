@@ -1,23 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Employee } from './EmployeeInterface';
-const ELEMENT_DATA: Employee[] = [
-  {
-    id: 'f83487e6-3b78-4b8c-86aa-08da6e1a7460',
-    employmentDate: '2022-07-25',
-    identiti: {
-      firstName: 'string',
-      lastName: 'string',
-      phoneNumber: 'string',
-      address: {
-        city: 'string',
-        street: 'string',
-        number: 'string',
-        postCode: 'string',
-      },
-    },
-  },
-];
+import { MatTableDataSource } from '@angular/material/table';
+import { EmployeeService } from 'src/Services/employee.service';
+import { Employee } from './employeeInterface';
+
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
@@ -32,14 +18,25 @@ export class EmployeeListComponent implements OnInit {
     'info',
     'update',
   ];
-  dataSource = ELEMENT_DATA;
+  private employeeList: any;
+  public dataSource!: MatTableDataSource<Employee>;
   constructor(
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
-    private tasksDialog: MatDialog
+    private tasksDialog: MatDialog,
+    private employeeApiCaller: EmployeeService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getEmployeeList();
+  }
+
+  getEmployeeList() {
+    this.employeeApiCaller.getEmployeeList().subscribe((data) => {
+      this.employeeList = data;
+      this.dataSource = new MatTableDataSource<Employee>(this.employeeList);
+    });
+  }
 
   openInfoDialog(employee: Employee) {
     // const dialogRef = this.infoDialog.open(, {

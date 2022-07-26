@@ -35,29 +35,14 @@
   </ng-container>
 
   <ng-container matColumnDef="update">
-    <th class="text-center" mat-header-cell *matHeaderCellDef>Aktualizuj</th>
+    <th class="text-center" mat-header-cell *matHeaderCellDef>Raport</th>
     <td class="text-center" mat-cell *matCellDef="let element">
       <button
         mat-icon-button
         color="accent"
         (click)="openUpdateDialog(element)"
       >
-        <mat-icon>update</mat-icon>
-      </button>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="delete">
-    <th class="text-center" mat-header-cell *matHeaderCellDef>
-      Porzuć zadanie
-    </th>
-    <td class="text-center" mat-cell *matCellDef="let element">
-      <button
-        mat-icon-button
-        color="warn"
-        (click)="openDeleteDialog(element.id)"
-      >
-        <mat-icon>arrow_downward</mat-icon>
+        <mat-icon>folder</mat-icon>
       </button>
     </td>
   </ng-container>

@@ -1,6 +1,8 @@
+import { DatePipe } from '@angular/common';
+
 export interface Client {
   id: string;
-  lastVisit: string;
+  lastVisit: Date;
   identiti: Identiti;
 }
 export interface Identiti {
