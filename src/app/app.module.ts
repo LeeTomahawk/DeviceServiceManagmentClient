@@ -55,6 +55,7 @@ import { ClientListComponent } from './client-list/client-list.component';
 import { ClientInfoComponent } from './client-list/client-info/client-info.component';
 import { ClientUpdateComponent } from './client-list/client-update/client-update.component';
 import { ClientTasksComponent } from './client-list/client-tasks/client-tasks.component';
+import { ManagerListComponent } from './manager-list/manager-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,6 +87,7 @@ import { ClientTasksComponent } from './client-list/client-tasks/client-tasks.co
     ClientInfoComponent,
     ClientUpdateComponent,
     ClientTasksComponent,
+    ManagerListComponent,
   ],
   imports: [
     MatDividerModule,
