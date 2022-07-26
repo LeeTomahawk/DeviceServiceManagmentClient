@@ -38,6 +38,7 @@
     <th class="text-center" mat-header-cell *matHeaderCellDef>Przydziel</th>
     <td class="text-center" mat-cell *matCellDef="let element">
       <button
+        *ngIf="element.taskStatus === 'PRZYJĘTO'"
         mat-stroked-button
         color="accent"
         (click)="openAssignDialog(element)"

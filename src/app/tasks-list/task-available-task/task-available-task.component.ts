@@ -12,7 +12,7 @@ const ELEMENT_DATA: Tasks[] = [
     startDate: '12-12-1233',
     endDate: '12-12-1233',
     amount: 0,
-    taskStatus: 'PRZYJĘTO',
+    taskStatus: 'W NAPRAWIE',
     client: {
       lastVisit: '12-12-1233',
       identiti: {
