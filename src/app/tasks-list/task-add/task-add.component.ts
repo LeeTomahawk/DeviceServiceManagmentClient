@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   debounceTime,
@@ -17,7 +17,7 @@ import { ClientService } from 'src/Services/client.service';
   templateUrl: './task-add.component.html',
   styleUrls: ['./task-add.component.css'],
 })
-export class TaskAddComponent implements OnInit {
+export class TaskAddComponent implements OnInit, OnChanges {
   constructor(private clientApiCaller: ClientService) {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(' '),
@@ -33,7 +33,13 @@ export class TaskAddComponent implements OnInit {
   myControl = new FormControl('');
   filteredOptions!: Observable<any[]>;
   clientList: any;
+  isClientLoad: boolean = false;
+
   ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    let change = changes['isClientLoad'];
+  }
 
   filter(val: string): Observable<any[]> {
     return this.clientApiCaller.getClientByPhoneNumber(val).pipe(
@@ -46,6 +52,7 @@ export class TaskAddComponent implements OnInit {
   }
   onSelected(val: any) {
     this.selectedIdentiti = val;
+    this.isClientLoad = true;
   }
   displayWith(value: any): string {
     return value
