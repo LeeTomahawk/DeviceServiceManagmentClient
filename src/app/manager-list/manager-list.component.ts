@@ -1,53 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { ManagerService } from 'src/Services/manager.service';
 import { Manager } from './managerInterface';
-const ELEMENT_DATA: Manager[] = [
-  {
-    id: 'f83487e6-3b78-4b8c-86aa-08da6e1a7460',
-    employmentDate: '2022-07-25',
-    identiti: {
-      firstName: 'string',
-      lastName: 'string',
-      phoneNumber: 'string',
-      address: {
-        city: 'string',
-        street: 'string',
-        number: 'string',
-        postCode: 'string',
-      },
-    },
-  },
-  {
-    id: 'f83487e6-3b78-4b8c-86aa-08da6e1a7460',
-    employmentDate: '2022-07-25',
-    identiti: {
-      firstName: 'string',
-      lastName: 'string',
-      phoneNumber: 'string',
-      address: {
-        city: 'string',
-        street: 'string',
-        number: 'string',
-        postCode: 'string',
-      },
-    },
-  },
-  {
-    id: 'f83487e6-3b78-4b8c-86aa-08da6e1a7460',
-    employmentDate: '2022-07-25',
-    identiti: {
-      firstName: 'string',
-      lastName: 'string',
-      phoneNumber: 'string',
-      address: {
-        city: 'string',
-        street: 'string',
-        number: 'string',
-        postCode: 'string',
-      },
-    },
-  },
-];
+
 @Component({
   selector: 'app-manager-list',
   templateUrl: './manager-list.component.html',
@@ -62,15 +18,27 @@ export class ManagerListComponent implements OnInit {
     'info',
     'update',
   ];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource<Manager>();
+  managerList: any;
   isLoading: boolean = true;
   constructor(
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
-    private tasksDialog: MatDialog
+    private tasksDialog: MatDialog,
+    private managerApiCaller: ManagerService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getManagerList();
+  }
+
+  getManagerList() {
+    this.managerApiCaller.getManagerList().subscribe((data) => {
+      this.managerList = data;
+      this.dataSource = new MatTableDataSource<Manager>(this.managerList);
+      this.isLoading = false;
+    });
+  }
 
   openInfoDialog(manager: Manager) {
     // const dialogRef = this.infoDialog.open(, {

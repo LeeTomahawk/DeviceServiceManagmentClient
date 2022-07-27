@@ -1,21 +1,6 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button (click)="menuclick()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <h1>Header</h1>
-  <span class="spacer"></span>
-  <button mat-icon-button [routerLink]="['/profile']">
-    <mat-icon>person_pin</mat-icon>
-  </button>
-  <h3>Jan Kowalski</h3>
-  <mat-icon class="m-1">brightness_2</mat-icon>
-  <mat-slide-toggle class="mr-8"> </mat-slide-toggle>
-  <mat-icon class="m-1">brightness_7</mat-icon>
-</mat-toolbar>
 <mat-sidenav-container class="example-container" autosize>
   <mat-sidenav
     [fixedInViewport]="true"
-    [fixedTopGap]="60"
     #sidenav
     class="example-sidenav"
     mode="side"
@@ -23,6 +8,20 @@
     (mouseenter)="mouseenter()"
     (mouseleave)="mouseleave()"
   >
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="menuclick()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>Header</h1>
+      <span class="spacer"></span>
+      <button mat-icon-button [routerLink]="['/profile']">
+        <mat-icon>person_pin</mat-icon>
+      </button>
+      <h3>Jan Kowalski</h3>
+      <mat-icon class="m-1">brightness_2</mat-icon>
+      <mat-slide-toggle class="mr-8"> </mat-slide-toggle>
+      <mat-icon class="m-1">brightness_7</mat-icon>
+    </mat-toolbar>
     <mat-nav-list>
       <mat-list-item [routerLink]="['/']">
         <span class="full-width" *ngIf="isExpanded || isShowing"
@@ -220,7 +219,7 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <div class="container h-100" style="margin-top: 60px">
+  <div class="container h-100" style="padding-top: 60px">
     <router-outlet></router-outlet>
   </div>
 </mat-sidenav-container>
