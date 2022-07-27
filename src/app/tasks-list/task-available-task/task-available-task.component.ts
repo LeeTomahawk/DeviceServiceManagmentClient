@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { TaskService } from 'src/Services/task.service';
 import { TaskInfoComponent } from '../task-info/task-info.component';
 import { Tasks } from '../taskInterfaces';
 import { TaskAssignComponent } from './task-assign/task-assign.component';
@@ -108,7 +110,8 @@ const ELEMENT_DATA: Tasks[] = [
   styleUrls: ['./task-available-task.component.css'],
 })
 export class TaskAvailableTaskComponent implements OnInit {
-  dataSource = ELEMENT_DATA;
+  taskList: any;
+  dataSource!: MatTableDataSource<Task>;
   displayedColumns: string[] = [
     'position',
     'name',
@@ -117,9 +120,22 @@ export class TaskAvailableTaskComponent implements OnInit {
     'info',
     'take',
   ];
-  constructor(private infoDialog: MatDialog, private assignDialog: MatDialog) {}
+  constructor(
+    private infoDialog: MatDialog,
+    private assignDialog: MatDialog,
+    private taskApiCaller: TaskService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getTaskList();
+  }
+
+  async getTaskList() {
+    await this.taskApiCaller.getAvailableTasksList().then((data) => {
+      this.taskList = data;
+      this.dataSource = new MatTableDataSource<Task>(this.taskList);
+    });
+  }
 
   openInfoDialog(task: Tasks) {
     const dialogRef = this.infoDialog.open(TaskInfoComponent, {

@@ -26,4 +26,9 @@ export class TaskService {
       )
       .toPromise();
   }
+  getAvailableTasksList() {
+    return this.http
+      .get<Task>(this.apiURL + '/api/Task/GetAvailableTasks', this.httpOptions)
+      .toPromise();
+  }
 }

@@ -1,56 +1,64 @@
-<h1 mat-dialog-title class="text-center">Szczegóły zadania</h1>
-<mat-dialog-content class="mat-typography">
-  <div class="d-flex flex-row mb-3">
-    <div class="px-3 w-25">
-      <h3 class="font-weight-bold">Status</h3>
-      <p>{{ dataSource.taskStatus }}</p>
+<div class="container">
+  <h1 mat-dialog-title class="text-center">Szczegóły zadania</h1>
+  <mat-dialog-content>
+    <div class="row mb-3">
+      <div class="col-4 px-3">
+        <h3 class="font-weight-bold">Status</h3>
+        <p>{{ dataSource.taskStatus }}</p>
+      </div>
+      <div class="col-4 px-3">
+        <h3 class="font-weight-bold">Data przyjęcia</h3>
+        <p>{{ dataSource.startDate | date: "yyyy-MM-dd HH:MM:SS" }}</p>
+      </div>
+      <div class="col-4 px-3">
+        <h3 class="font-weight-bold">Data odbioru</h3>
+        <p>{{ dataSource.endDate | date: "yyyy-MM-dd HH:MM:SS" }}</p>
+      </div>
     </div>
-    <div class="px-3 w-25">
-      <h3 class="font-weight-bold">Data przyjęcia</h3>
-      <p>{{ dataSource.startDate }}</p>
+    <div class="row mb-3">
+      <div class="col-4 px-3">
+        <h3 class="font-weight-bold">Imie i nazwisko</h3>
+        {{ dataSource.client.identiti.firstName }}
+        {{ dataSource.client.identiti.lastName }}
+      </div>
+      <div class="col-4 px-3">
+        <h3 class="font-weight-bold">Telefon</h3>
+        {{ dataSource.client.identiti.phoneNumber }}
+      </div>
+      <div class="col-4 px-3">
+        <h3 class="font-weight-bold">Adres</h3>
+        ul.{{ dataSource.client.identiti.address.street }}
+        {{ dataSource.client.identiti.address.number }},
+        {{ dataSource.client.identiti.address.postCode }}
+        {{ dataSource.client.identiti.address.city }}
+      </div>
     </div>
-    <div class="px-3 w-25">
-      <h3 class="font-weight-bold">Data odbioru</h3>
-      <p>{{ dataSource.endDate }}</p>
+    <div class="row">
+      <div class="col-12 px-3 w-100">
+        <h3 class="font-weight-bold">Tytuł zadania</h3>
+        <p>
+          {{ dataSource.name }}
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="d-flex flex-row mb-3">
-    <div class="px-3 w-25">
-      <h3 class="font-weight-bold">Imie i nazwisko</h3>
-      {{ dataSource.client.identiti.firstName }}
-      {{ dataSource.client.identiti.lastName }}
+    <div class="row">
+      <div class="col-md-12 px-3 w-100">
+        <h3 class="font-weight-bold">Szczegółowy opis zadania</h3>
+        <p>
+          {{ dataSource.description }}
+        </p>
+      </div>
     </div>
-    <div class="px-3 w-25">
-      <h3 class="font-weight-bold">Telefon</h3>
-      {{ dataSource.client.identiti.phoneNumber }}
+    <div class="row">
+      <div class="col-12 px-3 w-100">
+        <h3 class="font-weight-bold">Wykonane czynności</h3>
+        <p>
+          {{ dataSource.activities }}
+        </p>
+      </div>
     </div>
-    <div class="px-3 w-25">
-      <h3 class="font-weight-bold">Adres</h3>
-      ul.{{ dataSource.client.identiti.address.street }}
-      {{ dataSource.client.identiti.address.number }},
-      {{ dataSource.client.identiti.address.postCode }}
-      {{ dataSource.client.identiti.address.city }}
-    </div>
-  </div>
-  <div class="px-3">
-    <h3 class="font-weight-bold">Tytuł zadania</h3>
-    <p>
-      {{ dataSource.name }}
-    </p>
-  </div>
-  <div class="px-3">
-    <h3 class="font-weight-bold">Szczegółowy opis zadania</h3>
-    <p>
-      {{ dataSource.description }}
-    </p>
-  </div>
-  <div class="px-3">
-    <h3 class="font-weight-bold">Wykonane czynności</h3>
-    <p>
-      {{ dataSource.activities }}
-    </p>
-  </div>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Wyjdź</button>
-</mat-dialog-actions>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Wyjdź</button>
+  </mat-dialog-actions>
+</div>
