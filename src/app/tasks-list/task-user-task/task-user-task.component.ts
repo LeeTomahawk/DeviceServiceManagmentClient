@@ -118,6 +118,7 @@ export class TaskUserTaskComponent implements OnInit {
     'info',
     'update',
   ];
+  isLoading: boolean = true;
   constructor(private infoDialog: MatDialog, private updateDialog: MatDialog) {}
 
   ngOnInit(): void {}

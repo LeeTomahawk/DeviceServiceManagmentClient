@@ -63,6 +63,7 @@ export class ManagerListComponent implements OnInit {
     'update',
   ];
   dataSource = ELEMENT_DATA;
+  isLoading: boolean = true;
   constructor(
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,

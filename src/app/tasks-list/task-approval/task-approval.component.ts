@@ -119,7 +119,7 @@ export class TaskApprovalComponent implements OnInit {
     'update',
     'approv',
   ];
-
+  isLoading: boolean = true;
   constructor(private infoDialog: MatDialog, private updateDialog: MatDialog) {}
 
   openInfoDialog(task: Tasks) {

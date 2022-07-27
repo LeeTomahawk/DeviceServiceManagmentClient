@@ -120,6 +120,7 @@ export class TaskAvailableTaskComponent implements OnInit {
     'info',
     'take',
   ];
+  isLoading: boolean = true;
   constructor(
     private infoDialog: MatDialog,
     private assignDialog: MatDialog,
@@ -134,6 +135,7 @@ export class TaskAvailableTaskComponent implements OnInit {
     await this.taskApiCaller.getAvailableTasksList().then((data) => {
       this.taskList = data;
       this.dataSource = new MatTableDataSource<Task>(this.taskList);
+      this.isLoading = false;
     });
   }
 

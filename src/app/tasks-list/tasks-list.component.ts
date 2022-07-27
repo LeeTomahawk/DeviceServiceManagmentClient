@@ -30,6 +30,7 @@ export class TasksListComponent implements OnInit {
   ];
   taskList: any;
   dataSource!: MatTableDataSource<Task>;
+  isLoading: boolean = true;
   constructor(
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
@@ -56,6 +57,7 @@ export class TasksListComponent implements OnInit {
       .then((data) => {
         this.taskList = data;
         this.dataSource = new MatTableDataSource<Task>(this.taskList);
+        this.isLoading = false;
       });
   }
 

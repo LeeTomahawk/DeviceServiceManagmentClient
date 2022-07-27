@@ -50,3 +50,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+<div class="d-flex justify-content-center m-2" *ngIf="isLoading">
+  <mat-progress-spinner color="accent" mode="indeterminate" diameter="50">
+  </mat-progress-spinner>
+</div>

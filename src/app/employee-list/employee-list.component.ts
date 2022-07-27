@@ -20,6 +20,7 @@ export class EmployeeListComponent implements OnInit {
   ];
   private employeeList: any;
   public dataSource!: MatTableDataSource<Employee>;
+  isLoading: boolean = true;
   constructor(
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
@@ -35,6 +36,7 @@ export class EmployeeListComponent implements OnInit {
     this.employeeApiCaller.getEmployeeList().subscribe((data) => {
       this.employeeList = data;
       this.dataSource = new MatTableDataSource<Employee>(this.employeeList);
+      this.isLoading = false;
     });
   }
 

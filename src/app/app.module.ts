@@ -56,6 +56,7 @@ import { ClientInfoComponent } from './client-list/client-info/client-info.compo
 import { ClientUpdateComponent } from './client-list/client-update/client-update.component';
 import { ClientTasksComponent } from './client-list/client-tasks/client-tasks.component';
 import { ManagerListComponent } from './manager-list/manager-list.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,6 +91,7 @@ import { ManagerListComponent } from './manager-list/manager-list.component';
     ManagerListComponent,
   ],
   imports: [
+    MatProgressSpinnerModule,
     MatDividerModule,
     MatStepperModule,
     FormsModule,

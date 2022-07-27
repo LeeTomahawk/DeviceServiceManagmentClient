@@ -51,6 +51,7 @@ export class EquipmentListComponent implements OnInit {
     'delete',
   ];
   dataSource = ELEMENT_DATA;
+  isLoading: boolean = true;
   constructor(
     private updateDialog: MatDialog,
     private deleteDialog: MatDialog

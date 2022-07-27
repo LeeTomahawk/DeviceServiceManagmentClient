@@ -24,6 +24,7 @@ export class ClientListComponent implements OnInit {
   ];
   private clientList: any;
   public dataSource!: MatTableDataSource<Client>;
+  isLoading: boolean = true;
   constructor(
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
@@ -39,6 +40,7 @@ export class ClientListComponent implements OnInit {
     this.clientApiCaller.getClientList().subscribe((data: Client) => {
       this.clientList = data;
       this.dataSource = new MatTableDataSource<Client>(this.clientList);
+      this.isLoading = false;
     });
   }
 
