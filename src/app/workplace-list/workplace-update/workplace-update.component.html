@@ -5,7 +5,11 @@
       <h3 class="font-weight-bold">Identyfikator</h3>
       <mat-form-field appearance="fill" color="accent">
         <mat-label>Identyfikator</mat-label>
-        <input matInput placeholder="Np. Stanowisko Lutownicze" />
+        <input
+          matInput
+          placeholder="Np. Stanowisko Lutownicze"
+          [value]="data.element.identifier"
+        />
       </mat-form-field>
     </div>
   </div>

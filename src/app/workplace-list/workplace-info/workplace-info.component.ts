@@ -10,6 +10,6 @@ import { Workplace } from '../WorkplaceInterface';
 export class WorkplaceInfoComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { element: Workplace }) {}
   displayedColumns: string[] = ['position', 'name', 'description', 'delete'];
-  dataSource = this.data.element.equipments;
+  dataSource = this.data.element.equipmentsDto;
   ngOnInit(): void {}
 }

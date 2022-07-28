@@ -1,7 +1,7 @@
 export interface Workplace {
   id: string;
   identifier: string;
-  equipments: Equipment[];
+  equipmentsDto: Equipment[];
 }
 export interface Equipment {
   wokrplaceEquipmentId: string;

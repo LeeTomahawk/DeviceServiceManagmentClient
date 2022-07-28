@@ -5,171 +5,9 @@ import { WorkplaceDeleteComponent } from './workplace-delete/workplace-delete.co
 import { WorkplaceInfoComponent } from './workplace-info/workplace-info.component';
 import { WorkplaceUpdateComponent } from './workplace-update/workplace-update.component';
 import { WorkplaceAddEquipmentComponent } from './workplace-add-equipment/workplace-add-equipment.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { WorkplaceService } from 'src/Services/workplace.service';
 
-const ELEMENT_DATA: Workplace[] = [
-  {
-    id: 'asdasdasd123',
-    identifier: 'Stanowisko 1',
-    equipments: [
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-    ],
-  },
-  {
-    id: 'asdasdasd123',
-    identifier: 'Stanowisko 1',
-    equipments: [
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-    ],
-  },
-  {
-    id: 'asdasdasd123',
-    identifier: 'Stanowisko 1',
-    equipments: [
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-      {
-        wokrplaceEquipmentId: '34324e2rwfsdfsd',
-        equipmentId: 'gfdgdfgfdsfs',
-        name: 'Lutownica',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pulvinar erat. Suspendisse rhoncus fringilla eleifend. Fusce ac orci ligula. Pellentesque vitae fermentum libero. Aenean ultricies rutrum ligula viverra maximus.',
-        amount: 10,
-      },
-    ],
-  },
-];
 @Component({
   selector: 'app-workplace-list',
   templateUrl: './workplace-list.component.html',
@@ -184,15 +22,29 @@ export class WorkplaceListComponent implements OnInit {
     'update',
     'delete',
   ];
-  dataSource = ELEMENT_DATA;
+  workplaceList: any;
+  dataSource = new MatTableDataSource<Workplace>();
+  isLoading: boolean = true;
   constructor(
     private infoDialog: MatDialog,
     private addDialog: MatDialog,
     private updateDialog: MatDialog,
-    private deleteDialog: MatDialog
+    private deleteDialog: MatDialog,
+    private workplaceApiCaller: WorkplaceService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getWorkplaceList();
+  }
+
+  getWorkplaceList() {
+    this.workplaceApiCaller.getWorkplaceList().subscribe((data) => {
+      console.log(data);
+      this.workplaceList = data;
+      this.dataSource = new MatTableDataSource<Workplace>(this.workplaceList);
+      this.isLoading = false;
+    });
+  }
 
   openInfoDialog(element: Workplace) {
     const dialogRef = this.infoDialog.open(WorkplaceInfoComponent, {
