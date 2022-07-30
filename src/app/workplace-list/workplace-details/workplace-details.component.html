@@ -1,0 +1,78 @@
+<h1 mat-dialog-title class="text-center pt-2">Szczegóły stanowiska</h1>
+<h1 class="text-center">
+  {{ workplaceEquipment?.identifier }}
+</h1>
+<button class="my-2" mat-raised-button [routerLink]="['/workplace-list']">
+  Wróć
+</button>
+<button
+  class="my-2"
+  mat-raised-button
+  color="primary"
+  (click)="openAddDialog(workplaceEquipment)"
+>
+  Dodaj wyposażenie
+</button>
+<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>Nr</th>
+    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Opis</th>
+    <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th class="text-center" mat-header-cell *matHeaderCellDef>Usuń</th>
+    <td class="text-center" mat-cell *matCellDef="let element">
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="delete(element.wokrplaceEquipmentId)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table> -->
+
+<div class="row justify-content-md-center">
+  <mat-card
+    class="col-md-12 example-card m-2"
+    *ngFor="let element of workplaceEquipment?.equipmentsDto"
+  >
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>outlined_flag</mat-icon>
+      </div>
+      <mat-card-title>{{ element.name }}</mat-card-title>
+      <mat-card-subtitle>1/szt</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img
+      mat-card-image
+      src="https://www.freeiconspng.com/thumbs/tool-icon/tool-icon-25.png"
+    /> -->
+    <mat-card-content>
+      <p>{{ element.description }}</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="delete(element.wokrplaceEquipmentId)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

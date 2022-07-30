@@ -39,7 +39,18 @@ export class WorkplaceService {
     );
   }
 
-  postWorkplaceAddEquipment() {}
+  postWorkplaceAddEquipment(workplaceId: string, equipmentId: string) {
+    return this.http
+      .post(
+        this.apiURL +
+          '/api/Workplace/AddEquipment?workplaceId=' +
+          workplaceId +
+          '&equipmentId=' +
+          equipmentId,
+        this.httpOptions
+      )
+      .toPromise();
+  }
 
   deleteWokrplaceEquipment(id: string) {
     return this.http.delete(

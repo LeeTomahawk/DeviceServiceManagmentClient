@@ -36,8 +36,7 @@ table {
 
 .mat-column-info,
 .mat-column-update,
-.mat-column-delete,
-.mat-column-addeq {
+.mat-column-delete {
   word-wrap: break-word !important;
   white-space: unset !important;
   flex: 0 0 5% !important;

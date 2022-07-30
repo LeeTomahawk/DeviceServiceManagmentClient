@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Usuń element</h1>
 <div mat-dialog-content>Czy na pewno chcesz usunąć ten element?</div>
 <div mat-dialog-actions align="end">
-  <button mat-button>Tak</button>
+  <button mat-button mat-dialog-close (click)="delete()">Tak</button>
   <button mat-button mat-dialog-close>Nie</button>
 </div>

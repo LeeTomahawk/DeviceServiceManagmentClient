@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Workplace } from './WorkplaceInterface';
 import { WorkplaceDeleteComponent } from './workplace-delete/workplace-delete.component';
-import { WorkplaceInfoComponent } from './workplace-info/workplace-info.component';
 import { WorkplaceUpdateComponent } from './workplace-update/workplace-update.component';
-import { WorkplaceAddEquipmentComponent } from './workplace-add-equipment/workplace-add-equipment.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { WorkplaceService } from 'src/Services/workplace.service';
+import { EquipmentService } from 'src/Services/equipment.service';
 
 @Component({
   selector: 'app-workplace-list',
@@ -18,7 +17,6 @@ export class WorkplaceListComponent implements OnInit {
     'position',
     'identifier',
     'info',
-    'addeq',
     'update',
     'delete',
   ];
@@ -26,11 +24,10 @@ export class WorkplaceListComponent implements OnInit {
   dataSource = new MatTableDataSource<Workplace>();
   isLoading: boolean = true;
   constructor(
-    private infoDialog: MatDialog,
-    private addDialog: MatDialog,
     private updateDialog: MatDialog,
     private deleteDialog: MatDialog,
-    private workplaceApiCaller: WorkplaceService
+    private workplaceApiCaller: WorkplaceService,
+    private changeDetectorRefs: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -46,32 +43,14 @@ export class WorkplaceListComponent implements OnInit {
     });
   }
 
-  openInfoDialog(element: Workplace) {
-    const dialogRef = this.infoDialog.open(WorkplaceInfoComponent, {
-      data: { element },
-    });
-
-    dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
-    });
-  }
-  openAddDialog(id: string) {
-    const dialogRef = this.addDialog.open(WorkplaceAddEquipmentComponent, {
-      data: { workplaceId: id },
-    });
-
-    dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
-    });
-  }
   openUpdateDialog(element: Workplace) {
     const dialogRef = this.updateDialog.open(WorkplaceUpdateComponent, {
       data: { element },
     });
 
-    dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
-    });
+    // dialogRef.afterClosed().subscribe((x) => {
+    //   window.location.reload();
+    // });
   }
   openDeleteDialog(id: string) {
     const dialogRef = this.deleteDialog.open(WorkplaceDeleteComponent, {
@@ -79,7 +58,11 @@ export class WorkplaceListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
+      this.ngOnInit();
     });
+  }
+
+  refresh() {
+    this.changeDetectorRefs.detectChanges();
   }
 }

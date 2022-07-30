@@ -28,13 +28,6 @@ export class EquipmentService {
     );
   }
 
-  getAvailableEquipment(id: string) {
-    return this.http.get<Equipment>(
-      this.apiURL + '/api/Equipment/GetAvailableEquipment/' + id,
-      this.httpOptions
-    );
-  }
-
   postEquipment() {}
 
   putEquipment() {}

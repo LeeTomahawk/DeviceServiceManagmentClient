@@ -1,11 +1,18 @@
 <h1 mat-dialog-title>Dodaj wyposażenie</h1>
 <div mat-dialog-content style="min-width: 500px">
-  <mat-list *ngFor="let eq of dataSource">
+  <mat-list *ngFor="let eq of equipmentList">
     <mat-list-item
       >{{ eq.name }}
       <span class="spacer"></span>
       {{ eq.amount }}/szt
-      <button mat-icon-button color="accent"><mat-icon>add</mat-icon></button>
+      <button
+        mat-icon-button
+        color="accent"
+        class="m-3"
+        (click)="addEquipment(eq.id)"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
     </mat-list-item>
     <mat-divider></mat-divider>
   </mat-list>
