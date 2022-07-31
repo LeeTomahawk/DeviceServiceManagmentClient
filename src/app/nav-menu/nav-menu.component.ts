@@ -1,11 +1,14 @@
-import { Component, HostBinding, Renderer2 } from '@angular/core';
+import { Component, HostBinding, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/Services/auth.service';
+import { UserService } from 'src/Services/user.service';
 
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.css'],
 })
-export class NavMenuComponent {
+export class NavMenuComponent implements OnInit {
   isExpanded = true;
   showClientSubmenu: boolean = false;
   showEmployeeSubmenu: boolean = false;
@@ -14,6 +17,23 @@ export class NavMenuComponent {
   showWorkplaceSubmenu: boolean = false;
   showEquipmentSubmenu: boolean = false;
   isShowing = false;
+  isLogged: boolean = false;
+  userRole!: any;
+  data: any;
+
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit(): void {
+    this.data = localStorage.getItem('token');
+    if (this.data) {
+      this.isLogged = true;
+      this.userRole = this.authService.getRole();
+    }
+  }
 
   mouseenter() {
     if (!this.isExpanded) {
@@ -41,5 +61,12 @@ export class NavMenuComponent {
     this.showTaskSubmenu = false;
     this.showWorkplaceSubmenu = false;
     this.showEquipmentSubmenu = false;
+  }
+
+  logout() {
+    this.authService.clearToken();
+    this.router.navigate(['/login']);
+    this.isLogged = false;
+    this.userRole = '';
   }
 }

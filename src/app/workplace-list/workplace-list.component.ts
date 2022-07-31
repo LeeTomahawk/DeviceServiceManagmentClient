@@ -35,12 +35,17 @@ export class WorkplaceListComponent implements OnInit {
   }
 
   getWorkplaceList() {
-    this.workplaceApiCaller.getWorkplaceList().subscribe((data) => {
-      console.log(data);
-      this.workplaceList = data;
-      this.dataSource = new MatTableDataSource<Workplace>(this.workplaceList);
-      this.isLoading = false;
-    });
+    this.workplaceApiCaller.getWorkplaceList().subscribe(
+      (data) => {
+        console.log(data);
+        this.workplaceList = data;
+        this.dataSource = new MatTableDataSource<Workplace>(this.workplaceList);
+        this.isLoading = false;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   openUpdateDialog(element: Workplace) {

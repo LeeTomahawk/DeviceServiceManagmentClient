@@ -33,6 +33,7 @@
       <mat-list-item
         (click)="showClientSubmenu = !showClientSubmenu"
         class="parent"
+        *ngIf="isLogged"
       >
         <span class="full-width" *ngIf="isExpanded || isShowing">Klienci</span>
         <mat-icon mat-list-icon>person</mat-icon>
@@ -59,6 +60,7 @@
       <mat-list-item
         (click)="showEmployeeSubmenu = !showEmployeeSubmenu"
         class="parent"
+        *ngIf="isLogged"
       >
         <span class="full-width" *ngIf="isExpanded || isShowing"
           >Pracownicy</span
@@ -87,6 +89,7 @@
       <mat-list-item
         (click)="showManagerSubmenu = !showManagerSubmenu"
         class="parent"
+        *ngIf="isLogged"
       >
         <span class="full-width" *ngIf="isExpanded || isShowing"
           >Kierownictwo</span
@@ -115,6 +118,7 @@
       <mat-list-item
         (click)="showTaskSubmenu = !showTaskSubmenu"
         class="parent"
+        *ngIf="isLogged"
       >
         <span class="full-width" *ngIf="isExpanded || isShowing">Zadania</span>
         <mat-icon mat-list-icon>task</mat-icon>
@@ -150,6 +154,7 @@
       <mat-list-item
         (click)="showWorkplaceSubmenu = !showWorkplaceSubmenu"
         class="parent"
+        *ngIf="isLogged"
       >
         <span class="full-width" *ngIf="isExpanded || isShowing"
           >Stanowiska</span
@@ -178,6 +183,7 @@
       <mat-list-item
         (click)="showEquipmentSubmenu = !showEquipmentSubmenu"
         class="parent"
+        *ngIf="isLogged"
       >
         <span class="full-width" *ngIf="isExpanded || isShowing"
           >Wyposażenie</span
@@ -203,19 +209,19 @@
         >
       </div>
 
-      <mat-list-item [routerLink]="['/login']">
+      <mat-list-item [routerLink]="['/login']" *ngIf="!isLogged">
         <span class="full-width" *ngIf="isExpanded || isShowing"
           >Logowanie</span
         >
         <mat-icon mat-list-icon>login</mat-icon>
       </mat-list-item>
 
-      <mat-list-item>
+      <a mat-list-item (click)="logout()" *ngIf="isLogged">
         <span class="full-width" *ngIf="isExpanded || isShowing"
           >Wylogowanie</span
         >
         <mat-icon mat-list-icon>logout</mat-icon>
-      </mat-list-item>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 

@@ -22,4 +22,11 @@ export class EmployeeService {
   }
 
   getEmployeeById(id: string) {}
+
+  getUserTaskList(userId: string) {
+    return this.http.get<Task>(
+      this.apiURL + '/api/Employee/Tasks/' + userId,
+      this.httpOptions
+    );
+  }
 }

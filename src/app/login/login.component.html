@@ -1,7 +1,7 @@
 <div class="row align-items-center h-100 justify-content-center">
   <div class="col-10 col-lg-7 col-xl-5">
     <mat-card>
-      <span>
+      <span [formGroup]="loginForm">
         <div class="text-center my-4">
           <mat-card-title>Logowanie</mat-card-title>
         </div>
@@ -9,7 +9,11 @@
           <div class="col-md-10">
             <mat-form-field class="w-100 example-full-width" appearance="fill">
               <mat-label>Adres email</mat-label>
-              <input matInput placeholder="Np. jan.kowalski@gmail.com" />
+              <input
+                matInput
+                placeholder="Np. jan.kowalski@gmail.com"
+                formControlName="email"
+              />
               <mat-error> Błędny adres email. </mat-error>
             </mat-form-field>
           </div>
@@ -18,14 +22,16 @@
           <div class="col-md-10">
             <mat-form-field class="w-100 example-full-width" appearance="fill">
               <mat-label>Hasło</mat-label>
-              <input type="password" matInput />
+              <input type="password" matInput formControlName="password" />
               <mat-error> Błędne hasło. </mat-error>
             </mat-form-field>
           </div>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-4 d-flex justify-content-center">
-            <button mat-raised-button color="primary">Zaloguj</button>
+            <button mat-raised-button color="primary" (click)="login()">
+              Zaloguj
+            </button>
           </div>
         </div>
       </span>

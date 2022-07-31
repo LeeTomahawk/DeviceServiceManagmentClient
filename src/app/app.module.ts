@@ -59,6 +59,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { WorkplaceDetailsComponent } from './workplace-list/workplace-details/workplace-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { WorkplaceAddEquipmentComponent } from './workplace-list/workplace-details/workplace-add-equipment/workplace-add-equipment.component';
+import { ForbidenComponent } from './forbiden/forbiden.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +93,7 @@ import { WorkplaceAddEquipmentComponent } from './workplace-list/workplace-detai
     ManagerListComponent,
     WorkplaceDetailsComponent,
     NotFoundComponent,
+    ForbidenComponent,
   ],
   imports: [
     AppRoutingModule,
