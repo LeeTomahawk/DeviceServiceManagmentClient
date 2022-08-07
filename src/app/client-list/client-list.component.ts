@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClientService } from 'src/Services/client.service';
 import { ClientInfoComponent } from './client-info/client-info.component';
@@ -18,13 +20,20 @@ export class ClientListComponent implements OnInit {
     'name',
     'phoneNumber',
     'lastVisit',
-    'tasks',
-    'info',
-    'update',
+    //'tasks',
+    //'info',
+    'actions',
   ];
   private clientList: any;
   public dataSource!: MatTableDataSource<Client>;
   isLoading: boolean = true;
+  resultsLength = 0;
+  isLoadingResults = true;
+  isRateLimitReached = false;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('empTbSort') empTbSort = new MatSort();
+
   constructor(
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
@@ -40,6 +49,7 @@ export class ClientListComponent implements OnInit {
     this.clientApiCaller.getClientList().subscribe((data: Client) => {
       this.clientList = data;
       this.dataSource = new MatTableDataSource<Client>(this.clientList);
+      this.dataSource.sort = this.empTbSort;
       this.isLoading = false;
     });
   }
@@ -56,7 +66,7 @@ export class ClientListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
+      this.getClientList();
     });
   }
 
