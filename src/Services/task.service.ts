@@ -1,6 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { RegisterNewTask } from 'src/Models/AddNewTaskDto';
 @Injectable({
   providedIn: 'root',
 })
@@ -30,5 +32,13 @@ export class TaskService {
     return this.http
       .get<Task>(this.apiURL + '/api/Task/GetAvailableTasks', this.httpOptions)
       .toPromise();
+  }
+
+  addNewTask(task: RegisterNewTask): Observable<RegisterNewTask> {
+    return this.http.post<RegisterNewTask>(
+      this.apiURL + '/api/Task',
+      JSON.stringify(task),
+      this.httpOptions
+    );
   }
 }
