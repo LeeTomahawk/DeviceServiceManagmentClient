@@ -40,13 +40,18 @@ export class TaskUserTaskComponent implements OnInit {
   getTaskList() {
     this.employeeApiCaller
       .getUserTaskList(this.authService.getUserId())
-      .subscribe((data) => {
-        this.taskList = data;
-        this.dataSource = new MatTableDataSource<EmployeeTask>(
-          this.taskList.tasks
-        );
-        this.isLoading = false;
-      });
+      .subscribe(
+        (data) => {
+          this.taskList = data;
+          this.dataSource = new MatTableDataSource<EmployeeTask>(
+            this.taskList.tasks
+          );
+          this.isLoading = false;
+        },
+        (error) => {
+          console.log(error.error);
+        }
+      );
   }
 
   openInfoDialog(task: Tasks) {
