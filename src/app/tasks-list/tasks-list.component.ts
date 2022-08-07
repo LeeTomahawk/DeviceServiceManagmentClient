@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { TaskListCalendarForm } from 'src/Forms/TaskListCalendarForm';
 import { TaskService } from 'src/Services/task.service';
@@ -24,13 +26,17 @@ export class TasksListComponent implements OnInit {
     'name',
     'status',
     'data',
-    'info',
-    'update',
-    'delete',
+    // 'info',
+    // 'update',
+    'actions',
   ];
   taskList: any;
   dataSource!: MatTableDataSource<Task>;
   isLoading: boolean = true;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('empTbSort') empTbSort = new MatSort();
+
   constructor(
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
@@ -73,7 +79,7 @@ export class TasksListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
+      this.getTaskList();
     });
   }
 
@@ -83,7 +89,7 @@ export class TasksListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
+      this.getTaskList();
     });
   }
 }
