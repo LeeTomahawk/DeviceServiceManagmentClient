@@ -4,11 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { NavMenuComponent } from './template/nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import {
+  MatPaginatorIntl,
+  MatPaginatorModule,
+} from '@angular/material/paginator';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -60,6 +63,10 @@ import { WorkplaceDetailsComponent } from './workplace-list/workplace-details/wo
 import { NotFoundComponent } from './not-found/not-found.component';
 import { WorkplaceAddEquipmentComponent } from './workplace-list/workplace-details/workplace-add-equipment/workplace-add-equipment.component';
 import { ForbidenComponent } from './forbiden/forbiden.component';
+import { HeaderComponent } from './template/header/header.component';
+import { FooterComponent } from './template/footer/footer.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,8 +101,12 @@ import { ForbidenComponent } from './forbiden/forbiden.component';
     WorkplaceDetailsComponent,
     NotFoundComponent,
     ForbidenComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
+    MatSortModule,
+    MatMenuModule,
     AppRoutingModule,
     MatProgressSpinnerModule,
     MatDividerModule,
