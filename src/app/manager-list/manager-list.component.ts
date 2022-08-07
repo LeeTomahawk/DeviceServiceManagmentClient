@@ -14,9 +14,9 @@ export class ManagerListComponent implements OnInit {
     'position',
     'name',
     'phoneNumber',
-    'tasks',
-    'info',
-    'update',
+    // 'tasks',
+    // 'info',
+    'actions',
   ];
   dataSource = new MatTableDataSource<Manager>();
   managerList: any;

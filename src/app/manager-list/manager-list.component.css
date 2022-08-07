@@ -1,5 +1,13 @@
+mat-card{
+  min-height: 720px;
+}
 table {
   width: 100%;
+}
+.table-container {
+  position: relative;
+  min-height: 700px;
+  overflow: auto;
 }
 
 .mat-column-position {
@@ -21,8 +29,8 @@ table {
 .mat-column-name {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 20% !important;
-  width: 20% !important;
+  flex: 0 0 15% !important;
+  width: 15% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -37,8 +45,8 @@ table {
 .mat-column-phoneNumber {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 15% !important;
-  width: 15% !important;
+  flex: 0 0 10% !important;
+  width: 10% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -50,13 +58,13 @@ table {
   hyphens: auto;
 }
 
-.mat-column-info,
-.mat-column-tasks,
-.mat-column-update {
+/* .mat-column-info,
+.mat-column-tasks, */
+.mat-column-actions {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 5% !important;
-  width: 5% !important;
+  flex: 0 0 2% !important;
+  width: 2% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -69,5 +77,18 @@ table {
 }
 
 .mat-row:nth-child(2n) {
-  background-color: #7e7e7eab;
+  background-color: #f3f3f3ab;
+}
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+.mat-row:hover .mat-column-name, 
+.mat-row:hover .mat-column-phoneNumber{
+  font-weight: bold;
 }
