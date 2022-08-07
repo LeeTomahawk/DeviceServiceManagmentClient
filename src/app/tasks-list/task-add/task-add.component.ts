@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
@@ -9,8 +10,11 @@ import {
   switchMap,
 } from 'rxjs';
 import { Client } from 'src/app/client-list/clientInterface';
+import { NewTaskForm } from 'src/Forms/NewTaskForm';
 import { SearchClientByPhoneNumber } from 'src/Forms/SearchClientByPhoneNumberForm';
+import { RegisterNewTask } from 'src/Models/AddNewTaskDto';
 import { ClientService } from 'src/Services/client.service';
+import { TaskService } from 'src/Services/task.service';
 
 @Component({
   selector: 'app-task-add',
@@ -18,9 +22,21 @@ import { ClientService } from 'src/Services/client.service';
   styleUrls: ['./task-add.component.css'],
 })
 export class TaskAddComponent implements OnInit, OnChanges {
-  constructor(private clientApiCaller: ClientService) {
+  selectedIdentiti: any = '';
+  clientPhoneForm = new SearchClientByPhoneNumber();
+  myControl = new FormControl('');
+  filteredOptions!: Observable<any[]>;
+  clientList: any;
+  isClientLoad: boolean = false;
+  newTaskForm = new NewTaskForm();
+
+  constructor(
+    private clientApiCaller: ClientService,
+    private datePipe: DatePipe,
+    private taskApiCaller: TaskService
+  ) {
     this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(' '),
+      startWith(''),
       debounceTime(400),
       distinctUntilChanged(),
       switchMap((val) => {
@@ -28,12 +44,6 @@ export class TaskAddComponent implements OnInit, OnChanges {
       })
     );
   }
-  selectedIdentiti: any = '';
-  clientPhoneForm = new SearchClientByPhoneNumber();
-  myControl = new FormControl('');
-  filteredOptions!: Observable<any[]>;
-  clientList: any;
-  isClientLoad: boolean = false;
 
   ngOnInit(): void {}
 
@@ -51,12 +61,31 @@ export class TaskAddComponent implements OnInit, OnChanges {
     );
   }
   onSelected(val: any) {
+    this.newTaskForm.controls['clientId'].setValue(val.id);
+    console.log(this.newTaskForm.value.clientId);
     this.selectedIdentiti = val;
     this.isClientLoad = true;
   }
   displayWith(value: any): string {
     return value
       ? value.identiti.lastName + ' ' + value?.identiti.phoneNumber
-      : '...';
+      : '';
+  }
+
+  saveTask() {
+    this.newTaskForm.controls['startDate'].setValue(
+      this.datePipe.transform(new Date(), 'yyyy-MM-ddTHH:MM:SS')
+    );
+    console.log(this.newTaskForm.value);
+    this.taskApiCaller
+      .addNewTask(new RegisterNewTask(this.newTaskForm.value))
+      .subscribe(
+        (x) => {
+          console.log('add');
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }

@@ -1,5 +1,9 @@
-<mat-stepper [linear]="true">
-  <mat-step>
+<mat-stepper [linear]="true" [formGroup]="newTaskForm">
+  <mat-step
+    [stepControl]="newTaskForm.value.clientId"
+    [optional]="false"
+    [completed]="false"
+  >
     <div class="row p-3">
       <div class="col-6 col-lg-6 col-xl-6">
         <ng-template matStepLabel>Wybierz klienta</ng-template>
@@ -26,6 +30,7 @@
               *ngFor="let option of filteredOptions | async"
               [value]="option"
               (onSelectionChange)="onSelected(option)"
+              formControlName="clientId"
             >
               {{ option.identiti.lastName }} -
               {{ option.identiti.phoneNumber }}
@@ -33,7 +38,12 @@
           </mat-autocomplete>
         </mat-form-field>
         <div class="mt-5">
-          <button mat-raised-button matStepperNext color="primary">
+          <button
+            mat-raised-button
+            matStepperNext
+            color="primary"
+            [disabled]="!newTaskForm.value.clientId"
+          >
             Dalej
           </button>
         </div>
@@ -56,13 +66,18 @@
       </div>
     </div>
   </mat-step>
-  <mat-step label="Szczgóły zgłoszenia">
+  <mat-step
+    label="Szczgóły zgłoszenia"
+    [stepControl]="newTaskForm.value.name && newTaskForm.value.description"
+    [optional]="false"
+    [completed]="false"
+  >
     <div class="row p-3">
       <div class="col-6 col-lg-6 col-xl-6">
         <h3 class="font-weight-bold">Nazwa zadania</h3>
         <mat-form-field appearance="fill" class="w-100">
           <mat-label>Np. Uszkodzony telefon</mat-label>
-          <input #name maxlength="50" matInput />
+          <input #name maxlength="50" matInput formControlName="name" />
           <mat-hint align="end">{{ name.value.length || 0 }}/50</mat-hint>
         </mat-form-field>
       </div>
@@ -70,7 +85,13 @@
         <h3 class="font-weight-bold">Opis zadania</h3>
         <mat-form-field appearance="fill" color="primary" class="w-100">
           <mat-label>Opis zadania</mat-label>
-          <textarea maxlength="350" matInput #desc rows="5"></textarea>
+          <textarea
+            maxlength="350"
+            matInput
+            #desc
+            rows="5"
+            formControlName="description"
+          ></textarea>
           <mat-hint align="end">{{ desc.value.length || 0 }}/350</mat-hint>
         </mat-form-field>
       </div>
@@ -87,11 +108,18 @@
   <mat-step>
     <ng-template matStepLabel>Podsumowanie</ng-template>
     <p>Sprawdź wszystkie pola ponownie i kliknij zapisz.</p>
+    <p>Wszystkie kroki przebiegły pomyślnie możesz dokonać zapisu.</p>
     <div>
       <button class="m-2" mat-raised-button matStepperPrevious color="warn">
         Wróć
       </button>
-      <button class="m-2" mat-raised-button matStepperPrevious color="accent">
+      <button
+        class="m-2"
+        mat-raised-button
+        matStepperPrevious
+        color="accent"
+        (click)="saveTask()"
+      >
         Zapisz
       </button>
     </div>
