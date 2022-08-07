@@ -14,9 +14,9 @@ export class EmployeeListComponent implements OnInit {
     'position',
     'name',
     'phoneNumber',
-    'tasks',
-    'info',
-    'update',
+    // 'tasks',
+    // 'info',
+    'actions',
   ];
   private employeeList: any;
   public dataSource!: MatTableDataSource<Employee>;
