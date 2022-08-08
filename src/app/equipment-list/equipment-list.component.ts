@@ -17,8 +17,8 @@ export class EquipmentListComponent implements OnInit {
     'name',
     'description',
     'amount',
-    'update',
-    'delete',
+    // 'update',
+    'actions',
   ];
   equipmentList: any;
   dataSource = new MatTableDataSource<Equipment>();
@@ -47,7 +47,7 @@ export class EquipmentListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
+      this.getEquipmentList();
     });
   }
   openDeleteDialog(id: string) {
@@ -56,7 +56,7 @@ export class EquipmentListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
+      this.getEquipmentList();
     });
   }
 }
