@@ -22,9 +22,11 @@ export class TaskUserTaskComponent implements OnInit {
     'name',
     'status',
     'data',
-    'info',
-    'update',
+    // 'info',
+    'actions',
   ];
+  columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
+  expandedElement!: EmployeeTask | null;
   isLoading: boolean = true;
   constructor(
     private infoDialog: MatDialog,
@@ -66,7 +68,7 @@ export class TaskUserTaskComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
+      this.getTaskList();
     });
   }
 }
