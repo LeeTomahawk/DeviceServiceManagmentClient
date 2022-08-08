@@ -115,12 +115,14 @@ export class TaskApprovalComponent implements OnInit {
     'name',
     'status',
     'data',
-    'info',
-    'update',
-    'approv',
+    // 'info',
+    // 'update',
+    'actions',
   ];
   isLoading: boolean = true;
   constructor(private infoDialog: MatDialog, private updateDialog: MatDialog) {}
+
+  ngOnInit(): void {}
 
   openInfoDialog(task: Tasks) {
     const dialogRef = this.infoDialog.open(TaskInfoComponent, {
@@ -134,8 +136,7 @@ export class TaskApprovalComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((x) => {
-      window.location.reload();
+      //
     });
   }
-  ngOnInit(): void {}
 }
