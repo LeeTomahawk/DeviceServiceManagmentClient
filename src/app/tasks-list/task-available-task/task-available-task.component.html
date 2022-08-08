@@ -1,53 +1,81 @@
-<table mat-table [dataSource]="dataSource">
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef>Nr</th>
-    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>
-  </ng-container>
+<mat-card class="mt-2">
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>Nr</th>
+        <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>
+      </ng-container>
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Nazwa</th>
-    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-  </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
 
-  <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef>Status</th>
-    <td mat-cell *matCellDef="let element">{{ element.taskStatus }}</td>
-  </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">{{ element.taskStatus }}</td>
+      </ng-container>
 
-  <ng-container matColumnDef="data">
-    <th mat-header-cell *matHeaderCellDef>Data przyjęcia</th>
-    <td mat-cell *matCellDef="let element">
-      {{ element.startDate | date: "yyyy-MM-dd HH:MM:SS" }}
-    </td>
-  </ng-container>
+      <ng-container matColumnDef="data">
+        <th mat-header-cell *matHeaderCellDef>Data przyjęcia</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.startDate | date: "yyyy-MM-dd HH:MM:SS" }}
+        </td>
+      </ng-container>
 
-  <ng-container matColumnDef="info">
+      <!-- <ng-container matColumnDef="info">
     <th class="text-center" mat-header-cell *matHeaderCellDef>Informacje</th>
     <td class="text-center" mat-cell *matCellDef="let element">
       <button mat-icon-button color="primary" (click)="openInfoDialog(element)">
         <mat-icon>info</mat-icon>
       </button>
     </td>
-  </ng-container>
+  </ng-container> -->
 
-  <ng-container matColumnDef="take">
-    <th class="text-center" mat-header-cell *matHeaderCellDef>Przydziel</th>
-    <td class="text-center" mat-cell *matCellDef="let element">
-      <button
-        *ngIf="element.taskStatus === 'RECEIVED'"
-        mat-stroked-button
-        color="accent"
-        (click)="openAssignDialog(element)"
-      >
-        <mat-icon>arrow_rightward</mat-icon><mat-icon>person</mat-icon>
-      </button>
-    </td>
-  </ng-container>
+      <ng-container matColumnDef="actions">
+        <th class="text-center" mat-header-cell *matHeaderCellDef>Akcje</th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          (click)="$event.stopPropagation()"
+        >
+          <div class="d-flex justify-content-center">
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="openInfoDialog(element)"
+            >
+              <mat-icon>info</mat-icon>
+            </button>
+            <button
+              *ngIf="element.taskStatus === 'RECEIVED'"
+              mat-stroked-button
+              color="accent"
+              (click)="openAssignDialog(element)"
+            >
+              <mat-icon>arrow_rightward</mat-icon><mat-icon>person</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
-<div class="d-flex justify-content-center m-2" *ngIf="isLoading">
-  <mat-progress-spinner color="accent" mode="indeterminate" diameter="50">
-  </mat-progress-spinner>
-</div>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        (click)="openInfoDialog(row)"
+        *matRowDef="let row; columns: displayedColumns"
+      ></tr>
+    </table>
+    <div class="d-flex justify-content-center m-2" *ngIf="isLoading">
+      <mat-progress-spinner color="accent" mode="indeterminate" diameter="50">
+      </mat-progress-spinner>
+    </div>
+  </div>
+
+  <mat-paginator
+    [length]="100"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+  >
+  </mat-paginator>
+</mat-card>
