@@ -1,5 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { EmployeeService } from 'src/Services/employee.service';
+import { ManagerService } from 'src/Services/manager.service';
 import { Tasks } from '../../taskInterfaces';
 
 @Component({
@@ -8,7 +11,40 @@ import { Tasks } from '../../taskInterfaces';
   styleUrls: ['./task-assign.component.css'],
 })
 export class TaskAssignComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { task: Tasks }) {}
+  isLoading: boolean = true;
+  employeeList: any;
 
-  ngOnInit(): void {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { task: Tasks },
+    private employeeApiCaller: EmployeeService,
+    private managerApiCaller: ManagerService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.getEmployeeList();
+  }
+
+  getEmployeeList() {
+    this.employeeApiCaller.getEmployeeList().subscribe((data) => {
+      this.employeeList = data;
+      if (data != null) this.isLoading = false;
+    });
+  }
+
+  addNewTask(employeeId: string) {
+    this.managerApiCaller
+      .addTaskToEmployee(this.data.task.id, employeeId)
+      .subscribe(
+        (x) => {
+          console.log('add');
+          this.router.navigate(['/tasks-available']).finally(() => {
+            window.location.reload();
+          });
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
 }

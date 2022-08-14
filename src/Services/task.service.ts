@@ -28,6 +28,13 @@ export class TaskService {
       )
       .toPromise();
   }
+
+  getToAproveTasks() {
+    return this.http
+      .get<Task>(this.apiURL + '/api/Task/GetToAproveTasks', this.httpOptions)
+      .toPromise();
+  }
+
   getAvailableTasksList() {
     return this.http
       .get<Task>(this.apiURL + '/api/Task/GetAvailableTasks', this.httpOptions)

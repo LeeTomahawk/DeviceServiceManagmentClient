@@ -20,4 +20,22 @@ export class ManagerService {
       this.httpOptions
     );
   }
+
+  addTaskToEmployee(taskId: string, employeeId: string) {
+    return this.http.post<any>(
+      this.apiURL +
+        '/api/Manager/AddTaskToEmployee?taskId=' +
+        taskId +
+        '&employeeId=' +
+        employeeId,
+      this.httpOptions
+    );
+  }
+
+  setTaskToApproval(taskId: string) {
+    return this.http.post<any>(
+      this.apiURL + '/api/Manager/TaskAprove?taskId=' + taskId,
+      this.httpOptions
+    );
+  }
 }
