@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of, tap } from 'rxjs';
 import { Client } from 'src/app/client-list/clientInterface';
+import { RegisterClientDto } from 'src/Models/RegisterClientDto';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,12 @@ export class ClientService {
     return this.http.get<Client>(this.apiURL + '/api/Client', this.httpOptions);
   }
 
-  getClientById(id: string) {}
+  getClientById(id: string) {
+    return this.http.get<Client>(
+      this.apiURL + '/api/Client/' + id,
+      this.httpOptions
+    );
+  }
 
   getClientByPhoneNumber(phonenumber: string) {
     return this.ops.length
@@ -33,7 +39,18 @@ export class ClientService {
           .pipe(tap((data) => (this.ops = data)));
   }
 
-  createClient() {}
+  createClient(clientDto: RegisterClientDto) {
+    return this.http.post<RegisterClientDto>(
+      this.apiURL + '/api/Client',
+      JSON.stringify(clientDto),
+      this.httpOptions
+    );
+  }
 
-  deleteClient(id: string) {}
+  deleteClient(id: string) {
+    return this.http.delete(
+      this.apiURL + '/api/Client/' + id,
+      this.httpOptions
+    );
+  }
 }

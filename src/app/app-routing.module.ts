@@ -21,6 +21,7 @@ import { WorkplaceDetailsComponent } from './workplace-list/workplace-details/wo
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ForbidenComponent } from './forbiden/forbiden.component';
+import { ClientAddComponent } from './client-list/client-add/client-add.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -107,6 +108,12 @@ const routes: Routes = [
   {
     path: 'client-list',
     component: ClientListComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['EMPLOYEE', 'MANAGER', 'ADMIN'] },
+  },
+  {
+    path: 'client-add',
+    component: ClientAddComponent,
     canActivate: [AuthGuard],
     data: { roles: ['EMPLOYEE', 'MANAGER', 'ADMIN'] },
   },

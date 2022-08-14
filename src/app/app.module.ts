@@ -68,6 +68,7 @@ import { FooterComponent } from './template/footer/footer.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
 import { DatePipe } from '@angular/common';
+import { ClientAddComponent } from './client-list/client-add/client-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,6 +105,7 @@ import { DatePipe } from '@angular/common';
     ForbidenComponent,
     HeaderComponent,
     FooterComponent,
+    ClientAddComponent,
   ],
   imports: [
     MatSortModule,
