@@ -1,3 +1,5 @@
+import { Client } from 'src/app/client-list/clientInterface';
+
 export interface EmployeeTask {
   id: string;
   employmentDate: string;
@@ -25,7 +27,7 @@ export interface EmployeeTask {
         endDate: string;
         amount: number;
         taskStatus: string;
-        client: string;
+        client: Client;
       };
     }
   ];

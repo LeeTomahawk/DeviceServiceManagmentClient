@@ -26,8 +26,6 @@ export class TasksListComponent implements OnInit {
     'name',
     'status',
     'data',
-    // 'info',
-    // 'update',
     'actions',
   ];
   taskList: any;
@@ -45,6 +43,7 @@ export class TasksListComponent implements OnInit {
   ) {
     this.endDate = new Date();
     this.startDate = new Date();
+    this.endDate.setDate(this.endDate.getDate() + 1);
     this.startDate.setDate(this.endDate.getDate() - 7);
     this.form.get('startDate')?.setValue(this.startDate);
     this.form.get('endDate')?.setValue(this.endDate);
@@ -63,7 +62,8 @@ export class TasksListComponent implements OnInit {
       .then((data) => {
         this.taskList = data;
         this.dataSource = new MatTableDataSource<Task>(this.taskList);
-        this.isLoading = false;
+        if (this.taskList.length > 0) this.isLoading = false;
+        else this.isLoading = true;
       });
   }
 

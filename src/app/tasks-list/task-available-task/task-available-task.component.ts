@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { empty } from 'rxjs';
 import { TaskService } from 'src/Services/task.service';
 import { TaskInfoComponent } from '../task-info/task-info.component';
 import { Tasks } from '../taskInterfaces';
@@ -19,7 +20,6 @@ export class TaskAvailableTaskComponent implements OnInit {
     'name',
     'status',
     'data',
-    // 'info',
     'actions',
   ];
   isLoading: boolean = true;
@@ -37,7 +37,8 @@ export class TaskAvailableTaskComponent implements OnInit {
     await this.taskApiCaller.getAvailableTasksList().then((data) => {
       this.taskList = data;
       this.dataSource = new MatTableDataSource<Task>(this.taskList);
-      this.isLoading = false;
+      if (this.taskList.length > 0) this.isLoading = false;
+      else this.isLoading = true;
     });
   }
 
@@ -48,7 +49,7 @@ export class TaskAvailableTaskComponent implements OnInit {
   }
 
   openAssignDialog(task: Tasks) {
-    const dialogRef = this.infoDialog.open(TaskAssignComponent, {
+    const dialogRef = this.assignDialog.open(TaskAssignComponent, {
       data: { task },
     });
 

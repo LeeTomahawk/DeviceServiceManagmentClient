@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -33,7 +34,8 @@ export class TaskAddComponent implements OnInit, OnChanges {
   constructor(
     private clientApiCaller: ClientService,
     private datePipe: DatePipe,
-    private taskApiCaller: TaskService
+    private taskApiCaller: TaskService,
+    private router: Router
   ) {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
@@ -62,7 +64,6 @@ export class TaskAddComponent implements OnInit, OnChanges {
   }
   onSelected(val: any) {
     this.newTaskForm.controls['clientId'].setValue(val.id);
-    console.log(this.newTaskForm.value.clientId);
     this.selectedIdentiti = val;
     this.isClientLoad = true;
   }
@@ -74,14 +75,16 @@ export class TaskAddComponent implements OnInit, OnChanges {
 
   saveTask() {
     this.newTaskForm.controls['startDate'].setValue(
-      this.datePipe.transform(new Date(), 'yyyy-MM-ddTHH:MM:SS')
+      this.datePipe.transform(new Date(), 'yyyy-MM-ddTHH:mm:ss')
     );
-    console.log(this.newTaskForm.value);
     this.taskApiCaller
       .addNewTask(new RegisterNewTask(this.newTaskForm.value))
       .subscribe(
         (x) => {
           console.log('add');
+          this.router.navigate(['/task-add']).finally(() => {
+            window.location.reload();
+          });
         },
         (err) => {
           console.log(err);

@@ -48,7 +48,8 @@ export class TaskUserTaskComponent implements OnInit {
           this.dataSource = new MatTableDataSource<EmployeeTask>(
             this.taskList.tasks
           );
-          this.isLoading = false;
+          if (this.taskList.tasks.length > 0) this.isLoading = false;
+          else this.isLoading = true;
         },
         (error) => {
           console.log(error.error);

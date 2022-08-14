@@ -12,7 +12,7 @@
           <p>
             Przed stworzeniem zadania zarejestruj klienta jeśli nie istnieje
           </p>
-          <mat-form-field appearance="fill" class="mt-3 w-50">
+          <mat-form-field appearance="fill" class="mt-3">
             <mat-label>Telefon</mat-label>
             <span matPrefix>+48 &nbsp;</span>
             <input
@@ -43,20 +43,22 @@
           </mat-form-field>
         </div>
         <div *ngIf="isClientLoad" class="col-6 col-lg-6 col-xl-6">
-          <div class="d-flex flex-row mb-3 p-3">
-            <div class="px-3">
-              <h3 class="font-weight-bold">Imie i nazwisko</h3>
-              {{ selectedIdentiti.identiti.firstName }}
-              {{ selectedIdentiti.identiti.lastName }}
+          <mat-card class="mh-50">
+            <div class="d-flex flex-row mb-3 p-3">
+              <div class="px-3">
+                <h3 class="font-weight-bold">Imie i nazwisko</h3>
+                {{ selectedIdentiti.identiti.firstName }}
+                {{ selectedIdentiti.identiti.lastName }}
+              </div>
+              <div class="px-3">
+                <h3 class="font-weight-bold">Adres</h3>
+                ul.{{ selectedIdentiti.identiti.address.street }}
+                {{ selectedIdentiti.identiti.address.number }},
+                {{ selectedIdentiti.identiti.address.postCode }}
+                {{ selectedIdentiti.identiti.address.City }}
+              </div>
             </div>
-            <div class="px-3">
-              <h3 class="font-weight-bold">Adres</h3>
-              ul.{{ selectedIdentiti.identiti.address.street }}
-              {{ selectedIdentiti.identiti.address.number }},
-              {{ selectedIdentiti.identiti.address.postCode }}
-              {{ selectedIdentiti.identiti.address.City }}
-            </div>
-          </div>
+          </mat-card>
         </div>
       </div>
       <div class="row h-100 align-items-end">
