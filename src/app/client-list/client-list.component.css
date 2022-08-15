@@ -25,7 +25,7 @@ table {
   hyphens: auto;
 }
 
-.mat-column-name {
+.mat-column-LastName {
   word-wrap: break-word !important;
   white-space: unset !important;
   flex: 0 0 15% !important;
@@ -41,7 +41,7 @@ table {
   hyphens: auto;
 }
 
-.mat-column-phoneNumber {
+.mat-column-PhoneNumber {
   word-wrap: break-word !important;
   white-space: unset !important;
   flex: 0 0 10% !important;

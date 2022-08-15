@@ -5,7 +5,7 @@ import {
   MatPaginatorIntl,
   PageEvent,
 } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClientService } from 'src/Services/client.service';
 import { ClientInfoComponent } from './client-info/client-info.component';
@@ -21,20 +21,20 @@ import { Client } from './clientInterface';
 export class ClientListComponent implements OnInit {
   displayedColumns: string[] = [
     'position',
-    'name',
-    'phoneNumber',
+    'LastName',
+    'PhoneNumber',
     'lastVisit',
-    //'tasks',
-    //'info',
     'actions',
   ];
   private clientList: any;
   public dataSource!: MatTableDataSource<Client>;
   isLoading: boolean = true;
-  resultsLength = 0;
-  isLoadingResults = true;
-  isRateLimitReached = false;
   totalSize: number = 0;
+  SearchPharse: string = '';
+  PageNumber: number = 1;
+  PageSize: number = 25;
+  SortBy: string = '';
+  SortDirection: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('empTbSort') empTbSort = new MatSort();
@@ -47,18 +47,17 @@ export class ClientListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getClientList({
-      SearchPharse: '',
-      PageNumber: 1,
-      PageSize: 25,
-      SortBy: '',
-      SortDirection: '',
-    });
+    const request: any = {};
+    request.SearchPharse = this.SearchPharse;
+    request.PageNumber = this.PageNumber;
+    request.PageSize = this.PageSize;
+    request.SortBy = this.SortBy;
+    request.SortDirection = this.SortDirection;
+    this.getClientList(request);
   }
 
   getClientList(params: any) {
     this.clientApiCaller.getClientList(params).subscribe((data) => {
-      console.log(params);
       this.clientList = data.result;
       this.totalSize = data.totalResult;
       this.dataSource = new MatTableDataSource<Client>(this.clientList);
@@ -68,12 +67,32 @@ export class ClientListComponent implements OnInit {
   }
 
   nextPage(event: PageEvent) {
+    this.PageNumber = event.pageIndex + 1;
+    this.PageSize = event.pageSize;
+
     const request: any = {};
-    request.SearchPharse = '';
-    request.PageNumber = (event.pageIndex + 1).toString();
-    request.PageSize = event.pageSize.toString();
-    request.SortBy = '';
-    request.SortDirection = '';
+
+    request.SearchPharse = this.SearchPharse;
+    request.PageNumber = this.PageNumber;
+    request.PageSize = this.PageSize;
+    request.SortBy = this.SortBy;
+    request.SortDirection = this.SortDirection;
+
+    this.getClientList(request);
+  }
+
+  onSortChanged(event: Sort) {
+    this.SortBy = event.active;
+    this.SortDirection = event.direction;
+
+    const request: any = {};
+
+    request.SearchPharse = this.SearchPharse;
+    request.PageNumber = this.PageNumber;
+    request.PageSize = this.PageSize;
+    request.SortBy = this.SortBy;
+    request.SortDirection = this.SortDirection;
+
     this.getClientList(request);
   }
 
@@ -89,7 +108,15 @@ export class ClientListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((x) => {
-      //this.getClientList();
+      const request: any = {};
+
+      request.SearchPharse = this.SearchPharse;
+      request.PageNumber = this.PageNumber;
+      request.PageSize = this.PageSize;
+      request.SortBy = this.SortBy;
+      request.SortDirection = this.SortDirection;
+
+      this.getClientList(request);
     });
   }
 

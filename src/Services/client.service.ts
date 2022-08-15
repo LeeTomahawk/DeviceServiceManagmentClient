@@ -24,7 +24,11 @@ export class ClientService {
         '&PageNumber=' +
         params.PageNumber +
         '&PageSize=' +
-        params.PageSize,
+        params.PageSize +
+        '&SortBy=' +
+        params.SortBy +
+        '&SortDirection=' +
+        params.SortDirection,
       this.httpOptions
     );
   }

@@ -21,6 +21,7 @@ export class NavMenuComponent implements OnInit {
   isLogged: boolean = false;
   userRole!: any;
   data: any;
+  title: string = '';
 
   constructor(
     private router: Router,
