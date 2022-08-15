@@ -1,15 +1,15 @@
 <mat-card class="mt-2">
   <div class="table-container">
-    <table
-      mat-table
-      [dataSource]="dataSource"
-      class="mat-elevation-z8"
-      matSort
-      #empTbSort="matSort"
-    >
+    <table mat-table [dataSource]="dataSource" matSort #empTbSort="matSort">
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef>#</th>
-        <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>
+        <td mat-cell *matCellDef="let element; let i = index">
+          {{
+            this.paginator.pageIndex == 0
+              ? i + 1
+              : 1 + i + this.paginator.pageIndex * this.paginator.pageSize
+          }}.
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="name">
@@ -81,17 +81,17 @@
         *matRowDef="let row; columns: displayedColumns"
       ></tr>
     </table>
+    <div class="d-flex justify-content-center m-2" *ngIf="isLoading">
+      <mat-progress-spinner color="accent" mode="indeterminate" diameter="50">
+      </mat-progress-spinner>
+    </div>
   </div>
 
   <mat-paginator
-    [length]="100"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageSize]="25"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+    (page)="nextPage($event)"
+    [length]="totalSize"
   >
   </mat-paginator>
-
-  <div class="d-flex justify-content-center m-2" *ngIf="isLoading">
-    <mat-progress-spinner color="accent" mode="indeterminate" diameter="50">
-    </mat-progress-spinner>
-  </div>
 </mat-card>
