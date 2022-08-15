@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Equipment } from 'src/app/equipment-list/equipmentInterface';
+import { AddNewEquipmentDto } from 'src/Models/AddNewEquipmentDto';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,13 @@ export class EquipmentService {
     );
   }
 
-  postEquipment() {}
+  postEquipment(equipment: AddNewEquipmentDto) {
+    return this.http.post<AddNewEquipmentDto>(
+      this.apiURL + '/api/Equipment',
+      equipment,
+      this.httpOptions
+    );
+  }
 
   putEquipment() {}
 

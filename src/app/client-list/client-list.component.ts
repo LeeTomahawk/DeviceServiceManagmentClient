@@ -47,6 +47,7 @@ export class ClientListComponent implements OnInit {
 
   getClientList() {
     this.clientApiCaller.getClientList().subscribe((data: Client) => {
+      console.log(data);
       this.clientList = data;
       this.dataSource = new MatTableDataSource<Client>(this.clientList);
       this.dataSource.sort = this.empTbSort;
