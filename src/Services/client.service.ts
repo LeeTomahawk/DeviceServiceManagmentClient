@@ -16,8 +16,17 @@ export class ClientService {
   };
   constructor(private http: HttpClient) {}
   ops = [];
-  getClientList() {
-    return this.http.get<Client>(this.apiURL + '/api/Client', this.httpOptions);
+  getClientList(params: any) {
+    return this.http.get<any>(
+      this.apiURL +
+        '/api/Client?SearchPharse=' +
+        params.SearchPharse +
+        '&PageNumber=' +
+        params.PageNumber +
+        '&PageSize=' +
+        params.PageSize,
+      this.httpOptions
+    );
   }
 
   getClientById(id: string) {
