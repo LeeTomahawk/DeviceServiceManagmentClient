@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of, tap } from 'rxjs';
 import { Client } from 'src/app/client-list/clientInterface';
+import { UpdateClientDto } from 'src/Models/ClientUpdateDto';
 import { RegisterClientDto } from 'src/Models/RegisterClientDto';
 
 @Injectable({
@@ -29,6 +30,13 @@ export class ClientService {
         params.SortBy +
         '&SortDirection=' +
         params.SortDirection,
+      this.httpOptions
+    );
+  }
+
+  getClientTaskList(id: string) {
+    return this.http.get<any>(
+      this.apiURL + '/api/Task/client/' + id,
       this.httpOptions
     );
   }
@@ -63,6 +71,15 @@ export class ClientService {
   deleteClient(id: string) {
     return this.http.delete(
       this.apiURL + '/api/Client/' + id,
+      this.httpOptions
+    );
+  }
+
+  updateClient(clientDto: UpdateClientDto, clientId: string) {
+    clientDto.id = clientId;
+    return this.http.put<UpdateClientDto>(
+      this.apiURL + '/api/Client',
+      JSON.stringify(clientDto),
       this.httpOptions
     );
   }

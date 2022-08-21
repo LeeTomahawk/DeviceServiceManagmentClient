@@ -1,0 +1,19 @@
+<h1 mat-dialog-title class="text-center">Dodaj stanowisko</h1>
+<mat-dialog-content>
+  <div class="d-flex flex-col mb-3 justify-content-md-start">
+    <span [formGroup]="newWorkplaceForm" class="px-3">
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Identyfikator</mat-label>
+        <input
+          matInput
+          placeholder="Np. Stanowisko Lutownicze"
+          formControlName="identifier"
+        />
+      </mat-form-field>
+    </span>
+  </div>
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="add()">Dodaj</button>
+  <button mat-button mat-dialog-close>Wyjdź</button>
+</div>

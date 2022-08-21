@@ -1,20 +1,20 @@
 <h1 mat-dialog-title>Aktualizuj stanowisko</h1>
 <div mat-dialog-content>
   <div class="d-flex flex-col mb-3">
-    <div class="px-3">
+    <span [formGroup]="wokplaceFrom" class="px-3">
       <h3 class="font-weight-bold">Identyfikator</h3>
       <mat-form-field appearance="fill" color="accent">
         <mat-label>Identyfikator</mat-label>
         <input
           matInput
           placeholder="Np. Stanowisko Lutownicze"
-          [value]="data.element.identifier"
+          formControlName="identifier"
         />
       </mat-form-field>
-    </div>
+    </span>
   </div>
 </div>
 <div mat-dialog-actions align="end">
-  <button mat-button>Zapisz</button>
+  <button mat-button mat-dialog-close (click)="put()">Zapisz</button>
   <button mat-button mat-dialog-close>Wyjdź</button>
 </div>

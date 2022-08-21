@@ -1,6 +1,17 @@
 <mat-card class="card-container mt-2">
   <h1 mat-dialog-title class="text-center pt-2">Stanowiska pracy</h1>
-  <h1 class="text-center"></h1>
+  <div class="d-flex flex-row bd-highlight mb-3">
+    <div class="p-2 bd-highlight">
+      <button
+        class="m-2"
+        mat-raised-button
+        color="primary"
+        (click)="openAddDialog()"
+      >
+        Dodaj stanowisko
+      </button>
+    </div>
+  </div>
   <div class="row justify-content-md-center mx-3">
     <mat-card
       class="col-md-4 m-2 mat-elevation-z8"

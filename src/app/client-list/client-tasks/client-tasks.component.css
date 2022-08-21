@@ -1,0 +1,7 @@
+mat-dialog-content{
+    min-width: 1100px;
+    min-height: 700px;
+}
+.spacer {
+    flex: 1 1 auto;
+  }

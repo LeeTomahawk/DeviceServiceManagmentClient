@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Workplace } from 'src/app/workplace-list/WorkplaceInterface';
+import { NewWorkplaceDto } from 'src/Models/NewWorkplaceDto';
 
 @Injectable({
   providedIn: 'root',
@@ -28,9 +29,21 @@ export class WorkplaceService {
     );
   }
 
-  postWorkplace() {}
+  postWorkplace(workplace: NewWorkplaceDto) {
+    return this.http.post<any>(
+      this.apiURL + '/api/Workplace/',
+      workplace,
+      this.httpOptions
+    );
+  }
 
-  putWorkplace() {}
+  putWorkplace(workplace: NewWorkplaceDto) {
+    return this.http.put<any>(
+      this.apiURL + '/api/Workplace/',
+      workplace,
+      this.httpOptions
+    );
+  }
 
   deleteWorkplace(id: string) {
     return this.http.delete(

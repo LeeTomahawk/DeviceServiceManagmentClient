@@ -1,1 +1,129 @@
-<p>client-update works!</p>
+<div class="container">
+  <h1 mat-dialog-title class="text-center">Aktualizacja danych klienta</h1>
+  <mat-card class="mt-2 w-100">
+    <div class="row mt-2 justify-content-center">
+      <div class="col-md-9">
+        <span [formGroup]="registerForm">
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <mat-form-field
+                class="example-full-width ml-3 w-100"
+                appearance="fill"
+              >
+                <mat-label>Imię</mat-label>
+                <input
+                  formControlName="firstName"
+                  matInput
+                  placeholder="np. Jan"
+                />
+                <mat-error> Imię jest błedne. </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field
+                class="example-full-width ml-3 w-100"
+                appearance="fill"
+              >
+                <mat-label>Nazwisko</mat-label>
+                <input
+                  formControlName="lastName"
+                  matInput
+                  placeholder="np. Kowalski"
+                />
+                <mat-error> Nazwisko jest błedne. </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+              <mat-form-field
+                class="ml-3 example-full-width w-100"
+                appearance="fill"
+              >
+                <mat-label>Numer telefonu</mat-label>
+                <span matPrefix>+48 &nbsp;</span>
+                <input
+                  formControlName="phoneNumber"
+                  matInput
+                  placeholder="123456789"
+                />
+                <mat-error> Błędny numer telefonu. </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 text-center">
+              <mat-form-field
+                class="example-full-width ml-3 w-100"
+                appearance="fill"
+              >
+                <mat-label>Miasto</mat-label>
+                <input
+                  formControlName="city"
+                  matInput
+                  placeholder="np. Warszawa"
+                />
+                <mat-error> Błędna nazwa miasta. </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+              <mat-form-field
+                class="example-full-width ml-3 w-100"
+                appearance="fill"
+              >
+                <mat-label>Ulica</mat-label>
+                <input
+                  formControlName="street"
+                  matInput
+                  placeholder="np. Kochanowskiego"
+                />
+                <mat-error> Błędna nazwa ulicy. </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 text-center">
+              <mat-form-field
+                class="example-full-width ml-3 w-100"
+                appearance="fill"
+              >
+                <mat-label>Numer domu/mieszkania</mat-label>
+                <input
+                  formControlName="number"
+                  matInput
+                  placeholder="np. 5/12"
+                />
+                <mat-error> Błędny numer domu. </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 text-center">
+              <mat-form-field
+                class="example-full-width ml-3 w-100"
+                appearance="fill"
+              >
+                <mat-label>Kod pocztowy</mat-label>
+                <input
+                  formControlName="postCode"
+                  matInput
+                  placeholder="np. 00-100"
+                />
+                <mat-error> Błędny kod pocztowy </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div class="row mt-2 justify-content-center">
+      <div class="col-md-5 text-center">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!registerForm.valid"
+          (click)="update()"
+          mat-dialog-close
+        >
+          Aktualizuj
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>

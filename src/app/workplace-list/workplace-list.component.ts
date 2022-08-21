@@ -6,6 +6,7 @@ import { WorkplaceUpdateComponent } from './workplace-update/workplace-update.co
 import { MatTableDataSource } from '@angular/material/table';
 import { WorkplaceService } from 'src/Services/workplace.service';
 import { EquipmentService } from 'src/Services/equipment.service';
+import { WorkplaceAddComponent } from './workplace-add/workplace-add.component';
 
 @Component({
   selector: 'app-workplace-list',
@@ -26,6 +27,7 @@ export class WorkplaceListComponent implements OnInit {
   constructor(
     private updateDialog: MatDialog,
     private deleteDialog: MatDialog,
+    private addDialog: MatDialog,
     private workplaceApiCaller: WorkplaceService,
     private changeDetectorRefs: ChangeDetectorRef
   ) {}
@@ -53,9 +55,9 @@ export class WorkplaceListComponent implements OnInit {
       data: { element },
     });
 
-    // dialogRef.afterClosed().subscribe((x) => {
-    //   window.location.reload();
-    // });
+    dialogRef.afterClosed().subscribe((x) => {
+      this.ngOnInit();
+    });
   }
   openDeleteDialog(id: string) {
     const dialogRef = this.deleteDialog.open(WorkplaceDeleteComponent, {
@@ -67,7 +69,11 @@ export class WorkplaceListComponent implements OnInit {
     });
   }
 
-  refresh() {
-    this.changeDetectorRefs.detectChanges();
+  openAddDialog() {
+    const dialogRef = this.addDialog.open(WorkplaceAddComponent);
+
+    dialogRef.afterClosed().subscribe((x) => {
+      this.ngOnInit();
+    });
   }
 }

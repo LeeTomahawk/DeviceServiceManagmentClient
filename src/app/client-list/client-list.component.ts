@@ -120,9 +120,9 @@ export class ClientListComponent implements OnInit {
     });
   }
 
-  openTasksDialog(client: Client) {
+  openTasksDialog(clientId: string) {
     const dialogRef = this.tasksDialog.open(ClientTasksComponent, {
-      data: { client },
+      data: { clientId },
     });
   }
 }
