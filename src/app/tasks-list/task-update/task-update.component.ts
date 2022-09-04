@@ -9,7 +9,9 @@ import { Tasks } from '../taskInterfaces';
 })
 export class TaskUpdateComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { task: Tasks }) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.data);
+  }
 
   formatDate(data: string) {
     return new Date(data);

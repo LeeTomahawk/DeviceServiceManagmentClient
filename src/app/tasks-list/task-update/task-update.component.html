@@ -6,7 +6,24 @@
         <h3 class="font-weight-bold">Status</h3>
         <section>
           <mat-radio-group [value]="data.task.taskStatus">
-            <mat-radio-button class="mx-2">NAPRAWIONE</mat-radio-button>
+            <mat-radio-button class="mx-2" value="RECEIVED">
+              PRZYJĘTO
+            </mat-radio-button>
+            <mat-radio-button class="mx-2" value="IN_REPAIR">
+              W NAPRAWIE
+            </mat-radio-button>
+            <mat-radio-button class="mx-2" value="REPAIRED">
+              NAPRAWIONE
+            </mat-radio-button>
+            <mat-radio-button class="mx-2" value="NOT_REPAIRED" *ngIf="">
+              NIE NAPRAWIONE
+            </mat-radio-button>
+            <mat-radio-button class="mx-2" value="WAITING_FOR_CLIENT">
+              OCZEKIWANIE NA KLIENTA
+            </mat-radio-button>
+            <mat-radio-button class="mx-2" value="COLLECTED">
+              ODEBRANO
+            </mat-radio-button>
           </mat-radio-group>
         </section>
         <p class="mt-2 alert alert-warning" role="alert">
