@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ClientService } from 'src/Services/client.service';
+import { TaskService } from 'src/Services/task.service';
 
 @Component({
   selector: 'app-client-tasks',
@@ -11,7 +12,8 @@ export class ClientTasksComponent implements OnInit {
   taskList: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { clientId: string },
-    private clientApiCaller: ClientService
+    private clientApiCaller: ClientService,
+    private taskApiCaller: TaskService
   ) {}
 
   getTaskList() {
@@ -28,6 +30,19 @@ export class ClientTasksComponent implements OnInit {
   ngOnInit(): void {
     this.getTaskList();
   }
+
+  endTask(taskId: string) {
+    this.taskApiCaller.endTask(taskId).subscribe(
+      () => {
+        console.log('done');
+        this.getTaskList();
+      },
+      (err) => {
+        console.log(err.error);
+      }
+    );
+  }
+
   taskStatusMap(value: string) {
     if (value == 'RECEIVED') return 'PRZYJĘTO';
     else if (value == 'WAITING_FOR_CLIENT') return 'OCZEKIWANIE NA ODBIÓR';

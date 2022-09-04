@@ -13,13 +13,15 @@
               {{ element.startDate | date: "yyyy-MM-dd - HH:mm:ss" }}
             </div>
             <div
-              class="text-end"
+              class="text-end font-weight-bold text-uppercase"
               [ngStyle]="{
                 color:
                   element.taskStatus == 'RECEIVED'
                     ? '#2a00d1'
                     : element.taskStatus == 'WAITING_FOR_CLIENT'
                     ? '#049109'
+                    : element.taskStatus == 'COLLECTED'
+                    ? '#1400f2'
                     : '#f56e07'
               }"
             >
@@ -47,63 +49,17 @@
             </mat-card>
           </div>
         </div>
-
-        <mat-action-row> </mat-action-row>
-      </mat-expansion-panel>
-
-      <!-- <mat-expansion-panel
-        [expanded]="step === 1"
-        (opened)="setStep(1)"
-        hideToggle
-      >
-        <mat-expansion-panel-header>
-          <mat-panel-title> Destination </mat-panel-title>
-          <mat-panel-description>
-            Type the country name
-            <mat-icon>map</mat-icon>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Country</mat-label>
-          <input matInput />
-        </mat-form-field>
-
         <mat-action-row>
-          <button mat-button color="warn" (click)="prevStep()">Previous</button>
-          <button mat-button color="primary" (click)="nextStep()">Next</button>
+          <button
+            *ngIf="element.taskStatus == 'WAITING_FOR_CLIENT'"
+            mat-raised-button
+            color="warn"
+            (click)="endTask(element.id)"
+          >
+            Zakończ
+          </button>
         </mat-action-row>
       </mat-expansion-panel>
-
-      <mat-expansion-panel
-        [expanded]="step === 2"
-        (opened)="setStep(2)"
-        hideToggle
-      >
-        <mat-expansion-panel-header>
-          <mat-panel-title> Day of the trip </mat-panel-title>
-          <mat-panel-description>
-            Inform the date you wish to travel
-            <mat-icon>date_range</mat-icon>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Date</mat-label>
-          <input
-            matInput
-            [matDatepicker]="picker"
-            (focus)="picker.open()"
-            readonly
-          />
-        </mat-form-field>
-        <mat-datepicker #picker></mat-datepicker>
-
-        <mat-action-row>
-          <button mat-button color="warn" (click)="prevStep()">Previous</button>
-          <button mat-button color="primary" (click)="nextStep()">End</button>
-        </mat-action-row>
-      </mat-expansion-panel> -->
     </mat-accordion>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
