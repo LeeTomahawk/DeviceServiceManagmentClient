@@ -70,6 +70,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { DatePipe } from '@angular/common';
 import { ClientAddComponent } from './client-list/client-add/client-add.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,6 +110,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ClientAddComponent,
   ],
   imports: [
+    MatTooltipModule,
     MatExpansionModule,
     MatSortModule,
     MatMenuModule,
