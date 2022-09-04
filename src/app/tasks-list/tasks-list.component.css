@@ -26,7 +26,7 @@ table {
   hyphens: auto;
 }
 
-.mat-column-name {
+.mat-column-Name {
   word-wrap: break-word !important;
   white-space: unset !important;
   flex: 0 0 35% !important;
@@ -42,7 +42,7 @@ table {
   hyphens: auto;
 }
 
-.mat-column-data {
+.mat-column-startDate {
   word-wrap: break-word !important;
   white-space: unset !important;
   flex: 0 0 10% !important;
@@ -58,7 +58,7 @@ table {
   hyphens: auto;
 }
 
-.mat-column-status {
+.mat-column-TaskStatus {
   word-wrap: break-word !important;
   white-space: unset !important;
   flex: 0 0 12% !important;
@@ -107,4 +107,10 @@ table {
 .mat-row:hover .mat-column-name, 
 .mat-row:hover .mat-column-phoneNumber{
   font-weight: bold;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  padding: 10px;
 }

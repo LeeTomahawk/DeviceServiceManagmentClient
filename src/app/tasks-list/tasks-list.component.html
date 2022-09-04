@@ -1,5 +1,5 @@
 <mat-card class="mt-2">
-  <div class="flex-row py-2">
+  <!-- <div class="flex-row py-2">
     <mat-form-field appearance="fill" [formGroup]="form">
       <mat-label>Podaj przedział czasowy</mat-label>
       <mat-date-range-input [rangePicker]="picker">
@@ -12,30 +12,73 @@
       </mat-date-range-input>
       <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker
-        (closed)="getTaskList()"
-        #picker
-      ></mat-date-range-picker>
+      <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
-  </div>
+  </div> -->
   <div class="table-container mat-elevation-z3">
-    <table mat-table [dataSource]="dataSource" matSort #empTbSort="matSort">
+    <mat-form-field appearance="outline">
+      <mat-label>Szukaj</mat-label>
+      <input
+        matInput
+        placeholder="Np. konsola"
+        #input
+        (keyup)="applyFilter($event)"
+      />
+      <button
+        mat-button
+        *ngIf="SearchPharse"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="input.value = ' '"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      #empTbSort="matSort"
+      (matSortChange)="onSortChanged($event)"
+    >
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef>Nr</th>
-        <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}.</td>
+        <td mat-cell *matCellDef="let element; let i = index">
+          {{
+            this.paginator.pageIndex == 0
+              ? i + 1
+              : 1 + i + this.paginator.pageIndex * this.paginator.pageSize
+          }}.
+        </td>
       </ng-container>
 
-      <ng-container matColumnDef="name">
+      <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwa</th>
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="status">
+      <ng-container matColumnDef="TaskStatus">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-        <td mat-cell *matCellDef="let element">{{ element.taskStatus }}</td>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [ngStyle]="{
+            color:
+              element.taskStatus == 'RECEIVED'
+                ? '#2a00d1'
+                : element.taskStatus == 'WAITING_FOR_CLIENT'
+                ? '#049109'
+                : element.taskStatus == 'COLLECTED'
+                ? '#1400f2'
+                : '#f56e07'
+          }"
+        >
+          {{ taskStatusMap(element.taskStatus) }}
+        </td>
       </ng-container>
 
-      <ng-container matColumnDef="data">
+      <ng-container matColumnDef="startDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           Data przyjęcia
         </th>
@@ -94,9 +137,10 @@
 
   <mat-paginator
     class="mat-elevation-z4"
-    [length]="100"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageSize]="25"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+    (page)="nextPage($event)"
+    [length]="totalSize"
   >
   </mat-paginator>
 </mat-card>
