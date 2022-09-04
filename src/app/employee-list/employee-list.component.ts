@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EmployeeService } from 'src/Services/employee.service';
 import { Employee } from './employeeInterface';
@@ -12,15 +14,23 @@ import { Employee } from './employeeInterface';
 export class EmployeeListComponent implements OnInit {
   displayedColumns: string[] = [
     'position',
-    'name',
-    'phoneNumber',
-    // 'tasks',
-    // 'info',
+    'LastName',
+    'PhoneNumber',
     'actions',
   ];
   private employeeList: any;
   public dataSource!: MatTableDataSource<Employee>;
   isLoading: boolean = true;
+  totalSize: number = 0;
+  SearchPharse: string = '';
+  PageNumber: number = 1;
+  PageSize: number = 25;
+  SortBy: string = '';
+  SortDirection: string = '';
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('empTbSort') empTbSort = new MatSort();
+
   constructor(
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
@@ -29,15 +39,53 @@ export class EmployeeListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getEmployeeList();
+    const request: any = {};
+    request.SearchPharse = this.SearchPharse;
+    request.PageNumber = this.PageNumber;
+    request.PageSize = this.PageSize;
+    request.SortBy = this.SortBy;
+    request.SortDirection = this.SortDirection;
+    this.getEmployeeList(request);
   }
 
-  getEmployeeList() {
-    this.employeeApiCaller.getEmployeeList().subscribe((data) => {
-      this.employeeList = data;
+  getEmployeeList(params: any) {
+    this.employeeApiCaller.getEmployeeList(params).subscribe((data) => {
+      this.employeeList = data.result;
+      this.totalSize = data.totalResult;
       this.dataSource = new MatTableDataSource<Employee>(this.employeeList);
+      this.dataSource.sort = this.empTbSort;
       this.isLoading = false;
     });
+  }
+
+  nextPage(event: PageEvent) {
+    this.PageNumber = event.pageIndex + 1;
+    this.PageSize = event.pageSize;
+
+    const request: any = {};
+
+    request.SearchPharse = this.SearchPharse;
+    request.PageNumber = this.PageNumber;
+    request.PageSize = this.PageSize;
+    request.SortBy = this.SortBy;
+    request.SortDirection = this.SortDirection;
+
+    this.getEmployeeList(request);
+  }
+
+  onSortChanged(event: Sort) {
+    this.SortBy = event.active;
+    this.SortDirection = event.direction;
+
+    const request: any = {};
+
+    request.SearchPharse = this.SearchPharse;
+    request.PageNumber = this.PageNumber;
+    request.PageSize = this.PageSize;
+    request.SortBy = this.SortBy;
+    request.SortDirection = this.SortDirection;
+
+    this.getEmployeeList(request);
   }
 
   openInfoDialog(employee: Employee) {
@@ -51,7 +99,13 @@ export class EmployeeListComponent implements OnInit {
     //   data: { employee },
     // });
     // dialogRef.afterClosed().subscribe((x) => {
-    //   window.location.reload();
+    //   const request: any = {};
+    //   request.SearchPharse = this.SearchPharse;
+    //   request.PageNumber = this.PageNumber;
+    //   request.PageSize = this.PageSize;
+    //   request.SortBy = this.SortBy;
+    //   request.SortDirection = this.SortDirection;
+    //   this.getEmployeeList(request);
     // });
   }
 
