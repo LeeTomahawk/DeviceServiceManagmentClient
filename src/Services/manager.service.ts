@@ -14,9 +14,19 @@ export class ManagerService {
   };
   constructor(private http: HttpClient) {}
 
-  getManagerList() {
-    return this.http.get<Manager>(
-      this.apiURL + '/api/Manager',
+  getManagerList(params: any) {
+    return this.http.get<any>(
+      this.apiURL +
+        '/api/Manager?SearchPharse=' +
+        params.SearchPharse +
+        '&PageNumber=' +
+        params.PageNumber +
+        '&PageSize=' +
+        params.PageSize +
+        '&SortBy=' +
+        params.SortBy +
+        '&SortDirection=' +
+        params.SortDirection,
       this.httpOptions
     );
   }

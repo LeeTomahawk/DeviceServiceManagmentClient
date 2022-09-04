@@ -14,9 +14,19 @@ export class EmployeeService {
   };
   constructor(private http: HttpClient) {}
 
-  getEmployeeList() {
-    return this.http.get<Employee>(
-      this.apiURL + '/api/Employee',
+  getEmployeeList(params: any) {
+    return this.http.get<any>(
+      this.apiURL +
+        '/api/Employee?SearchPharse=' +
+        params.SearchPharse +
+        '&PageNumber=' +
+        params.PageNumber +
+        '&PageSize=' +
+        params.PageSize +
+        '&SortBy=' +
+        params.SortBy +
+        '&SortDirection=' +
+        params.SortDirection,
       this.httpOptions
     );
   }

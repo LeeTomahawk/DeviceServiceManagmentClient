@@ -15,29 +15,61 @@ export class TaskService {
   };
   constructor(private http: HttpClient) {}
 
-  getTaskList(startDate: Date, endDate: Date) {
+  getTaskList(startDate: Date, endDate: Date, params: any) {
     var datePipe = new DatePipe('en-US');
     return this.http
-      .get<Task>(
+      .get<any>(
         this.apiURL +
-          '/api/Task/GetTasksBetweenDates?startDate=' +
-          datePipe.transform(startDate, 'yyyy-MM-dd') +
-          '&endDate=' +
-          datePipe.transform(endDate, 'yyyy-MM-dd'),
+          '/api/Task?SearchPharse=' +
+          params.SearchPharse +
+          '&PageNumber=' +
+          params.PageNumber +
+          '&PageSize=' +
+          params.PageSize +
+          '&SortBy=' +
+          params.SortBy +
+          '&SortDirection=' +
+          params.SortDirection,
         this.httpOptions
       )
       .toPromise();
   }
 
-  getToAproveTasks() {
+  getToAproveTasks(params: any) {
     return this.http
-      .get<Task>(this.apiURL + '/api/Task/GetToAproveTasks', this.httpOptions)
+      .get<any>(
+        this.apiURL +
+          '/api/Task/GetToAproveTasks?SearchPharse=' +
+          params.SearchPharse +
+          '&PageNumber=' +
+          params.PageNumber +
+          '&PageSize=' +
+          params.PageSize +
+          '&SortBy=' +
+          params.SortBy +
+          '&SortDirection=' +
+          params.SortDirection,
+        this.httpOptions
+      )
       .toPromise();
   }
 
-  getAvailableTasksList() {
+  getAvailableTasksList(params: any) {
     return this.http
-      .get<Task>(this.apiURL + '/api/Task/GetAvailableTasks', this.httpOptions)
+      .get<any>(
+        this.apiURL +
+          '/api/Task/GetAvailableTasks?SearchPharse=' +
+          params.SearchPharse +
+          '&PageNumber=' +
+          params.PageNumber +
+          '&PageSize=' +
+          params.PageSize +
+          '&SortBy=' +
+          params.SortBy +
+          '&SortDirection=' +
+          params.SortDirection,
+        this.httpOptions
+      )
       .toPromise();
   }
 
@@ -45,6 +77,13 @@ export class TaskService {
     return this.http.post<RegisterNewTask>(
       this.apiURL + '/api/Task',
       JSON.stringify(task),
+      this.httpOptions
+    );
+  }
+
+  endTask(taskId: string) {
+    return this.http.post<any>(
+      this.apiURL + '/api/Task/EndTask?taskId=' + taskId,
       this.httpOptions
     );
   }
