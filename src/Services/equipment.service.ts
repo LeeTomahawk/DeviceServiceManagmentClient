@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Equipment } from 'src/app/equipment-list/equipmentInterface';
 import { AddNewEquipmentDto } from 'src/Models/AddNewEquipmentDto';
+import { UpdateEquipmentDto } from 'src/Models/UpdateEquipmentDto';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +16,19 @@ export class EquipmentService {
   };
   constructor(private http: HttpClient) {}
 
-  getEquipmentList() {
-    return this.http.get<Equipment>(
-      this.apiURL + '/api/Equipment',
+  getEquipmentList(params: any) {
+    return this.http.get<any>(
+      this.apiURL +
+        '/api/Equipment?SearchPharse=' +
+        params.SearchPharse +
+        '&PageNumber=' +
+        params.PageNumber +
+        '&PageSize=' +
+        params.PageSize +
+        '&SortBy=' +
+        params.SortBy +
+        '&SortDirection=' +
+        params.SortDirection,
       this.httpOptions
     );
   }
@@ -37,7 +48,13 @@ export class EquipmentService {
     );
   }
 
-  putEquipment() {}
+  putEquipment(equipment: UpdateEquipmentDto) {
+    return this.http.put(
+      this.apiURL + '/api/Equipment',
+      equipment,
+      this.httpOptions
+    );
+  }
 
   deleteEquipment(id: string) {
     return this.http.delete(

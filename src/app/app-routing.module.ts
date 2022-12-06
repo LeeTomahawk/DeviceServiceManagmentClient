@@ -22,6 +22,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ForbidenComponent } from './forbiden/forbiden.component';
 import { ClientAddComponent } from './client-list/client-add/client-add.component';
+import { ManagerAddComponent } from './manager-list/manager-add/manager-add.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -91,7 +92,7 @@ const routes: Routes = [
     path: 'tasks-user',
     component: TaskUserTaskComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['MANAGER', 'ADMIN', 'EMPLOYEE'] },
+    data: { roles: ['ADMIN', 'EMPLOYEE'] },
   },
   {
     path: 'tasks-available',
@@ -122,6 +123,12 @@ const routes: Routes = [
     component: ManagerListComponent,
     canActivate: [AuthGuard],
     data: { roles: ['MANAGER', 'ADMIN'] },
+  },
+  {
+    path: 'manager-add',
+    component: ManagerAddComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ADMIN'] },
   },
   { path: 'forbidden', component: ForbidenComponent },
 

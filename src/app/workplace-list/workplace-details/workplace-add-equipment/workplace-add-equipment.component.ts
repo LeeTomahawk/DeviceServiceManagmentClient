@@ -21,9 +21,17 @@ export class WorkplaceAddEquipmentComponent implements OnInit {
   }
 
   getAvailableEquipment() {
-    this.equipmentApiCaller.getEquipmentList().subscribe((data) => {
-      this.equipmentList = data;
-    });
+    this.equipmentApiCaller
+      .getEquipmentList({
+        SearchPharse: '',
+        PageNumber: 1,
+        PageSize: 50,
+        SortBy: '',
+        SortDirection: '',
+      })
+      .subscribe((data) => {
+        this.equipmentList = data.result;
+      });
   }
 
   async addEquipment(equipmentId: string) {

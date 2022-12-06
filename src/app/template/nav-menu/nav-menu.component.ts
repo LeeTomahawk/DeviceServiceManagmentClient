@@ -22,6 +22,7 @@ export class NavMenuComponent implements OnInit {
   userRole!: any;
   data: any;
   title: string = '';
+  name!: any;
 
   constructor(
     private router: Router,
@@ -34,6 +35,7 @@ export class NavMenuComponent implements OnInit {
     if (this.data) {
       this.isLogged = true;
       this.userRole = this.authService.getRole();
+      this.name = this.authService.getName();
     }
   }
 

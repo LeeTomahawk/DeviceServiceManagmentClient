@@ -28,8 +28,7 @@ export class WorkplaceListComponent implements OnInit {
     private updateDialog: MatDialog,
     private deleteDialog: MatDialog,
     private addDialog: MatDialog,
-    private workplaceApiCaller: WorkplaceService,
-    private changeDetectorRefs: ChangeDetectorRef
+    private workplaceApiCaller: WorkplaceService
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +38,6 @@ export class WorkplaceListComponent implements OnInit {
   getWorkplaceList() {
     this.workplaceApiCaller.getWorkplaceList().subscribe(
       (data) => {
-        console.log(data);
         this.workplaceList = data;
         this.dataSource = new MatTableDataSource<Workplace>(this.workplaceList);
         this.isLoading = false;

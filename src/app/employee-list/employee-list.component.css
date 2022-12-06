@@ -92,3 +92,7 @@ table {
 .mat-row:hover .mat-column-phoneNumber{
   font-weight: bold;
 }
+.mat-form-field {
+  font-size: 14px;
+  padding: 10px;
+}

@@ -48,6 +48,12 @@ export class EmployeeListComponent implements OnInit {
     this.getEmployeeList(request);
   }
 
+  applyFilter(event: Event) {
+    this.SearchPharse = (event.target as HTMLInputElement).value;
+
+    this.ngOnInit();
+  }
+
   getEmployeeList(params: any) {
     this.employeeApiCaller.getEmployeeList(params).subscribe((data) => {
       this.employeeList = data.result;

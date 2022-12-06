@@ -71,4 +71,29 @@ export class WorkplaceService {
       this.httpOptions
     );
   }
+
+  getEmployeeWithoutWorkplace() {
+    return this.http.get(
+      this.apiURL + '/api/Employee/GetEmployeesWithoutWorkplace',
+      this.httpOptions
+    );
+  }
+
+  addEmployeeToWorkplace(wpID: string, eID: string) {
+    return this.http.post(
+      this.apiURL +
+        '/api/Workplace/WokrplaceAddEmployee?workplaceId=' +
+        wpID +
+        '&employeeId=' +
+        eID,
+      this.httpOptions
+    );
+  }
+
+  getEmployeeWithWorkplace(id: string) {
+    return this.http.get(
+      this.apiURL + '/api/Employee/GetEmployeesWithWorkplace/' + id,
+      this.httpOptions
+    );
+  }
 }

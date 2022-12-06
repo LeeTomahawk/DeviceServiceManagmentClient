@@ -22,13 +22,19 @@ export class TaskAssignComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //this.getEmployeeList();
+    this.getEmployeeList({
+      SearchPharse: '',
+      PageNumber: 1,
+      PageSize: 50,
+      SortBy: '',
+      SortDirection: '',
+    });
   }
 
   getEmployeeList(params: any) {
     this.employeeApiCaller.getEmployeeList(params).subscribe((data) => {
-      this.employeeList = data;
-      if (data != null) this.isLoading = false;
+      this.employeeList = data.result;
+      if (data.result != null) this.isLoading = false;
     });
   }
 

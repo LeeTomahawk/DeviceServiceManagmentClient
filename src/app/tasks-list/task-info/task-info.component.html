@@ -4,7 +4,20 @@
     <div class="row mb-3">
       <div class="col-4 px-3">
         <h3 class="font-weight-bold">Status</h3>
-        <p>{{ dataSource.taskStatus }}</p>
+        <p
+          [ngStyle]="{
+            color:
+              dataSource.taskStatus == 'RECEIVED'
+                ? '#2a00d1'
+                : dataSource.taskStatus == 'WAITING_FOR_CLIENT'
+                ? '#049109'
+                : dataSource.taskStatus == 'COLLECTED'
+                ? '#1400f2'
+                : '#f56e07'
+          }"
+        >
+          {{ taskStatusMap(dataSource.taskStatus) }}
+        </p>
       </div>
       <div class="col-4 px-3">
         <h3 class="font-weight-bold">Data przyjęcia</h3>

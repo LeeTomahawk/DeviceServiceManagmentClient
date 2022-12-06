@@ -49,6 +49,12 @@ export class ManagerListComponent implements OnInit {
     this.getManagerList(request);
   }
 
+  applyFilter(event: Event) {
+    this.SearchPharse = (event.target as HTMLInputElement).value;
+
+    this.ngOnInit();
+  }
+
   getManagerList(params: any) {
     this.managerApiCaller.getManagerList(params).subscribe((data) => {
       this.managerList = data.result;

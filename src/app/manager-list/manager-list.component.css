@@ -85,10 +85,8 @@ table {
   cursor: pointer;
 }
 
-.mat-row:hover .mat-cell {
-  border-color: currentColor;
-}
-.mat-row:hover .mat-column-name, 
-.mat-row:hover .mat-column-phoneNumber{
-  font-weight: bold;
+
+.mat-form-field {
+  font-size: 14px;
+  padding: 10px;
 }

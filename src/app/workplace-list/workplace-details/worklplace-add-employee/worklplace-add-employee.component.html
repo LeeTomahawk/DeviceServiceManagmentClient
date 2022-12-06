@@ -1,0 +1,21 @@
+<h1 mat-dialog-title class="text-center">Wybierz pracownika</h1>
+<div mat-dialog-content style="min-width: 500px">
+  <mat-list *ngFor="let em of employeeList">
+    <mat-list-item
+      >{{ em.identiti.firstName }} {{ em.identiti.lastName }}
+      <span class="spacer"></span>
+      <button
+        mat-icon-button
+        color="accent"
+        class="m-3"
+        (click)="addEmployee(em.id)"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Wyjdź</button>
+</div>

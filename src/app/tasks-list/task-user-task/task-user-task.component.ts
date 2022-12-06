@@ -22,7 +22,6 @@ export class TaskUserTaskComponent implements OnInit {
     'name',
     'status',
     'data',
-    // 'info',
     'actions',
   ];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];

@@ -1,4 +1,4 @@
-mat-card{
+mat-card {
   min-height: 720px;
 }
 table {
@@ -9,7 +9,6 @@ table {
   min-height: 700px;
   overflow: auto;
 }
-
 
 .mat-column-position {
   word-wrap: break-word !important;
@@ -77,36 +76,28 @@ table {
 
 /* .mat-column-info,
   .mat-column-update, */
-  .mat-column-actions {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  
-    word-break: break-word;
-  
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-  
-  .mat-row:nth-child(2n) {
-    background-color: #f3f3f3ab;
-  }
-  .mat-row .mat-cell {
-    border-bottom: 1px solid transparent;
-    border-top: 1px solid transparent;
-    cursor: pointer;
-  }
-  
-  .mat-row:hover .mat-cell {
-    border-color: currentColor;
-  }
-  .mat-row:hover .mat-column-name,
-  .mat-row:hover .mat-column-phoneNumber {
-    font-weight: bold;
-  }
-  
+.mat-column-actions {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 10% !important;
+  width: 10% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-row:nth-child(2n) {
+  background-color: #f3f3f3ab;
+}
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+

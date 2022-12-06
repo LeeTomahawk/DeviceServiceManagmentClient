@@ -25,7 +25,20 @@
 
       <ng-container matColumnDef="TaskStatus">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-        <td mat-cell *matCellDef="let element">
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [ngStyle]="{
+            color:
+              element.task.taskStatus == 'RECEIVED'
+                ? '#2a00d1'
+                : element.task.taskStatus == 'WAITING_FOR_CLIENT'
+                ? '#049109'
+                : element.task.taskStatus == 'COLLECTED'
+                ? '#1400f2'
+                : '#f56e07'
+          }"
+        >
           {{ element.task.taskStatus }}
         </td>
       </ng-container>
@@ -35,12 +48,12 @@
           Data przyjęcia
         </th>
         <td mat-cell *matCellDef="let element">
-          {{ element.task.startDate | date: "yyy-MM-dd - HH:mm:ss" }}
+          {{ element.task.startDate | date: "yyyy-MM-dd, HH:mm:ss" }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <th class="text-center" mat-header-cell *matHeaderCellDef>Akcje</th>
+        <th class="text-center" mat-header-cell *matHeaderCellDef>Czynności</th>
         <td
           class="text-center"
           mat-cell

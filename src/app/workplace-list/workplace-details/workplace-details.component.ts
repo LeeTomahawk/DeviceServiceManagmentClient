@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorkplaceService } from 'src/Services/workplace.service';
 import { Equipment, Workplace } from '../WorkplaceInterface';
+import { WorklplaceAddEmployeeComponent } from './worklplace-add-employee/worklplace-add-employee.component';
 import { WorkplaceAddEquipmentComponent } from './workplace-add-equipment/workplace-add-equipment.component';
 
 @Component({
@@ -14,13 +15,14 @@ import { WorkplaceAddEquipmentComponent } from './workplace-add-equipment/workpl
 export class WorkplaceDetailsComponent implements OnInit {
   id!: string;
   workplaceEquipment: any;
-  dataSource = new MatTableDataSource<Equipment>();
+  wokrplaceEmployee: any;
   displayedColumns: string[] = ['position', 'name', 'description', 'delete'];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private workplaceApiCaller: WorkplaceService,
-    private addDialog: MatDialog
+    private addEquipmentDialog: MatDialog,
+    private addEmployeeDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -33,10 +35,12 @@ export class WorkplaceDetailsComponent implements OnInit {
   getDetails() {
     this.workplaceApiCaller.getWorkplace(this.id).subscribe((data) => {
       this.workplaceEquipment = data;
-      this.dataSource = new MatTableDataSource<Equipment>(
-        this.workplaceEquipment.equipmentsDto
-      );
     });
+    this.workplaceApiCaller
+      .getEmployeeWithWorkplace(this.id)
+      .subscribe((data) => {
+        this.wokrplaceEmployee = data;
+      });
   }
 
   delete(eqId: string) {
@@ -45,10 +49,26 @@ export class WorkplaceDetailsComponent implements OnInit {
     });
   }
 
-  openAddDialog(element: Workplace) {
-    const dialogRef = this.addDialog.open(WorkplaceAddEquipmentComponent, {
-      data: { element },
+  openAddEquipmentDialog(element: Workplace) {
+    const dialogRef = this.addEquipmentDialog.open(
+      WorkplaceAddEquipmentComponent,
+      {
+        data: { element },
+      }
+    );
+
+    dialogRef.afterClosed().subscribe((x) => {
+      this.ngOnInit();
     });
+  }
+
+  openAddEmployeeDialog(workplaceId: string) {
+    const dialogRef = this.addEmployeeDialog.open(
+      WorklplaceAddEmployeeComponent,
+      {
+        data: { workplaceId },
+      }
+    );
 
     dialogRef.afterClosed().subscribe((x) => {
       this.ngOnInit();

@@ -1,10 +1,10 @@
 <mat-card class="card-container mt-2">
-  <h1 mat-dialog-title class="text-center pt-2">Szczegóły stanowiska</h1>
-
+  <mat-card-title mat-dialog-title class="text-center pt-2"
+    >Szczegóły stanowiska</mat-card-title
+  >
   <h1 class="text-center">
     {{ workplaceEquipment?.identifier }}
   </h1>
-
   <div class="d-flex justify-content-start">
     <button class="m-2" mat-raised-button [routerLink]="['/workplace-list']">
       Wróć
@@ -13,41 +13,77 @@
       class="m-2"
       mat-raised-button
       color="primary"
-      (click)="openAddDialog(workplaceEquipment)"
+      (click)="openAddEquipmentDialog(workplaceEquipment)"
     >
       Dodaj wyposażenie
     </button>
-  </div>
-
-  <div class="row justify-content-md-center">
-    <mat-card
-      class="col-md-12 example-card m-2 mat-elevation-z8"
-      *ngFor="let element of workplaceEquipment?.equipmentsDto"
+    <button
+      class="m-2"
+      mat-raised-button
+      color="primary"
+      (click)="openAddEmployeeDialog(id)"
     >
-      <mat-card-header>
-        <div mat-card-avatar>
-          <mat-icon>outlined_flag</mat-icon>
-        </div>
-        <mat-card-title>{{ element.name }}</mat-card-title>
-        <mat-card-subtitle>1/szt</mat-card-subtitle>
-      </mat-card-header>
-      <!-- <img
-        mat-card-image
-        class="img-thumbnail"
-        src="https://www.freeiconspng.com/thumbs/tool-icon/tool-icon-25.png"
-      /> -->
-      <mat-card-content>
-        <p>{{ element.description }}</p>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <button
-          mat-icon-button
-          color="warn"
-          (click)="delete(element.wokrplaceEquipmentId)"
+      Dodaj pracownika
+    </button>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="row justify-content-md-center">
+        <mat-card
+          class="example-card m-2 mat-elevation-z8"
+          *ngFor="let element of workplaceEquipment?.equipmentsDto"
         >
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-card-actions>
-    </mat-card>
+          <mat-card-header>
+            <div mat-card-avatar>
+              <mat-icon>outlined_flag</mat-icon>
+            </div>
+            <mat-card-title>{{ element.name }}</mat-card-title>
+            <mat-card-subtitle>1/szt</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ element.description }}</p>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="delete(element.wokrplaceEquipmentId)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="row justify-content-md-center">
+        <mat-card
+          class="example-card m-2 mat-elevation-z8"
+          *ngFor="let element of wokrplaceEmployee"
+        >
+          <mat-card-header>
+            <div mat-card-avatar>
+              <mat-icon>person</mat-icon>
+            </div>
+            <mat-card-title
+              >{{ element.identiti.firstName }}
+              {{ element.identiti.lastName }}</mat-card-title
+            >
+          </mat-card-header>
+          <mat-card-content>
+            <p>Telefon: {{ element.identiti.phoneNumber }}</p>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="delete(element.wokrplaceEquipmentId)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
   </div>
 </mat-card>

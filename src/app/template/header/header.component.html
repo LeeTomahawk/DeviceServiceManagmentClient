@@ -4,6 +4,7 @@
   </button> -->
   <span class="spacer"></span>
   <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isLogged">
+    <h2>{{ name }}</h2>
     <mat-icon> person_pin</mat-icon>
   </button>
   <mat-menu #menu="matMenu">

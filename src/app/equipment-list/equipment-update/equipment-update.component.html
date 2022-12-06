@@ -1,5 +1,5 @@
 <h1 mat-dialog-title class="text-center">Aktualizacja wyposażenia</h1>
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content class="mat-typography" [formGroup]="updateForm">
   <h1 class="text-center">{{ data.equipment.name }}</h1>
   <div class="d-flex flex-row mb-3">
     <div class="px-3 w-100">
@@ -10,23 +10,14 @@
         color="accent"
       >
         <mat-label>Nazwa</mat-label>
-        <input
-          matInput
-          placeholder="Np. Lutownica"
-          [value]="data.equipment.name"
-        />
+        <input matInput placeholder="Np. Lutownica" formControlName="name" />
       </mat-form-field>
     </div>
     <div class="px-3 w-100">
       <h3 class="font-weight-bold">Ilość</h3>
       <mat-form-field appearance="fill" color="accent" floatLabel="always">
         <mat-label>Ilość</mat-label>
-        <input
-          matInput
-          type="number"
-          placeholder="0"
-          [value]="data.equipment.amount"
-        />
+        <input matInput type="number" formControlName="amount" />
       </mat-form-field>
     </div>
   </div>
@@ -40,7 +31,7 @@
           matInput
           #desc
           rows="5"
-          [value]="data.equipment.description"
+          formControlName="description"
         ></textarea>
         <mat-hint align="end">{{ desc.value.length || 0 }}/50</mat-hint>
       </mat-form-field>
@@ -48,6 +39,6 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button>Zapisz</button>
+  <button mat-button mat-dialog-close (click)="update()">Zapisz</button>
   <button mat-button mat-dialog-close>Wyjdź</button>
 </mat-dialog-actions>

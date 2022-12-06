@@ -49,7 +49,7 @@
             </mat-card>
           </div>
         </div>
-        <mat-action-row>
+        <mat-action-row *ngIf="element.taskStatus == 'WAITING_FOR_CLIENT'">
           <button
             *ngIf="element.taskStatus == 'WAITING_FOR_CLIENT'"
             mat-raised-button

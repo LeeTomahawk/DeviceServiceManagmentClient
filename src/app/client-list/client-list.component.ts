@@ -56,6 +56,12 @@ export class ClientListComponent implements OnInit {
     this.getClientList(request);
   }
 
+  applyFilter(event: Event) {
+    this.SearchPharse = (event.target as HTMLInputElement).value;
+
+    this.ngOnInit();
+  }
+
   getClientList(params: any) {
     this.clientApiCaller.getClientList(params).subscribe((data) => {
       this.clientList = data.result;

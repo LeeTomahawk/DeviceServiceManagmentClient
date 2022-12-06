@@ -71,6 +71,8 @@ import { DatePipe } from '@angular/common';
 import { ClientAddComponent } from './client-list/client-add/client-add.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { WorklplaceAddEmployeeComponent } from './workplace-list/workplace-details/worklplace-add-employee/worklplace-add-employee.component';
+import { ManagerAddComponent } from './manager-list/manager-add/manager-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,6 +110,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     HeaderComponent,
     FooterComponent,
     ClientAddComponent,
+    WorklplaceAddEmployeeComponent,
+    ManagerAddComponent,
   ],
   imports: [
     MatTooltipModule,

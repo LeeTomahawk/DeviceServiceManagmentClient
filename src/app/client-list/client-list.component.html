@@ -1,8 +1,13 @@
 <mat-card class="mt-2 p-3">
   <div class="table-container mat-elevation-z3">
     <mat-form-field appearance="standard">
-      <mat-label>Filter</mat-label>
-      <input matInput placeholder="Ex. Mia" #input />
+      <mat-label>Szukaj</mat-label>
+      <input
+        matInput
+        placeholder="Np. Jan Kowalski"
+        #input
+        (keyup)="applyFilter($event)"
+      />
     </mat-form-field>
     <table
       mat-table
@@ -50,7 +55,7 @@
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <th class="text-center" mat-header-cell *matHeaderCellDef>Akcje</th>
+        <th class="text-center" mat-header-cell *matHeaderCellDef>Czynności</th>
         <td
           mat-cell
           *matCellDef="let element"

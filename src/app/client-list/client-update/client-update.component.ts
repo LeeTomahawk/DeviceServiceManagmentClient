@@ -43,7 +43,6 @@ export class ClientUpdateComponent implements OnInit {
   }
 
   update() {
-    console.log(new UpdateClientDto(this.registerForm.value));
     this.clientApiCaller
       .updateClient(
         new UpdateClientDto(this.registerForm.value),

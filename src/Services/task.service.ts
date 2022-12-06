@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RegisterNewTask } from 'src/Models/AddNewTaskDto';
+import { UpdateClientDto } from 'src/Models/ClientUpdateDto';
+import { UpdateTaskDto } from 'src/Models/UpdateTaskDto';
 @Injectable({
   providedIn: 'root',
 })
@@ -84,6 +86,14 @@ export class TaskService {
   endTask(taskId: string) {
     return this.http.post<any>(
       this.apiURL + '/api/Task/EndTask?taskId=' + taskId,
+      this.httpOptions
+    );
+  }
+
+  updateTask(task: UpdateTaskDto) {
+    return this.http.put<UpdateClientDto>(
+      this.apiURL + '/api/Task',
+      JSON.stringify(task),
       this.httpOptions
     );
   }

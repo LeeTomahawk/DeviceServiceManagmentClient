@@ -1,5 +1,14 @@
 <mat-card class="mt-2">
   <div class="table-container mat-elevation-z3">
+    <mat-form-field appearance="standard">
+      <mat-label>Szukaj</mat-label>
+      <input
+        matInput
+        placeholder="Np. Jan Kowalski"
+        #input
+        (keyup)="applyFilter($event)"
+      />
+    </mat-form-field>
     <table
       mat-table
       [dataSource]="dataSource"
@@ -35,9 +44,7 @@
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <th class="text-center" mat-header-cell *matHeaderCellDef>
-          Aktualizuj
-        </th>
+        <th class="text-center" mat-header-cell *matHeaderCellDef>Czynności</th>
         <td class="text-center" mat-cell *matCellDef="let element">
           <div class="d-flex justify-content-center">
             <button
@@ -68,8 +75,11 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+    <div class="d-flex justify-content-center m-2" *ngIf="isLoading">
+      <mat-progress-spinner color="accent" mode="indeterminate" diameter="50">
+      </mat-progress-spinner>
+    </div>
   </div>
-
   <mat-paginator
     class="mat-elevation-z4"
     [pageSize]="25"
@@ -78,9 +88,4 @@
     [length]="totalSize"
   >
   </mat-paginator>
-
-  <div class="d-flex justify-content-center m-2" *ngIf="isLoading">
-    <mat-progress-spinner color="accent" mode="indeterminate" diameter="50">
-    </mat-progress-spinner>
-  </div>
 </mat-card>

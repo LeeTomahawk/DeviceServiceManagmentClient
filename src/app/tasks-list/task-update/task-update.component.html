@@ -1,11 +1,11 @@
 <div class="container">
   <h1 mat-dialog-title class="text-center">Aktualizacja zadania</h1>
-  <mat-dialog-content>
+  <mat-dialog-content [formGroup]="updateForm">
     <div class="row mb-3">
       <div class="col-12 px-3">
         <h3 class="font-weight-bold">Status</h3>
         <section>
-          <mat-radio-group [value]="data.task.taskStatus">
+          <mat-radio-group formControlName="taskStatus">
             <mat-radio-button class="mx-2" value="RECEIVED">
               PRZYJĘTO
             </mat-radio-button>
@@ -37,11 +37,12 @@
         <mat-form-field appearance="fill" color="accent">
           <mat-label>Wybierz datę</mat-label>
           <input
+            formControlName="startDate"
             matInput
             [matDatepicker]="startDate"
-            disabled="true"
-            [value]="formatDate(data.task.startDate)"
+            [disabled]="true"
           />
+          <mat-error> Błędna data. </mat-error>
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
             matSuffix
@@ -57,9 +58,12 @@
           <input
             matInput
             [matDatepicker]="endDate"
-            disabled="true"
-            [value]="formatDate(data.task.endDate)"
+            formControlName="endDate"
+            [disabled]="
+              updateForm.controls['taskStatus'].value != 'WAITING_FOR_CLIENT'
+            "
           />
+          <mat-error> Błędna data. </mat-error>
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
             matSuffix
@@ -79,8 +83,9 @@
             type="number"
             placeholder="0"
             min="1"
-            [value]="data.task.amount"
+            formControlName="amount"
           />
+          <mat-error> Błędna cena. </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -94,8 +99,9 @@
             matInput
             #desc
             rows="5"
-            [value]="data.task.description"
+            formControlName="description"
           ></textarea>
+          <mat-error> Błędny opis. </mat-error>
           <mat-hint align="end">{{ desc.value.length || 0 }}/350</mat-hint>
         </mat-form-field>
       </div>
@@ -110,8 +116,9 @@
             matInput
             #activities
             rows="5"
-            [value]="data.task.activities"
+            formControlName="activities"
           ></textarea>
+          <mat-error> Błędna lista czynności. </mat-error>
           <mat-hint align="end"
             >{{ activities.value.length || 0 }}/400</mat-hint
           >
@@ -120,7 +127,9 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button>Zapisz</button>
+    <button mat-button (click)="update()" [disabled]="!updateForm.valid">
+      Zapisz
+    </button>
     <button mat-button mat-dialog-close>Wyjdź</button>
   </mat-dialog-actions>
 </div>
