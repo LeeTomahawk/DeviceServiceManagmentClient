@@ -8,7 +8,7 @@
     >
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Service APP</span>
+    <span>Internetowy system zarządzania serwisem komputerowym</span>
     <span class="spacer"></span>
     <h3>{{ name }}</h3>
     <button mat-icon-button matTooltip="{{ userRole }}">
@@ -18,13 +18,6 @@
   <mat-sidenav-container class="contenido">
     <mat-sidenav style="min-width: 250px" #cajon mode="side" opened>
       <mat-nav-list>
-        <!-- <mat-list-item [routerLink]="['/']">
-          <span class="full-width" *ngIf="isExpanded || isShowing"
-            >Strona główna</span
-          >
-          <mat-icon mat-list-icon>home</mat-icon>
-        </mat-list-item> -->
-
         <mat-list-item
           (click)="showClientSubmenu = !showClientSubmenu"
           class="parent"
@@ -49,7 +42,10 @@
           <a mat-list-item [routerLink]="['/client-list']"
             ><mat-icon>search</mat-icon>Szukaj</a
           >
-          <a mat-list-item [routerLink]="['/client-add']"
+          <a
+            mat-list-item
+            [routerLink]="['/client-add']"
+            *ngIf="userRole != 'EMPLOYEE'"
             ><mat-icon>add</mat-icon>Dodaj</a
           >
         </div>
@@ -57,7 +53,7 @@
         <mat-list-item
           (click)="showEmployeeSubmenu = !showEmployeeSubmenu"
           class="parent"
-          *ngIf="isLogged"
+          *ngIf="isLogged && userRole != 'EMPLOYEE'"
         >
           <span class="full-width" *ngIf="isExpanded || isShowing"
             >Pracownicy</span
@@ -86,7 +82,7 @@
         <mat-list-item
           (click)="showManagerSubmenu = !showManagerSubmenu"
           class="parent"
-          *ngIf="isLogged"
+          *ngIf="isLogged && userRole == 'ADMIN'"
         >
           <span class="full-width" *ngIf="isExpanded || isShowing"
             >Kierownictwo</span
@@ -133,19 +129,31 @@
           [ngClass]="{ expanded: showTaskSubmenu }"
           *ngIf="showTaskSubmenu"
         >
-          <a mat-list-item [routerLink]="['/tasks-user']"
+          <a
+            mat-list-item
+            [routerLink]="['/tasks-user']"
+            *ngIf="userRole != 'MANAGER'"
             ><mat-icon>person_outline</mat-icon>Twoje</a
           >
-          <a mat-list-item [routerLink]="['/tasks-available']"
+          <a
+            mat-list-item
+            [routerLink]="['/tasks-available']"
+            *ngIf="userRole != 'EMPLOYEE'"
             ><mat-icon>get_app</mat-icon>Przydziel</a
           >
-          <a mat-list-item [routerLink]="['/tasks-approval']"
+          <a
+            mat-list-item
+            [routerLink]="['/tasks-approval']"
+            *ngIf="userRole != 'EMPLOYEE'"
             ><mat-icon>check_box</mat-icon>Zatwierdź</a
           >
           <a mat-list-item [routerLink]="['/tasks-list']"
             ><mat-icon>history</mat-icon>Archiwum</a
           >
-          <a mat-list-item [routerLink]="['/task-add']"
+          <a
+            mat-list-item
+            [routerLink]="['/task-add']"
+            *ngIf="userRole != 'EMPLOYEE'"
             ><mat-icon>add</mat-icon>Dodaj</a
           >
         </div>
@@ -174,15 +182,12 @@
           <a mat-list-item [routerLink]="['/workplace-list']"
             ><mat-icon>search</mat-icon>Szukaj</a
           >
-          <!-- <a mat-list-item [routerLink]="['/workplace-add']"
-            ><mat-icon>add</mat-icon>Dodaj</a
-          > -->
         </div>
 
         <mat-list-item
           (click)="showEquipmentSubmenu = !showEquipmentSubmenu"
           class="parent"
-          *ngIf="isLogged"
+          *ngIf="isLogged && userRole != 'EMPLOYEE'"
         >
           <span class="full-width" *ngIf="isExpanded || isShowing"
             >Wyposażenie</span
@@ -207,7 +212,10 @@
             ><mat-icon>add</mat-icon>Dodaj</a
           >
         </div>
-
+        <a mat-list-item [routerLink]="['/help']" *ngIf="isLogged">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Pomoc</span>
+          <mat-icon mat-list-icon>help</mat-icon>
+        </a>
         <mat-list-item [routerLink]="['/login']" *ngIf="!isLogged">
           <span class="full-width" *ngIf="isExpanded || isShowing"
             >Logowanie</span

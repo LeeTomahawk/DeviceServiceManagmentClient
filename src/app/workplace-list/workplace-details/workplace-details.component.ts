@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/Services/auth.service';
 import { WorkplaceService } from 'src/Services/workplace.service';
 import { Equipment, Workplace } from '../WorkplaceInterface';
 import { WorklplaceAddEmployeeComponent } from './worklplace-add-employee/worklplace-add-employee.component';
@@ -17,12 +18,15 @@ export class WorkplaceDetailsComponent implements OnInit {
   workplaceEquipment: any;
   wokrplaceEmployee: any;
   displayedColumns: string[] = ['position', 'name', 'description', 'delete'];
+  userRole!: any;
+  data: any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private workplaceApiCaller: WorkplaceService,
     private addEquipmentDialog: MatDialog,
-    private addEmployeeDialog: MatDialog
+    private addEmployeeDialog: MatDialog,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +34,10 @@ export class WorkplaceDetailsComponent implements OnInit {
       this.id = p['id'];
     });
     this.getDetails();
+    this.data = localStorage.getItem('token');
+    if (this.data) {
+      this.userRole = this.authService.getRole();
+    }
   }
 
   getDetails() {

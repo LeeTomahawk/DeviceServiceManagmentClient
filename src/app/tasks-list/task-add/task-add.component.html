@@ -43,7 +43,7 @@
           </mat-form-field>
         </div>
         <div *ngIf="isClientLoad" class="col-6 col-lg-6 col-xl-6">
-          <mat-card class="mh-50">
+          <mat-card class="mh-50 card">
             <div class="d-flex flex-row mb-3 p-3">
               <div class="px-3">
                 <h3 class="font-weight-bold">Imie i nazwisko</h3>
@@ -145,8 +145,59 @@
           mat-raised-button
           color="accent"
           (click)="saveTask()"
+          [disabled]="addButton"
         >
-          Zapisz
+          Zapisz zgłoszenie
+        </button>
+        <button
+          class="m-2"
+          mat-raised-button
+          matStepperNext
+          color="primary"
+          [disabled]="!addButton"
+        >
+          Dalej
+        </button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Potwierdzenie PDF</ng-template>
+      <div *ngIf="isTaskAdd" id="print-section" class="col-6 col-lg-6 col-xl-6">
+        <h2 class="text-center">Potwierdzenie przyjęcia sprzętu</h2>
+
+        <p>Imię i nazwisko zleceniodawcy - numer telefonu</p>
+        <mat-card>
+          {{ selectedIdentiti.identiti.firstName }}
+          {{ selectedIdentiti.identiti.lastName }} -
+          {{ selectedIdentiti.identiti.phoneNumber }}
+        </mat-card>
+        <p>Data przyjęcia</p>
+        <mat-card>
+          {{ taskBody.startDate | date : "yyyy-MM-dd, HH:mm:ss" }}
+        </mat-card>
+        <p>Nazwa dla zgłoszenia</p>
+        <mat-card> {{ taskBody.name }} </mat-card>
+        <p>Opis</p>
+        <mat-card style="min-height: 100">
+          {{ taskBody.description }}
+        </mat-card>
+        <p>Dodatkowe uwagi</p>
+        <mat-card style="min-height: 100"></mat-card>
+        <p>Podpis zleceniobiorcy</p>
+        <mat-card style="min-height: 50; width: 250"></mat-card>
+        <p>Podpis zleceniodawcy</p>
+        <mat-card style="min-height: 50; width: 250"></mat-card>
+      </div>
+      <div class="mt-5">
+        <button
+          class="m-2"
+          mat-raised-button
+          color="primary"
+          printSectionId="print-section"
+          [useExistingCss]="true"
+          ngxPrint
+        >
+          Drukuj potwierdzenie PDF
         </button>
       </div>
     </mat-step>

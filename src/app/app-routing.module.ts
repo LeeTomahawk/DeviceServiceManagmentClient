@@ -23,6 +23,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { ForbidenComponent } from './forbiden/forbiden.component';
 import { ClientAddComponent } from './client-list/client-add/client-add.component';
 import { ManagerAddComponent } from './manager-list/manager-add/manager-add.component';
+import { HelpComponent } from './help/help.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -50,13 +51,13 @@ const routes: Routes = [
     path: 'workplace-list',
     component: WorkplaceListComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['MANAGER', 'ADMIN'] },
+    data: { roles: ['MANAGER', 'ADMIN', 'EMPLOYEE'] },
   },
   {
     path: 'workplace-details/:id',
     component: WorkplaceDetailsComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['MANAGER', 'ADMIN'] },
+    data: { roles: ['MANAGER', 'ADMIN', 'EMPLOYEE'] },
   },
   {
     path: 'equipment-list',
@@ -86,7 +87,7 @@ const routes: Routes = [
     path: 'task-add',
     component: TaskAddComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['MANAGER', 'ADMIN', 'EMPLOYEE'] },
+    data: { roles: ['MANAGER', 'ADMIN'] },
   },
   {
     path: 'tasks-user',
@@ -116,7 +117,7 @@ const routes: Routes = [
     path: 'client-add',
     component: ClientAddComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['EMPLOYEE', 'MANAGER', 'ADMIN'] },
+    data: { roles: ['MANAGER', 'ADMIN'] },
   },
   {
     path: 'manager-list',
@@ -131,6 +132,7 @@ const routes: Routes = [
     data: { roles: ['ADMIN'] },
   },
   { path: 'forbidden', component: ForbidenComponent },
+  { path: 'help', component: HelpComponent },
 
   { path: '**', pathMatch: 'full', component: NotFoundComponent },
 ];

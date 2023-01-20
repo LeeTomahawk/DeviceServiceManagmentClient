@@ -1,0 +1,284 @@
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Rejestracja nowego klienta </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ol>
+      <li>
+        <p>
+          Aby zarejestrować nowego klienta, użytkownik musi posiadać uprawnienia
+          roli <b>MANAGER</b>
+        </p>
+      </li>
+      <li>
+        <p>Przechodzimy do zakładki <b>Klienci</b></p>
+      </li>
+      <li>
+        <p>
+          Wybieramy zakładkę <b>Dodaj</b>, następnie wypełniamy formularz
+          rejestracyjny
+        </p>
+      </li>
+      <li>
+        <p>Cały proces kończymy przyciskiem <b>zarejestruj</b></p>
+      </li>
+    </ol>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Rejestracja pacowników </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ol>
+      <li>
+        <p>
+          Aby zarejestrować nowego klienta, użytkownik musi posiadać uprawnienia
+          roli <b>MANAGER</b>
+        </p>
+      </li>
+      <li>
+        <p>Przechodzimy do zakładki <b>Pracownicy</b></p>
+      </li>
+      <li>
+        <p>
+          Wybieramy zakładkę <b>Dodaj</b>, następnie wypełniamy formularz
+          rejestracyjny
+        </p>
+      </li>
+      <li>
+        <p>Cały proces kończymy przyciskiem <b>zarejestruj</b></p>
+      </li>
+    </ol>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Rejestracja kierowników</mat-panel-title>
+    </mat-expansion-panel-header>
+    <ol>
+      <li>
+        <p>
+          Aby zarejestrować nowego klienta, użytkownik musi posiadać uprawnienia
+          roli <b>ADMINSTRATOR</b>
+        </p>
+      </li>
+      <li>
+        <p>Przechodzimy do zakładki <b>Kierownictwo</b></p>
+      </li>
+      <li>
+        <p>
+          Wybieramy zakładkę <b>Dodaj</b>, następnie wypełniamy formularz
+          rejestracyjny
+        </p>
+      </li>
+      <li>
+        <p>Cały proces kończymy przyciskiem <b>zarejestruj</b></p>
+      </li>
+    </ol>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Przyjmowanie nowych zgłoszeń</mat-panel-title>
+    </mat-expansion-panel-header>
+    <ol>
+      <li>
+        <p>
+          Aby dodać nowe zgłoszenie serwisowe należy posiadać uprawnienia roli
+          <b>MANAGER</b>
+        </p>
+      </li>
+      <li>
+        <p>Przechodzimy do zakładki <b>Zadania</b></p>
+      </li>
+      <li>
+        <p>Wybieramy zakładkę <b>Dodaj</b>, przechodzimy przez listę kroków</p>
+      </li>
+      <li>
+        <p>Cały proces kończymy przyciskiem <b>zapisz zgłoszenie</b></p>
+      </li>
+      <li>
+        <p>
+          Ostatni krok to potwierdzenie przyjęcie sprzętu, należy je wydrukować
+          po zapisie nowego zgłoszenia <b>format PDF</b>
+        </p>
+      </li>
+    </ol>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Przydzielanie zadań</mat-panel-title>
+    </mat-expansion-panel-header>
+    <ol>
+      <li>
+        <p>
+          Aby przydzielić zadanie do pracownika należy posiadać uprawnienia roli
+          <b>MANAGER</b>
+        </p>
+      </li>
+      <li>
+        <p>Przechodzimy do zakładki <b>Zadania</b></p>
+      </li>
+      <li>
+        <p>
+          Wybieramy zakładkę <b>Przydziel</b>, klikamy przycisk:
+          <button mat-stroked-button color="accent">
+            <mat-icon>arrow_rightward</mat-icon><mat-icon>person</mat-icon>
+          </button>
+        </p>
+      </li>
+      <li>
+        <p>
+          Cały proces kończymy wyborem pracownika,
+          <b>należy zwrócić uwagę na obciążenie pracowników zadaniami</b>
+        </p>
+      </li>
+      <li>
+        <p>
+          Po wybraniu pracownika zadanie trafia do jego zakładki
+          <b>Zadania -> Twoje</b>
+        </p>
+      </li>
+    </ol>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Zatwierdzanie zadań</mat-panel-title>
+    </mat-expansion-panel-header>
+    <ol>
+      <li>
+        <p>
+          Aby zatwierdzić zadanie należy posiadać uprawnienia roli
+          <b>MANAGER</b>
+        </p>
+      </li>
+      <li>
+        <p>Przechodzimy do zakładki <b>Zadania</b></p>
+      </li>
+      <li>
+        <p>
+          Wybieramy zakładkę <b>Zatwierdź</b>, klikamy przycisk:
+          <button mat-icon-button color="accent">
+            <mat-icon>check_box</mat-icon>
+          </button>
+          <b>należy się upewnić czy wszystko zostało poprawnie uzupełnione</b>
+          możemy to sprawdzić poprzez kliknięcie:
+          <button mat-icon-button color="primary">
+            <mat-icon>info</mat-icon>
+          </button>
+        </p>
+      </li>
+      <li>
+        <p>
+          Po zatwierdzeniu zadania, status zmienia się na:
+          <b>OCZEKIWANIE NA ODBIÓR</b>
+        </p>
+      </li>
+    </ol>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Odbiór sprzętu</mat-panel-title>
+    </mat-expansion-panel-header>
+    <ol>
+      <li>
+        <p>
+          Aby oddać sprzęt należy posiadać uprawnienia roli
+          <b>MANAGER </b>
+          <b style="color: red"
+            >klient powinien posiadać ze sobą potwierdzenie zostawienia
+            sprzętu</b
+          >
+        </p>
+      </li>
+      <li>
+        <p>Przechodzimy do zakładki <b>Klienci</b></p>
+      </li>
+      <li>
+        <p>
+          Wybieramy zakładkę <b>Szukaj</b>, szukamy naszego klienta
+          (wyszukiwarka działa po wszystkich możliwych danych)
+        </p>
+      </li>
+      <li>
+        <p>
+          Klikamy przycisk:
+          <button mat-icon-button color="primary">
+            <mat-icon>task</mat-icon>
+          </button>
+          <b>zostanie nam wyświetlona lista zleceń konkretnego klienta</b>
+        </p>
+      </li>
+      <li>
+        <p>
+          Zlecenia są sortowane od najnowszych, wybieramy interesujace nas
+          zlecenie
+        </p>
+      </li>
+      <li>
+        Na końcu podsumowania zadania znajduje się przycisk
+        <button mat-raised-button color="warn">Zakończ</button>
+        klikamy go aby zakończyć zlecenie
+      </li>
+    </ol>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Wirtualne stanowiska </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ol>
+      <li>
+        <p>
+          Wirtualne stanowiska są dostępne dla wszystkich ról, tylko
+          <b>MANAGER i ADMINISTRATOR</b> może je dodawać, usuać, edytować
+        </p>
+      </li>
+      <li>
+        <p>Przechodzimy do zakładki <b>Stanowiska -> Szukaj</b></p>
+      </li>
+      <li>
+        <p>
+          Mamy dostępne kafelki z wszystkimi stanowiskami dosępnymi w zakładzie
+          pracy
+        </p>
+      </li>
+      <li>
+        <p>
+          Klikając kafelkę lub
+          <button mat-icon-button color="primary">
+            <mat-icon>info</mat-icon>
+          </button>
+          możemy sprawdzisz szczegóły stanowiska:
+        </p>
+        <ul>
+          <li>Pracowników</li>
+          <li>Wyposażenie</li>
+        </ul>
+      </li>
+    </ol>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Dodawanie wyposażenia </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ol>
+      <li>
+        <p>
+          Aby dodać wyposażenie należy posiadać rolę
+          <b>MANAGER lub ADMINISTRATOR</b>
+        </p>
+      </li>
+      <li>
+        <p>Przechodzimy do zakładki <b>Wyposażenie -> Dodaj</b></p>
+      </li>
+      <li>
+        <p>Wypełniamy formularz i kliamy przycisk <b>Dodaj</b></p>
+      </li>
+    </ol>
+  </mat-expansion-panel>
+</mat-accordion>

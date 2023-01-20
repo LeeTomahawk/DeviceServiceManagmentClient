@@ -14,6 +14,7 @@
       mat-raised-button
       color="primary"
       (click)="openAddEquipmentDialog(workplaceEquipment)"
+      *ngIf="userRole != 'EMPLOYEE'"
     >
       Dodaj wyposażenie
     </button>
@@ -22,6 +23,7 @@
       mat-raised-button
       color="primary"
       (click)="openAddEmployeeDialog(id)"
+      *ngIf="userRole != 'EMPLOYEE'"
     >
       Dodaj pracownika
     </button>
@@ -47,6 +49,7 @@
             <button
               mat-icon-button
               color="warn"
+              *ngIf="userRole != 'EMPLOYEE'"
               (click)="delete(element.wokrplaceEquipmentId)"
             >
               <mat-icon>delete</mat-icon>
@@ -77,6 +80,7 @@
             <button
               mat-icon-button
               color="warn"
+              *ngIf="userRole != 'EMPLOYEE'"
               (click)="delete(element.wokrplaceEquipmentId)"
             >
               <mat-icon>delete</mat-icon>

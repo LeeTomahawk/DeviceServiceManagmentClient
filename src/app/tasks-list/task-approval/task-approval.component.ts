@@ -9,6 +9,7 @@ import { TaskInfoComponent } from '../task-info/task-info.component';
 import { TaskUpdateComponent } from '../task-update/task-update.component';
 import { Tasks } from '../taskInterfaces';
 import { ApprovalTask } from './ApprovalTask';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-task-approval',
@@ -39,7 +40,8 @@ export class TaskApprovalComponent implements OnInit {
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
     private taskApiCaller: TaskService,
-    private managerApiCaller: ManagerService
+    private managerApiCaller: ManagerService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -102,7 +104,9 @@ export class TaskApprovalComponent implements OnInit {
   setTaskApproval(taskId: string) {
     this.managerApiCaller.setTaskToApproval(taskId).subscribe(
       (data) => {
-        console.log('add');
+        this._snackBar.open("Zatwierdzono!", 'X', {
+          duration: 3000
+        });
         const request: any = {};
 
         request.SearchPharse = this.SearchPharse;

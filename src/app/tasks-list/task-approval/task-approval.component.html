@@ -39,7 +39,7 @@
                 : '#f56e07'
           }"
         >
-          {{ element.task.taskStatus }}
+          {{ taskStatusMap(element.task.taskStatus) }}
         </td>
       </ng-container>
 
@@ -48,7 +48,7 @@
           Data przyjęcia
         </th>
         <td mat-cell *matCellDef="let element">
-          {{ element.task.startDate | date: "yyyy-MM-dd, HH:mm:ss" }}
+          {{ element.task.startDate | date : "yyyy-MM-dd, HH:mm:ss" }}
         </td>
       </ng-container>
 

@@ -7,6 +7,7 @@ import {
 } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from 'src/Services/auth.service';
 import { ClientService } from 'src/Services/client.service';
 import { ClientInfoComponent } from './client-info/client-info.component';
 import { ClientTasksComponent } from './client-tasks/client-tasks.component';
@@ -35,6 +36,8 @@ export class ClientListComponent implements OnInit {
   PageSize: number = 25;
   SortBy: string = '';
   SortDirection: string = '';
+  userRole!: any;
+  data: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('empTbSort') empTbSort = new MatSort();
@@ -43,7 +46,8 @@ export class ClientListComponent implements OnInit {
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
     private tasksDialog: MatDialog,
-    private clientApiCaller: ClientService
+    private clientApiCaller: ClientService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +58,10 @@ export class ClientListComponent implements OnInit {
     request.SortBy = this.SortBy;
     request.SortDirection = this.SortDirection;
     this.getClientList(request);
+    this.data = localStorage.getItem('token');
+    if (this.data) {
+      this.userRole = this.authService.getRole();
+    }
   }
 
   applyFilter(event: Event) {

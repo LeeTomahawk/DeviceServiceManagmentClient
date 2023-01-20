@@ -6,6 +6,6 @@
   <p>Czy napewno chcesz usunąć zadanie?</p>
 </div>
 <div mat-dialog-actions align="center">
-  <button mat-button>Tak</button>
+  <button mat-button (click)="delete()" mat-dialog-close>Tak</button>
   <button mat-button mat-dialog-close>Nie</button>
 </div>

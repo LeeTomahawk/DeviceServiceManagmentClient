@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { RegisterUserForm } from 'src/Forms/RegisterUserForm';
 import { RegisterUserDto } from 'src/Models/RegisterUserDto';
@@ -13,25 +14,26 @@ export class EmployeeAddComponent implements OnInit {
   registerForm = new RegisterUserForm();
   constructor(
     private userServiceApiCaller: UserService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {}
 
   register() {
     this.registerForm.get('roleType')?.setValue('EMPLOYEE');
-    console.log(this.registerForm.value);
     this.userServiceApiCaller
       .register(new RegisterUserDto(this.registerForm.value))
       .subscribe(
         (x) => {
-          console.log('add');
           this.router.navigate(['/employee-list']).finally(() => {
             window.location.reload();
           });
         },
         (err) => {
-          console.log(err);
+          this._snackBar.open("Hasła się nie zgadzają, telefon lub adres email już jest zajęty!", 'X', {
+            duration: 3000
+          });
         }
       );
   }

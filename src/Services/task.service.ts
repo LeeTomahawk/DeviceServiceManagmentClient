@@ -97,4 +97,11 @@ export class TaskService {
       this.httpOptions
     );
   }
+
+  deleteTask(taskId: string) {
+    return this.http.delete<any>(
+      this.apiURL + '/api/Task/'+taskId,
+      this.httpOptions
+    );
+  }
 }

@@ -73,6 +73,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { WorklplaceAddEmployeeComponent } from './workplace-list/workplace-details/worklplace-add-employee/worklplace-add-employee.component';
 import { ManagerAddComponent } from './manager-list/manager-add/manager-add.component';
+import { NgxPrintModule } from 'ngx-print';
+import { HelpComponent } from './help/help.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,8 +115,11 @@ import { ManagerAddComponent } from './manager-list/manager-add/manager-add.comp
     ClientAddComponent,
     WorklplaceAddEmployeeComponent,
     ManagerAddComponent,
+    HelpComponent,
   ],
   imports: [
+    MatSnackBarModule,
+    NgxPrintModule,
     MatTooltipModule,
     MatExpansionModule,
     MatSortModule,

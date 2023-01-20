@@ -6,6 +6,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { TaskListCalendarForm } from 'src/Forms/TaskListCalendarForm';
+import { AuthService } from 'src/Services/auth.service';
 import { TaskService } from 'src/Services/task.service';
 import { TaskDeleteComponent } from './task-delete/task-delete.component';
 import { TaskInfoComponent } from './task-info/task-info.component';
@@ -37,6 +38,8 @@ export class TasksListComponent implements OnInit {
   PageSize: number = 25;
   SortBy: string = '';
   SortDirection: string = '';
+  userRole!: any;
+  data: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('empTbSort') empTbSort = new MatSort();
@@ -45,7 +48,8 @@ export class TasksListComponent implements OnInit {
     private infoDialog: MatDialog,
     private updateDialog: MatDialog,
     private deleteDialog: MatDialog,
-    private taskApiCaller: TaskService
+    private taskApiCaller: TaskService,
+    private authService: AuthService
   ) {
     this.endDate = new Date();
     this.startDate = new Date();
@@ -64,6 +68,11 @@ export class TasksListComponent implements OnInit {
     request.SortDirection = this.SortDirection;
 
     this.getTaskList(request);
+
+    this.data = localStorage.getItem('token');
+    if (this.data) {
+      this.userRole = this.authService.getRole();
+    }
   }
 
   async getTaskList(params: any) {

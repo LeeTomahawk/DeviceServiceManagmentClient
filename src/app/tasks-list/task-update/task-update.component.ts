@@ -2,8 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UpdateTaskForm } from 'src/Forms/UpdateTaskForm';
 import { UpdateTaskDto } from 'src/Models/UpdateTaskDto';
+import { AuthService } from 'src/Services/auth.service';
 import { TaskService } from 'src/Services/task.service';
 import { Tasks } from '../taskInterfaces';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-task-update',
@@ -12,9 +14,13 @@ import { Tasks } from '../taskInterfaces';
 })
 export class TaskUpdateComponent implements OnInit {
   updateForm = new UpdateTaskForm();
+  userRole!: any;
+  dataa: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { task: Tasks },
-    private taskApiCaller: TaskService
+    private taskApiCaller: TaskService,
+    private authService: AuthService,
+    private _snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.updateForm.controls['id'].setValue(this.data.task.id);
@@ -27,6 +33,11 @@ export class TaskUpdateComponent implements OnInit {
     this.updateForm.controls['endDate'].setValue(this.data.task.endDate);
     this.updateForm.controls['amount'].setValue(this.data.task.amount);
     this.updateForm.controls['taskStatus'].setValue(this.data.task.taskStatus);
+
+    this.dataa = localStorage.getItem('token');
+    if (this.dataa) {
+      this.userRole = this.authService.getRole();
+    }
   }
 
   update() {
@@ -34,7 +45,9 @@ export class TaskUpdateComponent implements OnInit {
       .updateTask(new UpdateTaskDto(this.updateForm.value))
       .subscribe(
         (x) => {
-          console.log('done');
+          this._snackBar.open("Zmodyfikowano!", 'X', {
+            duration: 3000
+          });
         },
         (err) => {
           console.log(err.error);

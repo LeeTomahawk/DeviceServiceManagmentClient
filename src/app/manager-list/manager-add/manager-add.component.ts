@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { RegisterUserForm } from 'src/Forms/RegisterUserForm';
 import { RegisterUserDto } from 'src/Models/RegisterUserDto';
@@ -13,7 +14,8 @@ export class ManagerAddComponent implements OnInit {
   registerForm = new RegisterUserForm();
   constructor(
     private userServiceApiCaller: UserService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {}
@@ -31,7 +33,9 @@ export class ManagerAddComponent implements OnInit {
           });
         },
         (err) => {
-          console.log(err);
+          this._snackBar.open("Hasła się nie zgadzają, telefon lub adres email już jest zajęty!", 'X', {
+            duration: 3000
+          });
         }
       );
   }

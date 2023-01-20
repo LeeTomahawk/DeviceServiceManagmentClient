@@ -6,7 +6,11 @@
         <h3 class="font-weight-bold">Status</h3>
         <section>
           <mat-radio-group formControlName="taskStatus">
-            <mat-radio-button class="mx-2" value="RECEIVED">
+            <mat-radio-button
+              class="mx-2"
+              value="RECEIVED"
+              [disabled]="userRole == 'EMPLOYEE'"
+            >
               PRZYJĘTO
             </mat-radio-button>
             <mat-radio-button class="mx-2" value="IN_REPAIR">
@@ -15,13 +19,21 @@
             <mat-radio-button class="mx-2" value="REPAIRED">
               NAPRAWIONE
             </mat-radio-button>
-            <mat-radio-button class="mx-2" value="NOT_REPAIRED" *ngIf="">
+            <mat-radio-button class="mx-2" value="NOT_REPAIRED">
               NIE NAPRAWIONE
             </mat-radio-button>
-            <mat-radio-button class="mx-2" value="WAITING_FOR_CLIENT">
+            <mat-radio-button
+              class="mx-2"
+              value="WAITING_FOR_CLIENT"
+              [disabled]="userRole == 'EMPLOYEE'"
+            >
               OCZEKIWANIE NA KLIENTA
             </mat-radio-button>
-            <mat-radio-button class="mx-2" value="COLLECTED">
+            <mat-radio-button
+              class="mx-2"
+              value="COLLECTED"
+              [disabled]="userRole == 'EMPLOYEE'"
+            >
               ODEBRANO
             </mat-radio-button>
           </mat-radio-group>
@@ -74,7 +86,7 @@
       </div>
     </div>
     <div class="row mb-3">
-      <div class="col-4 px-3 w-100">
+      <div class="col px-3">
         <h3 class="font-weight-bold">Szacowana cena</h3>
         <mat-form-field appearance="fill" color="accent" floatLabel="always">
           <mat-label>Cena naprawy</mat-label>
@@ -86,6 +98,14 @@
             formControlName="amount"
           />
           <mat-error> Błędna cena. </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col px-3" *ngIf="userRole == 'EMPLOYEE'">
+        <h3 class="font-weight-bold">Szacowany czas pracy</h3>
+        <mat-form-field appearance="fill" color="accent" floatLabel="always">
+          <mat-label>Czas pracy w h</mat-label>
+          <input matInput type="number" placeholder="0" min="1" />
+          <mat-error> Błąd</mat-error>
         </mat-form-field>
       </div>
     </div>

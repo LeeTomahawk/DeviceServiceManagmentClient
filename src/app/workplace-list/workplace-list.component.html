@@ -7,6 +7,7 @@
         mat-raised-button
         color="primary"
         (click)="openAddDialog()"
+        *ngIf="userRole != 'EMPLOYEE'"
       >
         Dodaj stanowisko
       </button>
@@ -35,6 +36,7 @@
         <button
           mat-icon-button
           color="accent"
+          *ngIf="userRole != 'EMPLOYEE'"
           (click)="openUpdateDialog(element)"
         >
           <mat-icon>update</mat-icon>
@@ -42,6 +44,7 @@
         <button
           mat-icon-button
           color="warn"
+          *ngIf="userRole != 'EMPLOYEE'"
           (click)="openDeleteDialog(element.id)"
         >
           <mat-icon>delete</mat-icon>

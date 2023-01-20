@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { WorkplaceService } from 'src/Services/workplace.service';
 import { EquipmentService } from 'src/Services/equipment.service';
 import { WorkplaceAddComponent } from './workplace-add/workplace-add.component';
+import { AuthService } from 'src/Services/auth.service';
 
 @Component({
   selector: 'app-workplace-list',
@@ -24,15 +25,22 @@ export class WorkplaceListComponent implements OnInit {
   workplaceList: any;
   dataSource = new MatTableDataSource<Workplace>();
   isLoading: boolean = true;
+  userRole!: any;
+  data: any;
   constructor(
     private updateDialog: MatDialog,
     private deleteDialog: MatDialog,
     private addDialog: MatDialog,
-    private workplaceApiCaller: WorkplaceService
+    private workplaceApiCaller: WorkplaceService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.getWorkplaceList();
+    this.data = localStorage.getItem('token');
+    if (this.data) {
+      this.userRole = this.authService.getRole();
+    }
   }
 
   getWorkplaceList() {

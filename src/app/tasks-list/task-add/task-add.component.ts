@@ -24,12 +24,15 @@ import { TaskService } from 'src/Services/task.service';
 })
 export class TaskAddComponent implements OnInit, OnChanges {
   selectedIdentiti: any = '';
+  taskBody: any;
   clientPhoneForm = new SearchClientByPhoneNumber();
   myControl = new FormControl('');
   filteredOptions!: Observable<any[]>;
   clientList: any;
   isClientLoad: boolean = false;
+  isTaskAdd: boolean = false;
   newTaskForm = new NewTaskForm();
+  addButton: boolean = false;
 
   constructor(
     private clientApiCaller: ClientService,
@@ -51,6 +54,7 @@ export class TaskAddComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     let change = changes['isClientLoad'];
+    changes['isTaskAdd'];
   }
 
   filter(val: string): Observable<any[]> {
@@ -81,10 +85,9 @@ export class TaskAddComponent implements OnInit, OnChanges {
       .addNewTask(new RegisterNewTask(this.newTaskForm.value))
       .subscribe(
         (x) => {
-          console.log('add');
-          this.router.navigate(['/task-add']).finally(() => {
-            window.location.reload();
-          });
+          this.addButton = true;
+          this.taskBody = x;
+          this.isTaskAdd = true;
         },
         (err) => {
           console.log(err);

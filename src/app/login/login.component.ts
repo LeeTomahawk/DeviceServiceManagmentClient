@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginForm } from 'src/Forms/LoginForm';
 import { UserLoginDto } from 'src/Models/UserLoginDto';
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -37,7 +39,9 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {
-        console.error(error);
+        this._snackBar.open(error.error, 'X', {
+          duration: 3000
+        });
       }
     );
   }
